@@ -1,0 +1,14 @@
+.ebook-img {
+    height: 200px;
+    width: 200px;
+    vertical-align: super;
+}
+.details-list {
+    background: green;
+    /* display: inline-block; */
+    
+    /* display: flex; */
+    /* justify-content: center; */
+    /* position: relative;
+    top: 50px; */
+}

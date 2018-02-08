@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="ebookDetails/ebookDetails.css">
+
+    
+<a  ng-click="$ctrl.goToEbookPage()" >
+<img class="col-xs-6 col-sm-6 col-lg-5 img-cover-wrapper ebook-img " 
+    src={{$ctrl.ebook.imageUrl}}>
+<ul class='col-xs-6 col-sm-6 col-lg-7 details-list list-unstyled'>
+  <li><span>ID: {{$ctrl.ebook.id}}</span></li>
+  <li><span>Title: {{$ctrl.ebook.title}}</span></li>
+  <li><span>Price: {{$ctrl.ebook.Price}}</span></li>
+  <li><span>image: {{$ctrl.ebook.image}}</span></li>
+  <likes ebook-id="{{$ctrl.ebook.id}}"> </likes>
+</ul>
+
+</a>
+
+
+<!--  ngROUTE <a href="/#!/ebookPage/{{$ctrl.ebook.id}}"  > -->
+  

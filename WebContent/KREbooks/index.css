@@ -1,0 +1,15 @@
+body, html {
+    height: 100%;
+}
+
+footer {
+    margin-top: -50px;
+    height: 50px;
+    background: green;
+}
+
+
+.content {
+    min-height: 100%;
+    padding-bottom: 50px;
+}

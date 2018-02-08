@@ -1,0 +1,43 @@
+.ebook-img {
+     height: 200px; 
+      width: 150px;  
+    vertical-align: super;
+}
+.details-list {
+    background: green;
+    overflow-wrap: break-word;
+    
+    /* display: inline-block; */
+    
+    /* display: flex; */
+    /* justify-content: center; */
+    /* position: relative;
+    top: 50px; */
+}
+
+ /* div .img-cover-wrapper {
+     margin: 0;
+     padding: 0;
+ } */
+
+  .ebook-item {
+    /* margin: 0;
+    padding: 0; */
+    padding-left: 0;
+    padding-right: 5px;
+    margin-bottom: 5px; 
+     
+ }
+
+ ul{
+    padding-left: 0;
+ }
+
+ .nopadding, .ebook-item {
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+ }
+
+ a{
+     color: black;
+ }

@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="reviewForm/reviewForm.css">
+
+
+  <form class="container" >
+
+    <div class='row'> 
+
+        <form class='send-message-form' onsubmit="return false">          
+            <cite class="col-xs-10"> {{ctrl.userr}} </cite>
+            <!-- <button class="">  -->
+            <!-- </button>  -->
+            <!-- <button aria-label="Send message" class='btn-send' id='button-send'    > -->
+                <button type="button" class="btn btn-primary" ng-click="$ctrl.submitReview()">send</button>
+             </button>
+
+         </div>  
+          
+
+            <div  class='ta-message-container'>
+              <pre ><span id='ta-span-message' ></span></pre>
+              <label hidden for="ta-message"> enter message </label>                  
+              <textarea ng-model="reviewDescription" id='ta-message'></textarea>
+            </div>
+
+          </form>
+
+
+
+    <!-- <textarea class="col-xs-12 form-control review-textarea"  type="text"  required></textarea> -->
+    </div>
+
+  </form>
+

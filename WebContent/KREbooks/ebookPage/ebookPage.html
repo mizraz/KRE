@@ -1,0 +1,37 @@
+
+<link rel="stylesheet" href="ebookPage/ebookPage.css">
+
+<div class="content" ng-controller='ebookPageController as ctrl'>
+		
+<div class='container' id='ebookPage'>
+<img class='ebook-img col-xs-12 col-sm-3' src={{ctrl.ebook.imageUrl}}>
+<ul class='details-list col-xs-12 col-sm-6'> 
+<li><span>ID: {{$ctrl.ebook.id}}</span></li>
+<li><span>Title: {{ctrl.ebook.title}}</span></li>
+<li><span>Price: {{ctrl.ebook.Price}}</span></li>
+<li><span>description: {{ctrl.ebook.description}}</span></li>
+<li><span>image: {{ctrl.ebook.image}}</span></li>
+<likes-list users-list="ctrl.likesUserList" is-user-liked="ctrl.isUserliked" 
+is-user-purchased= "isUserPurchased">sdf </likes-list>		
+<!-- TODO: need to fix listLikes  -->
+
+<!-- TODO: check if need to delete this. it seems does nothing
+<likes ebook-id="{{$ctrl.ebook.id}}"> </likes> -->
+
+</ul>
+
+
+<div class="row">
+	<review-ebook userr="userName" ebook-id="ctrl.ebook.id"> </review-ebook>
+
+	<review-form userr="userName" ebook-id="ctrl.ebook.id" ng-if="ctrl.isUserPurchased()"> </review-form>
+	
+
+	
+</div>
+
+
+</div>
+
+
+</div>

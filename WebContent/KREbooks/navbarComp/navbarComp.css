@@ -1,0 +1,37 @@
+.user{
+    background: green;
+}
+
+.users{
+    background: blue;
+}
+
+.reviews{
+    background: violet;
+}
+
+.home{
+    background: yellow;
+}
+
+
+.ccc{
+    background: powderblue;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+    margin-left: 0;
+}
+
+a {
+    margin-left: 0;
+    padding: 0;
+
+    
+}
+
+.nopadding {
+    padding-left: 0 !important;
+    /* margin-left: 0 !important; */
+ }

@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="navbarComp/navbarComp.css">    
+
+
+<nav class="navbar ">
+
+    <div class="container">
+        <div class="row">
+        <ul class="nav navbar-nav col-xs-12 col-sm-12 ">
+            <li class="  home col-xs-4 col-sm-3 col-md-2" ng-click="$ctrl.funn('catalog/catalog.html')">
+                <a href="" class="nopadding"><span class=" text-nowrap glyphicon glyphicon-home">
+                     Home</span></a>
+            </li>
+            <li class="nopadding text-nowrap ccc col-xs-4 col-sm-3 col-md-1" ng-click="$ctrl.funn('topDeals/topDeals.html')"><a href="" class="nopadding">Top deals</a></li>
+            <li class="nopadding text-nowrap ddd col-xs-4 col-sm-2 col-md-1" ng-click="$ctrl.funn('contactUs/contactUs.html')" ><a href="" class="nopadding">Contact us</a></li>
+            <li class=" text-nowrap reviews col-xs-6 col-sm-3 col-md-2 " ng-click=" $ctrl.funn('admin/reviewsListAll/reviewsListAll.html')"   ng-if="$ctrl.userPrivel == 1" }}>
+                <a href="" class="nopadding">Reviews list</a></li>
+            <li class="nopadding text-nowrap users col-xs-6 col-sm-3 col-md-2" ng-click="$ctrl.funn('admin/usersListAll/usersListAll.html')" ng-if="$ctrl.userPrivel == 1" }}>
+                <a href="" class="nopadding">Users list</a></li>
+
+            <li class="text-nowrap col-xs-6 col-sm-2 col-md-2 dropdown "><a class=" text-nowrap dropdown-toggle" data-toggle="dropdown"  class="nopadding">
+                Hi Raz!</a>
+            </li>
+            <li class="cart col-xs-3 col-sm-1 col-md-1 navbar-right " style="margin-right: 0!important" ng-click="$ctrl.funn('cart/cart.html')">
+                <a href="" class="glyphicon glyphicon-shopping-cart" style="margin-right: 0!important"></a>
+            </li>
+            <li class="col-xs-3 col-sm-1 col-md-1 navbar-right " ng-click="$ctrl.funn('userDetails/userDetails.html')">
+                <a href="" class="glyphicon glyphicon-user"></a>
+            </li>
+
+        </ul>
+        
+        </div>
+        
+    </div>
+</nav>
+
+
+<!-- EXAMPLE with ngRoute <li class=" text-nowrap reviews col-xs-6 col-sm-3 col-md-2 " ng-click="$ctrl.curPage = 'admin/reviewsListAll/reviewsListAll.html'" ng-if="$ctrl.userPrivel == 1" }}>
+    <a href="/#!/reviewsListAll" class="nopadding">Reviews list</a></li> -->
