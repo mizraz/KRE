@@ -24,8 +24,9 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import DB.DBQueries;
 import example.AppConstants;
-import example.model.Customer;
+import example.model.Review;
 
 
 
@@ -33,12 +34,12 @@ import example.model.Customer;
  * An example listener that reads the customer json file and populates the data into a Derby database
  */
 @WebListener
-public class ManageCustomerDBFromJsonFile implements ServletContextListener {
+public class ManageReviewsDBFromJsonFile implements ServletContextListener {
 
     /**
      * Default constructor. 
      */
-    public ManageCustomerDBFromJsonFile() {
+    public ManageReviewsDBFromJsonFile() {
         // TODO Auto-generated constructor stub
     }
     
@@ -69,9 +70,13 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
     		
     		boolean created = false;
     		try{
+    			
+    			Statement stmt3 = conn.createStatement();
+    			stmt3.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
+    			
     			//create Customers table
     			Statement stmt = conn.createStatement();
-    			stmt.executeUpdate(AppConstants.CREATE_CUSTOMERS_TABLE);
+    			stmt.executeUpdate(DBQueries.CREATE_ALL_REVIEWS_TABLE);
     			//commit update
         		conn.commit();
         		stmt.close();
@@ -88,13 +93,15 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
     		//if no database exist in the past - further populate its records in the table
     		if (!created){
     			//populate customers table with customer data from json file
-    			Collection<Customer> customers = loadCustomers(cntx.getResourceAsStream(File.separator +
-    														   AppConstants.CUSTOMERS_FILE));
-    			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_CUSTOMER_STMT);
-    			for (Customer customer : customers){
-    				pstmt.setString(1,customer.getName());
-    				pstmt.setString(2,customer.getCity());
-    				pstmt.setString(3,customer.getCountry());
+    			Collection<Review> reviews = loadReviews(cntx.getResourceAsStream(File.separator +
+    														   AppConstants.REVIEWS_FILE));
+    			PreparedStatement pstmt = conn.prepareStatement(DBQueries.INSERT_REVIEW);
+    			for (Review review : reviews){
+    				System.out.println("insert to REVIEW TABLE " + review.getEmail() + "is Approved: " + review.getIsApproved());
+    				pstmt.setString(1,review.getEmail());
+    				pstmt.setString(2,review.getBookId());
+    				pstmt.setString(3,review.getDescription());
+    				pstmt.setString(4,review.getIsApproved());
     				pstmt.executeUpdate();
     			}
 
@@ -142,7 +149,7 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
 	 * @return collection of customers
 	 * @throws IOException
 	 */
-	private Collection<Customer> loadCustomers(InputStream is) throws IOException{
+	private Collection<Review> loadReviews(InputStream is) throws IOException{
 		
 		//wrap input stream with a buffered reader to allow reading the file line by line
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -156,13 +163,14 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
 		Gson gson = new Gson();
 		//this is a require type definition by the Gson utility so Gson will 
 		//understand what kind of object representation should the json file match
-		Type type = new TypeToken<Collection<Customer>>(){}.getType();
-		Collection<Customer> customers = gson.fromJson(jsonFileContent.toString(), type);
+		Type type = new TypeToken<Collection<Review>>(){}.getType();
+		Collection<Review> reviews = gson.fromJson(jsonFileContent.toString(), type);
 		//close
 		br.close();	
-		return customers;
+		return reviews;
 
 	}
 	
 }
+
 

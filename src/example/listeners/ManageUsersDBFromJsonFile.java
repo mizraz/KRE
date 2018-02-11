@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -24,8 +25,9 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import DB.DBQueries;
 import example.AppConstants;
-import example.model.Customer;
+import example.model.User;
 
 
 
@@ -33,12 +35,12 @@ import example.model.Customer;
  * An example listener that reads the customer json file and populates the data into a Derby database
  */
 @WebListener
-public class ManageCustomerDBFromJsonFile implements ServletContextListener {
+public class ManageUsersDBFromJsonFile implements ServletContextListener {
 
     /**
      * Default constructor. 
      */
-    public ManageCustomerDBFromJsonFile() {
+    public ManageUsersDBFromJsonFile() {
         // TODO Auto-generated constructor stub
     }
     
@@ -69,9 +71,13 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
     		
     		boolean created = false;
     		try{
+    			
+    			Statement stmt3 = conn.createStatement();
+    			stmt3.executeUpdate(DBQueries.DROP_USERS_TABLE);
+    			
     			//create Customers table
     			Statement stmt = conn.createStatement();
-    			stmt.executeUpdate(AppConstants.CREATE_CUSTOMERS_TABLE);
+    			stmt.executeUpdate(DBQueries.CREATE_USER_DETAILS_TABLE);
     			//commit update
         		conn.commit();
         		stmt.close();
@@ -88,13 +94,19 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
     		//if no database exist in the past - further populate its records in the table
     		if (!created){
     			//populate customers table with customer data from json file
-    			Collection<Customer> customers = loadCustomers(cntx.getResourceAsStream(File.separator +
-    														   AppConstants.CUSTOMERS_FILE));
-    			PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_CUSTOMER_STMT);
-    			for (Customer customer : customers){
-    				pstmt.setString(1,customer.getName());
-    				pstmt.setString(2,customer.getCity());
-    				pstmt.setString(3,customer.getCountry());
+    			Collection<User> users = loadusers(cntx.getResourceAsStream(File.separator +
+    														   AppConstants.USER_DETAILS_FILE));
+    			PreparedStatement pstmt = conn.prepareStatement(DBQueries.INSERT_USER_DETAILS);
+    			for (User user : users){
+    				System.out.println("insert to USER TABLE " + user.getEmail());
+    				pstmt.setString(1,user.getEmail());
+    				pstmt.setString(2,user.getUserName());
+    				pstmt.setString(3,user.getAddress());
+    				pstmt.setString(4,user.getPhoneNumber());
+    				pstmt.setString(5,user.getPwd());
+    				pstmt.setString(6,user.getUserNickname());
+    				pstmt.setString(7,user.getDescription());
+    				pstmt.setString(8,user.getImageUrl());
     				pstmt.executeUpdate();
     			}
 
@@ -142,7 +154,7 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
 	 * @return collection of customers
 	 * @throws IOException
 	 */
-	private Collection<Customer> loadCustomers(InputStream is) throws IOException{
+	private Collection<User> loadusers(InputStream is) throws IOException{
 		
 		//wrap input stream with a buffered reader to allow reading the file line by line
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -156,13 +168,21 @@ public class ManageCustomerDBFromJsonFile implements ServletContextListener {
 		Gson gson = new Gson();
 		//this is a require type definition by the Gson utility so Gson will 
 		//understand what kind of object representation should the json file match
-		Type type = new TypeToken<Collection<Customer>>(){}.getType();
-		Collection<Customer> customers = gson.fromJson(jsonFileContent.toString(), type);
+		Type type = new TypeToken<Collection<User>>(){}.getType();
+		Collection<User> users = gson.fromJson(jsonFileContent.toString(), type);
+		
+		for (Iterator iterator = users.iterator(); iterator.hasNext();) {
+			User user = (User) iterator.next();
+			user.printUser();
+			
+		}
+		
 		//close
 		br.close();	
-		return customers;
+		return users;
 
 	}
 	
 }
+
 

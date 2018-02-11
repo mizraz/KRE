@@ -50,6 +50,11 @@ angular.module('myApp').controller("reviewsListAllController",
 //
 //			}
 
+			
+			ctrl.approveReview = function() {
+				console.log("review approved!");
+			}
+			
 		}]);
 
 drawReview = function(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date) {
@@ -87,7 +92,34 @@ drawReview = function(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId
 		<!-- end message -->  \
 		";
 //	console.log(newMessage);
-	reviewList.appendChild(newMessage);	
+	reviewList.appendChild(newMessage);
+	
+    (function () {
+        var localMsgId = msgId;
+
+        (document.getElementById('del-msg-btn-' + localMsgId)).addEventListener('click', function () {
+
+
+          var curMsgEmail = document.getElementById(localMsgId)
+            .getElementsByClassName('email')[0];
+          var email = curMsgEmail.innerHTML;
+//          if (Babble.email == email) {
+            Babble.deleteMessage(localMsgId, function () {
+              /*Do something? not the Gui update thing.*/
+            });
+//          } else {
+//            console.log("YOU TRIED DEL MESSAGE NOT YOURS! your email vs message email: " + msgId + " " + Babble.email + " " + email);
+//          }
+        });
+      }());
+	
+	
+	
+	
+	
+	
+	
+	
 //	console.log("33333 " + reviewList.innerHTML);
 //	$scope.mmm = newMessage;
 };

@@ -1,6 +1,5 @@
 package example.servlets;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -11,11 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -24,15 +21,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
-
 import com.google.gson.Gson;
-
+import DB.DBQueries;
 import example.AppConstants;
+import example.URIConsts;
 import example.Utils;
-import example.model.Customer;
-import example.model.Ebook;
 import example.model.Review;
 
 /**
@@ -71,16 +65,17 @@ public class ReviewHandler extends HttpServlet {
 
     		Collection<Review> reviewsResult = new ArrayList<Review>(); 
     		String uri = request.getRequestURI();
-    		if (uri.indexOf(AppConstants.BOOK_ID) != -1){//filter customer by specific name
-    			String bookId = uri.substring(uri.indexOf(AppConstants.BOOK_ID) + AppConstants.BOOK_ID.length() + 1);
+    		if (uri.indexOf(URIConsts.BOOK_ID) != -1){//filter customer by specific name
+    			String bookId = uri.substring(uri.indexOf(URIConsts.BOOK_ID) + URIConsts.BOOK_ID.length() + 1);
     			PreparedStatement stmt;
     			try {
-    				stmt = conn.prepareStatement(AppConstants.SELECT_REVIEWS_OF_BOOK_ID);
+    				stmt = conn.prepareStatement(DBQueries.SELECT_REVIEWS_OF_BOOK_ID);
     				stmt.setString(1, bookId);
     				ResultSet rs = stmt.executeQuery();
     				while (rs.next()){
     					reviewsResult.add(new Review(rs.getString(1),rs.getString(2),rs.getString(3),
     							rs.getString(4), rs.getString(5), rs.getString(6)));
+    					System.out.println("REVIEWer name: " + rs.getString(5));
     				}
     				rs.close();
     				stmt.close();
@@ -92,11 +87,13 @@ public class ReviewHandler extends HttpServlet {
     			Statement stmt;
     			try {
     				stmt = conn.createStatement();
-    				ResultSet rs = stmt.executeQuery(AppConstants.SELECT_ALL_REVIEWS_NOT_APPROVED);
+    				ResultSet rs = stmt.executeQuery(DBQueries.SELECT_ALL_REVIEWS_NOT_APPROVED);
     				while (rs.next()){
     					reviewsResult.add(new Review(rs.getString(1),rs.getString(2),rs.getString(3),
     							rs.getString(4), rs.getString(5), rs.getString(6))); 
-//    				System.out.println("review of: " + rs.getString(1));	
+    				System.out.println("review of: " + rs.getString(1));
+					System.out.println("REVIEWer name: " + rs.getString(5));
+
     				}
     				rs.close();
     				stmt.close();
@@ -160,10 +157,10 @@ public class ReviewHandler extends HttpServlet {
 					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
 			Connection conn = ds.getConnection();
 			String data = Utils.getPostBody(request);
-			//    			System.out.println("!!!!!!!!!!!! " + data);
+			    			System.out.println("!!!!!!!!!!!! " + data);
 			Gson gson = new Gson();
 			Review rev = gson.fromJson(data, Review.class);
-			//    			System.out.println("!!!!!!!!!!!! " + rev.getBookId());
+			    			System.out.println("!!!!!!!!!!!! " + rev.getBookId());
 
 			try {
 				
@@ -192,14 +189,15 @@ public class ReviewHandler extends HttpServlet {
     			
     			
 
-				PreparedStatement pstmt = conn.prepareStatement(AppConstants.INSERT_REVIEW);
+				PreparedStatement pstmt = conn.prepareStatement(DBQueries.INSERT_REVIEW);
 				pstmt.setString(1, rev.getEmail());
 				pstmt.setString(2, rev.getBookId());
 				pstmt.setString(3, rev.getDescription());
 				pstmt.setString(4, rev.getIsApproved());
 				pstmt.executeUpdate();
+				System.out.println("email: " + rev.getEmail() +"description: "+ rev.getDescription());
 
-				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(AppConstants.SELECT_ALL_REVIEWS_NOT_APPROVED);
+				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(DBQueries.SELECT_ALL_REVIEWS_NOT_APPROVED);
 				ResultSet rs = ps.executeQuery();
 				
 
