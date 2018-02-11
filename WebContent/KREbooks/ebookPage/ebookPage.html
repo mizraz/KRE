@@ -6,14 +6,15 @@
 <div class='container' id='ebookPage'>
 <img class='ebook-img col-xs-12 col-sm-3' src={{ctrl.ebook.imageUrl}}>
 <ul class='details-list col-xs-12 col-sm-6'> 
-<li><span>ID: {{$ctrl.ebook.id}}</span></li>
+<li><span>ID: {{ctrl.ebook.id}}</span></li>
 <li><span>Title: {{ctrl.ebook.title}}</span></li>
-<li><span>Price: {{ctrl.ebook.Price}}</span></li>
+<li><span>Author: "{{ctrl.ebook.author}}"</span></li>
+<li><span>Price: {{ctrl.ebook.price}}</span></li>
 <li><span>description: {{ctrl.ebook.description}}</span></li>
-<li><span>image: {{ctrl.ebook.image}}</span></li>
-<likes-list users-list="ctrl.likesUserList" is-user-liked="ctrl.isUserliked" 
+<likes-list ebook-id="ctrl.ebook.id" is-user-liked="ctrl.isUserliked" 
 is-user-purchased= "isUserPurchased">sdf </likes-list>		
 <!-- TODO: need to fix listLikes  -->
+<buy-read> </buy-read>
 
 <!-- TODO: check if need to delete this. it seems does nothing
 <likes ebook-id="{{$ctrl.ebook.id}}"> </likes> -->

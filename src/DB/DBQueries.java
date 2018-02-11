@@ -1,0 +1,168 @@
+package DB;
+
+import DB.DBConsts.SqlColumns;
+import DB.DBConsts.SqlTables;
+
+public class DBQueries {
+	
+	
+		public static final String CREATE_USER_PURCHASES_TABLE =
+				"CREATE TABLE " + DBConsts.SqlTables.USER_PURCHASES.getName() + "(" +
+				DBConsts.SqlColumns.EMAIL.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+	
+				DBConsts.SqlColumns.LIKED.getName() + " varchar(1), "+	
+				DBConsts.SqlColumns.PRICE.getName() + " double, "+
+				DBConsts.SqlColumns.PURCHASE_TIME.getName() + " timestamp, "+	
+				DBConsts.SqlColumns.SCROLL.getName() + " int "+	
+				")";
+		
+		public static final String CREATE_ALL_REVIEWS_TABLE =
+				"CREATE TABLE " + DBConsts.SqlTables.REVIEWS.getName() + "(" +
+				DBConsts.SqlColumns.EMAIL.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.REVIEW_DESCRIPTION.getName() + " varchar(5000), "+
+				DBConsts.SqlColumns.REVIEW_IS_APPROVED.getName() + " varchar(1), "+
+				DBConsts.SqlColumns.REVIEW_DATE.getName() + " timestamp "+	
+				")";
+		
+		public static final String CREATE_USER_DETAILS_TABLE =
+				"CREATE TABLE " + DBConsts.SqlTables.USERS_DETAILS.getName() + "(" +
+				DBConsts.SqlColumns.EMAIL.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.USER_NAME.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.USER_ADDRESS.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.USER_PWD.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.USER_NIECKNAME.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " varchar(5000), "+
+				DBConsts.SqlColumns.USER_IMAGE.getName() + " varchar(1000) "+
+				")";
+		
+		
+		public static final String INSERT_USER_DETAILS =
+				"INSERT INTO "+  DBConsts.SqlTables.USERS_DETAILS.getName() + "(" +
+				DBConsts.SqlColumns.EMAIL.getName() + ", "+
+				DBConsts.SqlColumns.USER_NAME.getName() + ", "+
+				DBConsts.SqlColumns.USER_ADDRESS.getName() + " , "+
+				DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " , "+
+				DBConsts.SqlColumns.USER_PWD.getName() + " , "+
+				DBConsts.SqlColumns.USER_NIECKNAME.getName() + " , "+
+				DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " , "+
+				DBConsts.SqlColumns.USER_IMAGE.getName() + "  "+
+				")" +
+				" VALUES(?,?,?,?,?,?,?,?)";
+		
+		//TODO: delete this
+//		public final String CREATE_BOOK_READ_TABLE =
+//				"CREATE TABLE BOOK_READ (" +
+//				"email varchar(100), "+
+//				"book_id varchar(255), " +
+//				"like varchar(1)" +			
+//				")";
+		
+		public static final String DROP_ALL_REVIEWS_TABLE = 
+				"DROP TABLE  " + DBConsts.SqlTables.REVIEWS.getName();
+
+		public static final String DROP_USERS_TABLE = 
+				"DROP TABLE  " + DBConsts.SqlTables.USERS_DETAILS.getName();
+		
+		public static final String DROP_USER_PURCHASES_TABLE = 
+				"DROP TABLE  " + DBConsts.SqlTables.USER_PURCHASES.getName();		
+		
+		
+//		public final String SELECT_ALL_REVIEWS_NOT_APPROVED =
+//				"SELECT * " +
+//				" FROM ALL_REVIEWS " +
+//				" WHERE is_review_approved = '0'";
+		
+		public static final String SELECT_ALL_REVIEWS_NOT_APPROVED = 
+				" SELECT " +
+				SqlTables.REVIEWS.getName() + "." + SqlColumns.EMAIL.getName() + "," +
+				SqlTables.REVIEWS.getName() + "." + SqlColumns.BOOK_ID.getName() + "," +
+				SqlTables.REVIEWS.getName() + "." + SqlColumns.REVIEW_DESCRIPTION.getName() + "," +
+				SqlTables.REVIEWS.getName() + "." + SqlColumns.REVIEW_IS_APPROVED.getName() + "," +
+				SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + "," +
+				SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_IMAGE.getName()  +
+				" FROM " + SqlTables.REVIEWS.getName() +
+				" INNER JOIN " + SqlTables.USERS_DETAILS.getName() + " "
+						+ " ON " + SqlTables.USERS_DETAILS.getName() +"."+ SqlColumns.EMAIL.getName() + " = " +
+								    	SqlTables.REVIEWS.getName() + "." + SqlColumns.EMAIL.getName() + " "  + 
+				" WHERE " + SqlColumns.REVIEW_IS_APPROVED.getName() + " = '0' or  " +
+							SqlColumns.REVIEW_IS_APPROVED.getName() + " = '1'" ; //TODO: delete the 1 thing
+		
+		
+		public static final String SELECT_REVIEWS_OF_BOOK_ID = 
+				" SELECT " +
+				SqlTables.REVIEWS.getName() +"." + SqlColumns.EMAIL.getName() + "," +
+				SqlTables.REVIEWS.getName() +"." + SqlColumns.BOOK_ID.getName() + "," +
+				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DESCRIPTION.getName() + "," +
+				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_IS_APPROVED.getName() + "," +
+				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_NAME.getName() + "," +
+				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_IMAGE.getName() + " " +
+				" FROM " + SqlTables.REVIEWS.getName()  +
+				" INNER JOIN " + SqlTables.USERS_DETAILS.getName() +
+				" ON " + SqlTables.USERS_DETAILS.getName() + "." +SqlColumns.EMAIL.getName() + " = " 
+						+ SqlTables.REVIEWS.getName() + "." +SqlColumns.EMAIL.getName() + 
+				" WHERE " +//TODO: need to add to where : ' and ALL_REVIEWS.is_review_approved = 1'
+						SqlTables.REVIEWS.getName() + "." +SqlColumns.BOOK_ID.getName() + " = ? ";
+		
+		public static final String INSERT_REVIEW =
+				" INSERT INTO " + SqlTables.REVIEWS.getName() + " (" +
+					DBConsts.SqlColumns.EMAIL.getName() + ", "+
+					DBConsts.SqlColumns.BOOK_ID.getName() + ", "+
+					DBConsts.SqlColumns.REVIEW_DESCRIPTION.getName() + ", "+
+					DBConsts.SqlColumns.REVIEW_IS_APPROVED.getName() + " "+
+				") VALUES (?,?,?,?)";
+		
+		public static final String SET_LIKE =
+				"UPDATE " + SqlTables.USER_PURCHASES.getName() + " " +
+				"SET " + SqlColumns.LIKED.getName() + " = '1' " +
+				"WHERE " + SqlColumns.EMAIL.getName() + " = ? and " +
+							SqlColumns.BOOK_ID.getName() + " = ? " ;
+		
+
+		public static final String SET_SCROLL =
+				"UPDATE " + SqlTables.USER_PURCHASES.getName() + " " +
+				"SET " + SqlColumns.SCROLL.getName() + " = ? " +
+				"WHERE " + SqlColumns.EMAIL.getName() + " = ? and " +
+							SqlColumns.BOOK_ID.getName() + " = ? " ;
+		
+		
+		
+		public static final String INSERT_PURCHASE =
+				" INSERT INTO " + SqlTables.USER_PURCHASES.getName() + " (" +
+					DBConsts.SqlColumns.EMAIL.getName() + ", "+
+					DBConsts.SqlColumns.BOOK_ID.getName() + ", "+
+					DBConsts.SqlColumns.LIKED.getName() + ", "+
+					DBConsts.SqlColumns.PRICE.getName() + ", "+
+					DBConsts.SqlColumns.PURCHASE_TIME.getName() + ", "+
+					DBConsts.SqlColumns.SCROLL.getName() + " "+
+				") VALUES (?,?,?,?,?,?)";
+		
+		
+		public static final String SELECT_LIKES_OF_BOOK_ID =
+				"SELECT " + SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.EMAIL.getName() + ", " +
+							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.BOOK_ID.getName() + ", " +
+							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + " " +
+				" FROM " + SqlTables.USER_PURCHASES.getName() + 
+				" INNER JOIN " +SqlTables.USERS_DETAILS.getName() +
+				" ON " + SqlTables.USER_PURCHASES.getName() + "." +SqlColumns.EMAIL.getName() + " = " 
+						+ SqlTables.USERS_DETAILS.getName() + "." +SqlColumns.EMAIL.getName() + 
+				" WHERE " + SqlColumns.BOOK_ID.getName() + " = ? AND " +
+							SqlColumns.LIKED.getName() + " = '1' " ;
+		
+
+		public static final String SELECT_LIKES_OF_BOOK_ID_JUST_THE_EMAIL_AND_BOOK_ID =
+				"SELECT " +SqlColumns.EMAIL.getName() + ", " +
+							SqlColumns.BOOK_ID.getName() + " " +
+				" FROM " + SqlTables.USER_PURCHASES.getName() + 
+				" WHERE " + SqlColumns.BOOK_ID.getName() + " = ? ";// AND " +
+//							SqlColumns.LIKED.getName() + " = '1' " ;
+		
+		
+		public static final String UPDATE_USER_LIKE_BOOK = 
+				" UPDATE  " + DBConsts.SqlTables.USER_PURCHASES.getName() + 
+				" SET " + SqlColumns.LIKED.getName() + " = ? " +
+				" WHERE " + SqlColumns.EMAIL.getName() + " = ?";
+
+
+}

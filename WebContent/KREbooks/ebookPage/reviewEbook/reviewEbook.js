@@ -1,76 +1,61 @@
 
 var reviewList;
 (function (angular) {
-  'use strict';
-  
-  function reviewEbookController($scope, $element, $attrs, $http) {
-    var ctrl = this;
-    ctrl.editMode = false;
-  
-   ctrl.isCollapsed = false;
-    
-   
+	'use strict';
 
-   
-   ctrl.getAllReviewsOfThisEbook = function(){
-		reviewList = document.getElementById('chati');
+	function reviewEbookController($scope, $element, $attrs, $http) {
+		var ctrl = this;
+		ctrl.editMode = false;
+		ctrl.clickedOnce = false;
+		ctrl.isCollapsed = false;
+		ctrl.getAllReviewsOfThisEbook = function(){
+			reviewList = document.getElementById('chati');
 
-		
-		   console.log('collapse ' + ctrl.isCollapsed);
-		   
-		   
-		   ctrl.isCollapsed = !ctrl.isCollapsed;
-		   
-		   
-		   console.log('collapse ' + ctrl.isCollapsed);
-		   
-		   
-		$http.get("http://localhost:8080/ExampleServletv3/reviews/bookId/"+ctrl.ebookId) ///name/Alfreds Futterkiste
-		.then(function(response) {
-			$scope.records = response;
-			$scope.result = $scope.records;//this variable will hold the search results
-			console.log($scope.result);
-			console.log('arr length ' + $scope.result.data.length);
-			for (var i = 0; i < $scope.result.data.length; ++i) {
+//			console.log('collapse ' + ctrl.isCollapsed);
+			ctrl.isCollapsed = !ctrl.isCollapsed;
+//			console.log('collapse ' + ctrl.isCollapsed);
 
-				console.log("@@@" + $scope.result.data[i].bookId);
+			if (!ctrl.clickedOnce) {
+				ctrl.clickedOnce = true;
+				$http.get("http://localhost:8080/ExampleServletv3/reviews/bookId/"+ctrl.ebookId) ///name/Alfreds Futterkiste
+				.then(function(response) {
+					$scope.records = response;
+					$scope.result = $scope.records;//this variable will hold the search results
+					console.log($scope.result);
+					console.log('arr length ' + $scope.result.data.length);
+					for (var i = 0; i < $scope.result.data.length; ++i) {
 
-				var profilePicSrc = $scope.result.data[i].userImageUrl;
-				var name = $scope.result.data[i].userName;
-				var email = $scope.result.data[i].email;
-				var msgText = $scope.result.data[i].description;
-				var date = '';
-				var msgIdNumberDel = '';
-				var msgId = '';
-				var dateTime = '';
-				var newMessage = '';
-				drawReview(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date);
-//				console.log(newMessage);
+						console.log("@@@" + $scope.result.data[i].bookId);
+
+						var profilePicSrc = $scope.result.data[i].userImageUrl;
+						var name = $scope.result.data[i].userName;
+						var email = $scope.result.data[i].email;
+						var msgText = $scope.result.data[i].description;
+						var date = '';
+						var msgIdNumberDel = '';
+						var msgId = '';
+						var dateTime = '';
+						var newMessage = '';
+						drawReview(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date);
+//						console.log(newMessage);
+					}
+
+				});
 			}
 
-		});
-	   	   
-   }
-   
+		}
 
-   
-   
-   
-   
+	}
 
-  }
+	angular.module('myApp').component('reviewEbook', {
+		controller: reviewEbookController,
+		templateUrl: 'ebookPage/reviewEbook/reviewEbook.html',
+		bindings: {
+			userName: '=',
+			ebookId: '='
+		}
+	});
 
-
-  angular.module('myApp').component('reviewEbook', {
-    controller: reviewEbookController,
-    templateUrl: 'ebookPage/reviewEbook/reviewEbook.html',
-    bindings: {
-      userName: '=',
-      ebookId: '='
-    }
-  });
-
-  
 
 })(window.angular);
 

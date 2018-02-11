@@ -1,25 +1,73 @@
-<!-- <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+<link rel="stylesheet" href="ebookPage/buyRead/buyRead.css">
+
+<div class='' id='buyRead'>
+	<div class='col-xs-2 col-sm-8'>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#myModalBuy">Buy</button>
+		<a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span>
+		</a>
+
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#myModalRead">Read</button>
 
 
-<link rel="stylesheet" href="buyRead.css">
+	</div>
 
-<div class='container buy-read' id='buyRead'>
+	<!-- Modal -->
+	<div class="modal fade" id="myModalBuy" role="dialog">
+		<div class="modal-dialog .modal-lg">
 
-<span class="glyphicon glyphicon-shopping-cart"></span>
-<a href="#">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-      </a>
+			<!-- Modal content-->
+			<div class="modal-content">
 
-      <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-user"></span> User 
-          </button>
-          <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-home"></span> Home
-              </button>
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pay Here!</h4>
+				</div>
+				<div class="modal-body">
+					<p>ENTER CREDIT CARD AND OTHER BILLING DETAILS.</p>
+					<input></input> <input></input> <input></input> <input></input> <input></input>
+					<input></input>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModalRead" role="dialog">
+		<div class="modal-dialog .modal-lg">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pay Here!</h4>
+				</div>
+				<div ng-scroll="ctrl.scrolled()" class="modal-body"
+					id="myModalReadBody">
+					<p>ENTER CREDIT CARD AND OTHER BILLING DETAILS.</p>
+					<div id="bookContentId" ng-include="'gutenberg/contents/blab.html'"></div>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 
 </div>
+
+
+
+

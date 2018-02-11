@@ -1,5 +1,7 @@
 package example.model;
 
+import org.apache.derby.iapi.types.SQLTimestamp;
+
 public class Review {
 	
 	private String email;
@@ -8,6 +10,7 @@ public class Review {
 	private String isApproved;
 	private String userName;
 	private String userImageUrl;
+//	private SQLTimestamp dateReview;
 	
 	public Review () {
 		

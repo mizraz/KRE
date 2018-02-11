@@ -5,11 +5,11 @@
 		var ctrl = this;
 		ctrl.editMode = false;
 
+		ctrl.userName = $rootScope.userName;
 		ctrl.submitReview = function() {
 			console.log("clicked;");
 			console.log(ctrl.userr);
-
-
+			console.log("$rootScope.userName: " + $rootScope.userName);
 
 			var review =
 			{
@@ -21,16 +21,31 @@
 					userImageUrl: $rootScope.userImageUrl
 
 			};
+
+			$http.post("http://localhost:8080/ExampleServletv3/newReview", JSON.stringify(review)) 
+			.then(function(response) {
+
 			
+			
+			});
+		};
+
+		ctrl.submitLike = function() {
+			console.log("clicked;");
+			console.log(ctrl.userr);
+			var like =
+			{
+				email: $rootScope.email,
+				bookId: ctrl.ebookId,
+				userName: $rootScope.userName,
+			};
 
 			//$http is AngularJS way to do ajax-like communications
-			$http.post("http://localhost:8080/ExampleServletv3/newReview", JSON.stringify(review)) 
+			$http.post("http://localhost:8080/ExampleServletv3/newLike", JSON.stringify(like)) 
 			.then(function(response) {
 				$scope.records = response;
 				$scope.result = $scope.records;//this variable will hold the search results
 			});
-
-
 		};
 
 
@@ -46,9 +61,6 @@
 
 	};
 
-
-
-
 	angular.module('myApp').component('reviewForm', {
 		controller: reviewFormController,
 		templateUrl: 'reviewForm/reviewForm.html',
@@ -57,7 +69,4 @@
 			ebookId: '='
 		}
 	});
-
-
-
 })(window.angular);
