@@ -3,10 +3,17 @@
 
   function ebookDetailsController($scope, $element, $attrs, $rootScope) {
     var ctrl = this;
-
+    ctrl.isCatalogPage = false;
+    	
+    	if($rootScope.curPage == "catalog/catalog.html" || $rootScope.curPage == "topDeals/topDeals.html") {
+    		 ctrl.isCatalogPage = true;
+    	}
+    	
+    	
 
     ctrl.goToEbookPage = function(){
       // console.log(ebookPar.id);
+    	console.log("in gotoEbookPage()");
       console.log($rootScope.color);
       $rootScope.color = 'pink';
       $rootScope.curEbook = ctrl.ebook;

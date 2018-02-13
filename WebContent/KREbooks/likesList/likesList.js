@@ -25,7 +25,7 @@
 
 						ctrl.userNamesList.push(name);
 //						console.log("userNamesList[0] " + ctrl.userNamesList[0]);
-						ctrl.usersListHtml = ctrl.usersListHtml.concat(ctrl.usersListHtml, '\n', name);
+						ctrl.usersListHtml = ctrl.usersListHtml.concat('\n', name);
 
 //						console.log(newMessage);
 					}
@@ -48,7 +48,7 @@
 //		console.log(x);
 //		}
 
-		console.log(ctrl.usersListHtml);
+//		console.log(ctrl.usersListHtml);
 
 		ctrl.usersListHtml = "raz \n ssmoshe \n roni";
 

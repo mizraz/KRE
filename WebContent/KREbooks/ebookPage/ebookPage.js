@@ -1,5 +1,5 @@
 angular.module('myApp').controller("ebookPageController", 
-		['$scope','$rootScope', function($scope, $rootScope) {
+		['$scope','$rootScope','$http', function($scope, $rootScope, $http) {
 			var ctrl = this;
 //			ctrl.likesUserList = [
 //			"moshe", "shlomi", "gal"];
@@ -10,8 +10,11 @@ angular.module('myApp').controller("ebookPageController",
 //			console.log(x);
 //			}
 
-
+			
 			ctrl.ebook = $rootScope.curEbook;
+			
+			
+
 			// {
 			//   id: '',
 			//   title: '',

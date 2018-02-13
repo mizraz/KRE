@@ -1,9 +1,14 @@
-.user{
+/*.user{
     background: green;
 }
 
 .users{
     background: blue;
+}
+
+.recent-transactions{
+	    background: red;
+	
 }
 
 .reviews{
@@ -17,6 +22,10 @@
 
 .ccc{
     background: powderblue;
+}*/
+
+.navbar{
+	text-align: center;
 }
 
 .text-nowrap {

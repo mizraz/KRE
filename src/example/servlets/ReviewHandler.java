@@ -38,6 +38,7 @@ import example.model.Review;
 		urlPatterns = { 
 				"/newReview",
 				"/allReviewsNotApproved",
+				"/reviewApprove",
 				"/reviews/bookId/*"
 		})
 public class ReviewHandler extends HttpServlet {
@@ -163,31 +164,10 @@ public class ReviewHandler extends HttpServlet {
 			    			System.out.println("!!!!!!!!!!!! " + rev.getBookId());
 
 			try {
+//TODO: need to insert timestamp
 				
-//    			Statement stmt1 = conn.createStatement();
-//    			stmt1.executeUpdate(AppConstants.CREATE_USER_DETAILS_TABLE);
-//    			
-//    			
-//				PreparedStatement pstmt2 = conn.prepareStatement(AppConstants.INSERT_USER_DETAILS);
-//				pstmt2.setString(1, "bruceWayne@batman.com");
-//				pstmt2.setString(2, "Bruce Wayne");
-//				pstmt2.setString(3, "asddsasa");
-//				pstmt2.setString(4, "12333333");
-//				pstmt2.setString(5, "pwd123");
-//				pstmt2.setString(6, "Batman");
-//				pstmt2.setString(7, "I will save the world! ");
-//				pstmt2.setString(8, "https://secure.gravatar.com/avatar/696967c52ecc7be8cd5bd16695f49abd");
-//				pstmt2.executeUpdate();
-    			
-				
-//				PreparedStatement pstmt3 = conn.prepareStatement(AppConstants.INSERT_REVIEW);
-//				pstmt3.setString(1, "clarkKenth@cripton.com");
-//				pstmt3.setString(2, "1");
-//				pstmt3.setString(3, "NOT APPROVED Hi I am SUperman and this is my review!");
-//				pstmt3.setString(4, "0");
-//				pstmt3.executeUpdate();
-    			
-    			
+	    		String uri = request.getRequestURI();
+	    		if (uri.indexOf(URIConsts.REVIEW_APPROVE) == -1){//filter customer by specific name
 
 				PreparedStatement pstmt = conn.prepareStatement(DBQueries.INSERT_REVIEW);
 				pstmt.setString(1, rev.getEmail());
@@ -196,46 +176,49 @@ public class ReviewHandler extends HttpServlet {
 				pstmt.setString(4, rev.getIsApproved());
 				pstmt.executeUpdate();
 				System.out.println("email: " + rev.getEmail() +"description: "+ rev.getDescription());
-
-				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(DBQueries.SELECT_ALL_REVIEWS_NOT_APPROVED);
-				ResultSet rs = ps.executeQuery();
+	    		} else {
+					PreparedStatement pstmt = conn.prepareStatement(DBQueries.SET_REVIEW);
+					pstmt.setString(1, rev.getEmail());
+					pstmt.setString(2, rev.getBookId());
+					pstmt.executeUpdate();
+					System.out.println("review approved email: " + rev.getEmail() + " bookId: " + rev.getBookId()  );
+	    		}
+	    		
 				
-
-
-				
-				
-				
-//				PreparedStatement pstmt4 = (PreparedStatement) conn.prepareStatement(AppConstants.SELECT_REVIEWS_OF_BOOK_ID);
-//				pstmt4.setString(1, "1");
-//				ResultSet rs4 = pstmt4.executeQuery();
+//				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(DBQueries.SELECT_ALL_REVIEWS_NOT_APPROVED);
+//				ResultSet rs = ps.executeQuery();
+//				
+////				PreparedStatement pstmt4 = (PreparedStatement) conn.prepareStatement(AppConstants.SELECT_REVIEWS_OF_BOOK_ID);
+////				pstmt4.setString(1, "1");
+////				ResultSet rs4 = pstmt4.executeQuery();
+////
+////				ArrayList<Map<String, Object>> resultList4 = new ArrayList<Map<String, Object>>(); 
+////				Map<String, Object> row4 = null;
+////				ResultSetMetaData metaData4 = (ResultSetMetaData) rs4.getMetaData();
+////				Integer columnCount4 = metaData4.getColumnCount();
+////				while (rs4.next()) {
+////					row4 = new HashMap<String, Object>();
+////					for (int i = 1; i <= columnCount4; i++) {
+////						row4.put(metaData4.getColumnName(i), rs4.getObject(i));
+////					}
+////					resultList4.add(row4);
+////				}
+////				Utils.printAllInResultSet(resultList4);
+//				
+//				
 //
-//				ArrayList<Map<String, Object>> resultList4 = new ArrayList<Map<String, Object>>(); 
-//				Map<String, Object> row4 = null;
-//				ResultSetMetaData metaData4 = (ResultSetMetaData) rs4.getMetaData();
-//				Integer columnCount4 = metaData4.getColumnCount();
-//				while (rs4.next()) {
-//					row4 = new HashMap<String, Object>();
-//					for (int i = 1; i <= columnCount4; i++) {
-//						row4.put(metaData4.getColumnName(i), rs4.getObject(i));
+//				ArrayList<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>(); 
+//				Map<String, Object> row1 = null;
+//				ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
+//				Integer columnCount = metaData.getColumnCount();
+//				while (rs.next()) {
+//					row1 = new HashMap<String, Object>();
+//					for (int i = 1; i <= columnCount; i++) {
+//						row1.put(metaData.getColumnName(i), rs.getObject(i));
 //					}
-//					resultList4.add(row4);
+//					resultList.add(row1);
 //				}
-//				Utils.printAllInResultSet(resultList4);
-				
-				
-
-				ArrayList<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>(); 
-				Map<String, Object> row1 = null;
-				ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
-				Integer columnCount = metaData.getColumnCount();
-				while (rs.next()) {
-					row1 = new HashMap<String, Object>();
-					for (int i = 1; i <= columnCount; i++) {
-						row1.put(metaData.getColumnName(i), rs.getObject(i));
-					}
-					resultList.add(row1);
-				}
-//				Utils.printAllInResultSet(resultList);
+////				Utils.printAllInResultSet(resultList);
 
 			} catch (SQLException e) {
 				getServletContext().log("Error while querying for customers", e);
