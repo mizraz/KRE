@@ -4,22 +4,7 @@
 <div class="content" ng-controller='ebookPageController as ctrl'>
 		
 <div class='container' id='ebookPage'>
-<img class='ebook-img col-xs-12 col-sm-3' src={{ctrl.ebook.imageUrl}}>
-<ul class='details-list col-xs-12 col-sm-6'> 
-<li><span>ID: {{ctrl.ebook.id}}</span></li>
-<li><span>Title: {{ctrl.ebook.title}}</span></li>
-<li><span>Author: "{{ctrl.ebook.author}}"</span></li>
-<li><span>Price: {{ctrl.ebook.price}}</span></li>
-<li><span>description: {{ctrl.ebook.description}}</span></li>
-<likes-list ebook-id="ctrl.ebook.id" is-user-liked="ctrl.isUserliked" 
-is-user-purchased= "isUserPurchased">sdf </likes-list>		
-<!-- TODO: need to fix listLikes  -->
-<buy-read> </buy-read>
-
-<!-- TODO: check if need to delete this. it seems does nothing
-<likes ebook-id="{{$ctrl.ebook.id}}"> </likes> -->
-
-</ul>
+	<ebook-details ebook="ctrl.ebook" ></ebook-details>
 
 
 <div class="row">

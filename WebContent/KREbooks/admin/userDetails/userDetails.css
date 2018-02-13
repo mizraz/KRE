@@ -1,9 +1,13 @@
-.review-textarea{
-    /* resize: none; */
+.well {
+    background: #f5f5f5;
+    border: 15px solid white;
+
+    
 }
 
-.tooltip-inner {
-    white-space: pre-wrap;
+#well-border-no-collapse {
+    border-collapse: separate;
+    border-spacing: 10px;	
 }
 
 .ebook-img {
@@ -12,6 +16,7 @@
     vertical-align: super;
 }
 .details-list {
+    background: #f5f5f5;
     overflow-wrap: break-word;
     
     /* display: inline-block; */
@@ -44,14 +49,23 @@
     padding-right: 0 !important;
     margin-left: 0 !important;
  }
+ 
+ li > span > h4 {
+ 	display: inline;
+ 	 	
+ }
+ 
+ .ebook-dateils-a {
+ 	color: blue;
+ }
+ 
+ .ebook-details {
+    background: #f5f5f5;
 
- .btn {
-     margin: 0 !important;
-     padding: 0 !important;
+ }
+ 
+ .ebook-details-no-img {
+    background: #f5f5f5;
+ 	
  }
 
- textarea {
-	resize: none;
-    /* box-sizing: content-box; */
-     height: 500px !important;  
-}

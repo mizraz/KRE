@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="admin/lastTransactions/lastTransactions.css">
+
+
+<div class="container" ng-controller="lastTransactionsController as ctrl">
+
+
+	<div class='row'>
+
+  <div class="table-responsive">          
+
+
+<table class="table table-condensed">
+
+
+  <tr>
+    <th scope="col">Book Id</th>
+    <th scope="col">Email</th> 
+    <th scope="col">Price</th>
+    <th scope="col">Date Purchased</th>
+  </tr>
+  
+  <tr ng-repeat="transaction in ctrl.transactionsList " > 
+    <td class="col-xs-3 col-md-4">{{transaction.email}}</td>
+    <td class=" col-md-12 col-md-1">{{transaction.bookId}}</td>
+    <td class="col-md-3 col-md-2">{{transaction.price}}</td>
+    <td class="col-md-12 col-md-5">{{transaction.datePurchased}}</td>  
+  </tr>
+  
+</table>
+</div>
+
+
+	</div>
+
+
+
+
+</div>
+

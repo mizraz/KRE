@@ -24,13 +24,14 @@
 
 		$rootScope.nnn = '123';
 		$rootScope.curEbook = '1';
+		$rootScope.usrBoughtCurBook = true;
 
 		$rootScope.email = 'bruce.wayne@gotham.com';
 		$rootScope.userName = 'bruce Wayne';
 		$rootScope.userImageUrl = 
 			'https://he.wikipedia.org/wiki/%D7%91%D7%90%D7%98%D7%9E%D7%9F_(%D7%96%D7%99%D7%9B%D7%99%D7%95%D7%9F_%D7%9E%D7%93%D7%99%D7%94)';
 
-
+		
 		this.isShowEbook = false;
 		this.isShowCatalog = true;
 
@@ -162,9 +163,10 @@
 				price: 1,  description: "bla bla"
 		};
 
+		
 
-		this.ebooksDict = {
-				ebook11: {
+		$rootScope.ebooksDict = {
+				ebook56254: {
 					id: 56254,
 					title: 'The flowers and gardens of Japan',
 					author: 'Cane, Florence Du',
@@ -172,22 +174,54 @@
 					imageUrl: 'gutenberg/56254.jpg',        
 					datePublished: new Date(2017, 12,26),
 					price: 1,  description: "bla bla"},
-					ebook22: {
-						id: 56255,
-						title: 'All But Lost Vol 2 of 3 A Novel',
-						author: 'Henty, G. A. (George Alfred)',
-						category: 'text',
-						imageUrl: 'gutenberg/56255.jpg',
-						datePublished: new Date(2017, 12,26),
-						price: 1,  description: "bla bla"},
-						ebook33: {
-							id: 56256,
-							title: 'All But Lost Vol 2 of 3 A Novel',
-							author: 'Henty, G. A. (George Alfred)',
-							category: 'text',
-							imageUrl: 'gutenberg/56256.jpg',                
-							datePublished: new Date(2017, 12,26),
-							price: 1,  description: "bla bla"},
+				ebook56255: {
+					id: 56255,
+					title: 'All But Lost Vol 2 of 3 A Novel',
+					author: 'Henty, G. A. (George Alfred)',
+					category: 'text',
+					imageUrl: 'gutenberg/56255.jpg',
+					datePublished: new Date(2017, 12,26),
+					price: 1,  description: "bla bla"},
+				ebook56256: {
+					id: 56256,
+					title: 'All But Lost Vol 2 of 3 A Novel',
+					author: 'Henty, G. A. (George Alfred)',
+					category: 'text',
+					imageUrl: 'gutenberg/56256.jpg',                
+					datePublished: new Date(2017, 12,26),
+					price: 1,  description: "bla bla"},
+				ebook56238: {
+					id: 56238,
+					title: 'The flowers and gardens of Japan',
+					author: 'Cane, Florence Du',
+					category: 'text',
+					imageUrl: 'gutenberg/56254.jpg',        
+					datePublished: new Date(2017, 12,26),
+					price: 1,  description: "bla bla"},
+				ebook56262: {
+					id: 56262,
+					title: 'The flowers and gardens of Japan',
+					author: 'Cane, Florence Du',
+					category: 'text',
+					imageUrl: 'gutenberg/56254.jpg',        
+					datePublished: new Date(2017, 12,26),
+					price: 1,  description: "bla bla"},
+				ebook56257: {
+					id: 56257,
+					title: 'The flowers and gardens of Japan',
+					author: 'Cane, Florence Du',
+					category: 'text',
+					imageUrl: 'gutenberg/56254.jpg',        
+					datePublished: new Date(2017, 12,26),
+					price: 1,  description: "bla bla"},
+				ebook56260: {
+					id: 56260,
+					title: 'The flowers and gardens of Japan',
+					author: 'Cane, Florence Du',
+					category: 'text',
+					imageUrl: 'gutenberg/56254.jpg',        
+					datePublished: new Date(2017, 12,26),
+					price: 1,  description: "bla bla"},
 		}
 	});
 })(window.angular);

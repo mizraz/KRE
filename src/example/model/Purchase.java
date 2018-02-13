@@ -3,6 +3,16 @@ package example.model;
 
 public class Purchase {
 
+	public Purchase(String email, String bookId, String isLiked, String price, String datePurchased, String currentScroll) {
+		this.email = email;
+		this.bookId = bookId;
+		this.isLiked = isLiked;
+		this.price = price;
+		this.datePurchased = datePurchased;
+		this.currentScroll = currentScroll;
+	}
+	
+	
 	public String getEmail() {
 		return email;
 	}

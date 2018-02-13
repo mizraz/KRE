@@ -103,10 +103,10 @@ public class LikeHandler extends HttpServlet {
 
 			Gson gson = new Gson();
 			//convert from customers collection to json
-			String reviewJsonResult = gson.toJson(likeResult, AppConstants.REVIEW_COLLECTION);
+			String likeJsonResult = gson.toJson(likeResult, AppConstants.LIKE_COLLECTION);
 			response.addHeader("Content-Type", "application/json");
 			PrintWriter writer = response.getWriter();
-			writer.println(reviewJsonResult);
+			writer.println(likeJsonResult);
 			writer.close();
 		} catch (SQLException | NamingException e) {
 			getServletContext().log("Error while closing connection", e);

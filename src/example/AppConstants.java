@@ -6,8 +6,10 @@ import java.util.Collection;
 import com.google.gson.reflect.TypeToken;
 
 import example.model.Customer;
+import example.model.Like;
 import example.model.Purchase;
 import example.model.Review;
+import example.model.Transaction;
 import example.model.User;
 
 /**
@@ -29,7 +31,11 @@ public interface AppConstants {
 
 	public final Type CUSTOMER_COLLECTION = new TypeToken<Collection<Customer>>() {}.getType();
 	public final Type REVIEW_COLLECTION = new TypeToken<Collection<Review>>() {}.getType();
+	public final Type USER_COLLECTION = new TypeToken<Collection<User>>() {}.getType();
+	public final Type TRANSACTION_COLLECTION = new TypeToken<Collection<Transaction>>() {}.getType();
+	public final Type PURCHASE_COLLECTION = new TypeToken<Collection<Purchase>>() {}.getType();
 	public final Type PURCHASES_COLLECTION = new TypeToken<Collection<Purchase>>() {}.getType();
+	public final Type LIKE_COLLECTION = new TypeToken<Collection<Like>>() {}.getType();
 	public final Type USER_DETAILS_COLLECTION = new TypeToken<Collection<User>>() {}.getType();
 	//derby constants
 	public final String DB_NAME = "DB_NAME";

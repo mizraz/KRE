@@ -8,6 +8,7 @@
     vertical-align: super;
 }
 .details-list {
+    background: green;
     overflow-wrap: break-word;
     
     /* display: inline-block; */

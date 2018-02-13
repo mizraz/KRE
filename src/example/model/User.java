@@ -2,6 +2,17 @@ package example.model;
 
 public class User {
 	
+	public User(String email, String name, String nickname, String address, String userImageUrl,  String phoneNumber, String description) {
+		this.userName = name;
+		this.email = email;
+		this.userNickname = nickname;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.description = description;
+		this.userImageUrl = userImageUrl;
+	}
+	
+	
 	public String getUserName() {
 		return userName;
 	}
