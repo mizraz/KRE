@@ -53,7 +53,6 @@
   left: 0px;
   /* stick it wherever it was positioned by default */
   top: 0px;
-  max-width: 500px;
 }
 
 .message-header {

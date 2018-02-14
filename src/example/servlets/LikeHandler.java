@@ -82,7 +82,7 @@ public class LikeHandler extends HttpServlet {
 				stmt.setString(1, bookId);
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()){
-					likeResult.add(new Like(rs.getString(1),rs.getString(2),rs.getString(3)));
+					likeResult.add(new Like(rs.getString(1),rs.getString(2),rs.getString(3), Integer.toString(1)));
 					System.out.println("LIKER: email " + rs.getString(1) + " bookId " + rs.getString(2) + " name " + rs.getString(3));
 				}
 				rs.close();
@@ -132,10 +132,11 @@ public class LikeHandler extends HttpServlet {
 
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(DBQueries.SET_LIKE);
-				pstmt.setString(1, like.getEmail());
-				pstmt.setString(2, like.getBookId());
+				pstmt.setString(1, like.getIsLiked());
+				pstmt.setString(2, like.getEmail());
+				pstmt.setString(3, like.getBookId());
 				pstmt.executeUpdate();
-				System.out.println("email: " + like.getEmail() +"bookId: "+ like.getBookId());
+				System.out.println("email: " + like.getEmail() +"bookId: "+ like.getBookId() + " is Liked: "+ like.getIsLiked());
 
 
 			} catch (SQLException e) {

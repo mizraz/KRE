@@ -7,10 +7,11 @@ public class Transaction {
 	private String price;
 	private String datePurchased;
 	
-	public Transaction (String bookId, String email, String datePurchased) {
+	public Transaction (String bookId, String email, String datePurchased, String price) {
 		this.bookId = bookId;
 		this.email = email;
 		this.datePurchased = datePurchased;
+		this.price = price;
 		
 	}
 	

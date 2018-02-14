@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 import javax.naming.Context;
@@ -102,6 +103,7 @@ public class ManageReviewsDBFromJsonFile implements ServletContextListener {
     				pstmt.setString(2,review.getBookId());
     				pstmt.setString(3,review.getDescription());
     				pstmt.setString(4,review.getIsApproved());
+					pstmt.setTimestamp(5,Timestamp.valueOf(review.getDateReview()));
     				pstmt.executeUpdate();
     			}
 

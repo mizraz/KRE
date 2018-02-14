@@ -1,3 +1,24 @@
+
+
+window.onbeforeunload = function () {
+	var bookContent = document.getElementById('bookContent');	
+	console.log(bookContent);
+	if(bookContent != undefined) {
+		var scrolJSON = {
+				scroll: body.scrollTop,
+				bookId: window.curBookIdToSendScroll,
+				email: window.curEmailToSendScroll
+		}	
+		var xmlhttpDelClient = new XMLHttpRequest();
+		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+		xmlhttpDelClient.onreadystatechange = function () {
+			/* NOTHING DONE IN HERE*/
+		};
+		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+	}
+};
+
+
 (function(angular) {
 	'use strict';  
 	var app = angular.module('myApp', [/*'ngRoute'*/]);  
@@ -5,35 +26,48 @@
 		$rootScope.color = 'blue';
 	});
 
-	app.controller( 'MainCtrl', function MainCtrl($scope, $rootScope) {
+
+	app.controller( 'MainCtrl', function MainCtrl($scope, $rootScope, $http) {
 		this.userKind = 'admin';
 		this.userPrivel = 1;
 		this.userId = 1;
-		this.userName = "raz";
+		this.userName = "raz"; //TODO: delete if didnt break anything
 		$rootScope.curPage = 'catalog/catalog.html';
 		$rootScope.curBookContent = 'gutenberg/contents/blab.html';
+		$rootScope.nnn = '123';
+		$rootScope.curEbook = '1';
+		$rootScope.usrBoughtCurBook = true;
+		$rootScope.email = 'bruce.wayne@gotham.com';
+		$rootScope.userName = 'bruce Wayne';
+		$rootScope.userImageUrl = 
+			'https://he.wikipedia.org/wiki/%D7%91%D7%90%D7%98%D7%9E%D7%9F_(%D7%96%D7%99%D7%9B%D7%99%D7%95%D7%9F_%D7%9E%D7%93%D7%99%D7%94)';
+		$rootScope.purchasesList = [];
+		$rootScope.purchasesDict = {};
+		this.isShowEbook = false;
+		this.isShowCatalog = true;
 //		this.curPage = 'catalog/catalog.html';
 
+//		TODO: update all books objects with properties: isPurcased, lastScrool, isLiked etc.  'ebook1' is an example (contains all propeties - still need to update values according to: user, bookId)
+//		TODO: check if everything still works without the 'setTimeout'
+		setTimeout(function(){ 
+
+			$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.email) ///name/Alfreds Futterkiste
+			.then(function(response) {
+				$scope.records = response;
+				$scope.result = $scope.records;//this variable will hold the search results
+				$rootScope.purchasesList = $scope.result;
+				for (var i = 0; i < $scope.records.data.length; i++) {
+					$rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId] = $scope.records.data[i]; 
+					console.log("ebook+ $scope.records.data[i].bookId: " + "ebook"+ $scope.records.data[i].bookId);
+					console.log("val " + $rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId].bookId);
+				}
+			}, 3000)});
 
 		this.fun = function() {
 			console.log($rootScope.color);
 			$rootScope.color = 'red';
 			console.log($rootScope.color);
-
 		};
-
-		$rootScope.nnn = '123';
-		$rootScope.curEbook = '1';
-		$rootScope.usrBoughtCurBook = true;
-
-		$rootScope.email = 'bruce.wayne@gotham.com';
-		$rootScope.userName = 'bruce Wayne';
-		$rootScope.userImageUrl = 
-			'https://he.wikipedia.org/wiki/%D7%91%D7%90%D7%98%D7%9E%D7%9F_(%D7%96%D7%99%D7%9B%D7%99%D7%95%D7%9F_%D7%9E%D7%93%D7%99%D7%94)';
-
-		
-		this.isShowEbook = false;
-		this.isShowCatalog = true;
 
 		this.openEbookPage = function (ebook) {
 			this.isShowCatalog = false;
@@ -58,7 +92,7 @@
 		}
 
 
-
+		/*ebook details: ***********************************************************************************************************/
 
 		this.ebook = {
 				id: "1",
@@ -84,7 +118,9 @@
 				category: 'text',
 				imageUrl: 'gutenberg/56254.jpg',        
 				datePublished: new Date(2017, 12,26),
-				price: 1,  description: "bla bla"
+				price: 1,  description: "bla bla",
+				isPurchased: 1,
+				isLiked: 0
 		};
 
 		this.ebook2 = {
@@ -94,7 +130,9 @@
 				category: 'text',
 				imageUrl: 'gutenberg/56255.jpg',
 				datePublished: new Date(2017, 12,26),
-				price: 1,  description: "bla bla"
+				price: 1,  description: "bla bla",
+				isPurchased: 1,
+				isLiked: 0
 		};
 
 		this.ebook3 = {
@@ -163,7 +201,7 @@
 				price: 1,  description: "bla bla"
 		};
 
-		
+
 
 		$rootScope.ebooksDict = {
 				ebook56254: {
@@ -173,55 +211,57 @@
 					category: 'text',
 					imageUrl: 'gutenberg/56254.jpg',        
 					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
-				ebook56255: {
-					id: 56255,
-					title: 'All But Lost Vol 2 of 3 A Novel',
-					author: 'Henty, G. A. (George Alfred)',
-					category: 'text',
-					imageUrl: 'gutenberg/56255.jpg',
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
-				ebook56256: {
-					id: 56256,
-					title: 'All But Lost Vol 2 of 3 A Novel',
-					author: 'Henty, G. A. (George Alfred)',
-					category: 'text',
-					imageUrl: 'gutenberg/56256.jpg',                
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
-				ebook56238: {
-					id: 56238,
-					title: 'The flowers and gardens of Japan',
-					author: 'Cane, Florence Du',
-					category: 'text',
-					imageUrl: 'gutenberg/56254.jpg',        
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
-				ebook56262: {
-					id: 56262,
-					title: 'The flowers and gardens of Japan',
-					author: 'Cane, Florence Du',
-					category: 'text',
-					imageUrl: 'gutenberg/56254.jpg',        
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
-				ebook56257: {
-					id: 56257,
-					title: 'The flowers and gardens of Japan',
-					author: 'Cane, Florence Du',
-					category: 'text',
-					imageUrl: 'gutenberg/56254.jpg',        
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
-				ebook56260: {
-					id: 56260,
-					title: 'The flowers and gardens of Japan',
-					author: 'Cane, Florence Du',
-					category: 'text',
-					imageUrl: 'gutenberg/56254.jpg',        
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla"},
+					price: 1,  description: "bla bla",
+					isPurchased: 1,
+					isLiked: 0 },
+					ebook56255: {
+						id: 56255,
+						title: 'All But Lost Vol 2 of 3 A Novel',
+						author: 'Henty, G. A. (George Alfred)',
+						category: 'text',
+						imageUrl: 'gutenberg/56255.jpg',
+						datePublished: new Date(2017, 12,26),
+						price: 1,  description: "bla bla"},
+						ebook56256: {
+							id: 56256,
+							title: 'All But Lost Vol 2 of 3 A Novel',
+							author: 'Henty, G. A. (George Alfred)',
+							category: 'text',
+							imageUrl: 'gutenberg/56256.jpg',                
+							datePublished: new Date(2017, 12,26),
+							price: 1,  description: "bla bla"},
+							ebook56238: {
+								id: 56238,
+								title: 'The flowers and gardens of Japan',
+								author: 'Cane, Florence Du',
+								category: 'text',
+								imageUrl: 'gutenberg/56254.jpg',        
+								datePublished: new Date(2017, 12,26),
+								price: 1,  description: "bla bla"},
+								ebook56262: {
+									id: 56262,
+									title: 'The flowers and gardens of Japan',
+									author: 'Cane, Florence Du',
+									category: 'text',
+									imageUrl: 'gutenberg/56254.jpg',        
+									datePublished: new Date(2017, 12,26),
+									price: 1,  description: "bla bla"},
+									ebook56257: {
+										id: 56257,
+										title: 'The flowers and gardens of Japan',
+										author: 'Cane, Florence Du',
+										category: 'text',
+										imageUrl: 'gutenberg/56254.jpg',        
+										datePublished: new Date(2017, 12,26),
+										price: 1,  description: "bla bla"},
+										ebook56260: {
+											id: 56260,
+											title: 'The flowers and gardens of Japan',
+											author: 'Cane, Florence Du',
+											category: 'text',
+											imageUrl: 'gutenberg/56254.jpg',        
+											datePublished: new Date(2017, 12,26),
+											price: 1,  description: "bla bla"},
 		}
 	});
 })(window.angular);

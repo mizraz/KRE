@@ -8,6 +8,9 @@
 		ctrl.editMode = false;
 		ctrl.userNamesList = [];
 		ctrl.getLikesList = function() {
+			$("#myModalLikes").modal();
+
+
 			if (!ctrl.likeListClickedOnce) {
 				ctrl.likeListClickedOnce = true;
 //				TODO: fix ajax for getting all likes of this book
