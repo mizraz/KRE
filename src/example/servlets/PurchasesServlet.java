@@ -82,7 +82,8 @@ public class PurchasesServlet extends HttpServlet {
 				
 				while (rs.next()){
 					purchasesResult.add(new Purchase(rs.getString(1),rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5),rs.getString(6)));
-					System.out.println("Purchase: email " + rs.getString(1) + " bookId " + rs.getString(2) + " time " + rs.getString(3));
+					System.out.println("Purchase: email " + rs.getString(1) + " bookId " + rs.getString(2) + " time " + rs.getString(3)
+										+ " scroll: " +  rs.getString(6));
 				}
 				rs.close();
 				stmt.close();

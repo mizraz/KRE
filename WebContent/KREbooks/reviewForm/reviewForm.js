@@ -25,8 +25,6 @@
 			$http.post("http://localhost:8080/ExampleServletv3/newReview", JSON.stringify(review)) 
 			.then(function(response) {
 
-			
-			
 			});
 		};
 
@@ -35,9 +33,9 @@
 			console.log(ctrl.userr);
 			var like =
 			{
-				email: $rootScope.email,
-				bookId: ctrl.ebookId,
-				userName: $rootScope.userName,
+					email: $rootScope.email,
+					bookId: ctrl.ebookId,
+					userName: $rootScope.userName,
 			};
 
 			//$http is AngularJS way to do ajax-like communications

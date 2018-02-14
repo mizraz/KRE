@@ -10,13 +10,19 @@
     	}
     	
     	
+    	
 
     ctrl.goToEbookPage = function(){
+        console.log("in gotoEbookPage()");
+        console.log($rootScope.color);
+        $rootScope.color = 'pink';
+        $rootScope.curEbook = ctrl.ebook;
+        $rootScope.isLikeddd = true;
+        console.log("%%%%" + ctrl.ebook.id);
+    	if($rootScope.curPage != "userPurchases/userPurchases.html") {
+    	
       // console.log(ebookPar.id);
-    	console.log("in gotoEbookPage()");
-      console.log($rootScope.color);
-      $rootScope.color = 'pink';
-      $rootScope.curEbook = ctrl.ebook;
+
       // ctrl.ebook.id = ebookPar.id;
       // ctrl.ebook.title = ebookPar.title;
       
@@ -26,7 +32,7 @@
       ctrl.curPage = 'ebookPage/ebookPage.html';
       console.log(ctrl.curPage);
       $rootScope.curPage = 'ebookPage/ebookPage.html';
-      
+    }
     };
     
 

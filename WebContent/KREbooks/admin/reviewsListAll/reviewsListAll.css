@@ -53,7 +53,6 @@
   left: 0px;
   /* stick it wherever it was positioned by default */
   top: 0px;
-  max-width: 500px;
 }
 
 .message-header {
@@ -73,10 +72,9 @@
 
 .button-delete-message {
   margin: 10px 10px 0 0;
-  background: none;
+  background: blue;
   border: none;
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute;
+
 }
 
 .button-delete-message:active,

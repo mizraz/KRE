@@ -81,7 +81,8 @@ public class DBQueries {
 				SqlTables.REVIEWS.getName() + "." + SqlColumns.REVIEW_DESCRIPTION.getName() + "," +
 				SqlTables.REVIEWS.getName() + "." + SqlColumns.REVIEW_IS_APPROVED.getName() + "," +
 				SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + "," +
-				SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_IMAGE.getName()  +
+				SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_IMAGE.getName() + "," +
+				SqlTables.REVIEWS.getName() + "." + SqlColumns.REVIEW_DATE.getName()  +
 				" FROM " + SqlTables.REVIEWS.getName() +
 				" INNER JOIN " + SqlTables.USERS_DETAILS.getName() + " "
 						+ " ON " + SqlTables.USERS_DETAILS.getName() +"."+ SqlColumns.EMAIL.getName() + " = " +
@@ -108,7 +109,8 @@ public class DBQueries {
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DESCRIPTION.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_IS_APPROVED.getName() + "," +
 				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_NAME.getName() + "," +
-				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_IMAGE.getName() + " " +
+				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_IMAGE.getName() + "," +
+				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DATE.getName() + " " +
 				" FROM " + SqlTables.REVIEWS.getName()  +
 				" INNER JOIN " + SqlTables.USERS_DETAILS.getName() +
 				" ON " + SqlTables.USERS_DETAILS.getName() + "." +SqlColumns.EMAIL.getName() + " = " 
@@ -122,8 +124,12 @@ public class DBQueries {
 					DBConsts.SqlColumns.EMAIL.getName() + ", "+
 					DBConsts.SqlColumns.BOOK_ID.getName() + ", "+
 					DBConsts.SqlColumns.REVIEW_DESCRIPTION.getName() + ", "+
-					DBConsts.SqlColumns.REVIEW_IS_APPROVED.getName() + " "+
-				") VALUES (?,?,?,?)";
+					DBConsts.SqlColumns.REVIEW_IS_APPROVED.getName() + ", "+
+					DBConsts.SqlColumns.REVIEW_DATE.getName() + " "+
+				") VALUES (?,?,?,?,?)";
+		
+		
+		
 
 		public static final String SET_REVIEW =
 				"UPDATE " + SqlTables.REVIEWS.getName() + " " +
@@ -134,7 +140,7 @@ public class DBQueries {
 		
 		public static final String SET_LIKE =
 				"UPDATE " + SqlTables.USER_PURCHASES.getName() + " " +
-				"SET " + SqlColumns.LIKED.getName() + " = '1' " +
+				"SET " + SqlColumns.LIKED.getName() + " = ? " +
 				"WHERE " + SqlColumns.EMAIL.getName() + " = ? and " +
 							SqlColumns.BOOK_ID.getName() + " = ? " ;
 		
@@ -173,7 +179,8 @@ public class DBQueries {
 		public static final String SELECT_TRANSACTIONS_BETWEEN_2_DATES =
 				"SELECT " + SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.EMAIL.getName() + ", " +
 							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.BOOK_ID.getName() + ", " +
-							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.PURCHASE_TIME.getName() + /*", "
+							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.PURCHASE_TIME.getName() + ", " +
+							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.PRICE.getName() + /*", "
 //							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + " " + */
 				" FROM " + SqlTables.USER_PURCHASES.getName() + 
 //				" INNER JOIN " +SqlTables.USERS_DETAILS.getName() +

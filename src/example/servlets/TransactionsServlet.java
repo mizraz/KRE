@@ -78,8 +78,9 @@ public class TransactionsServlet extends HttpServlet {
 				ResultSet rs = stmt.executeQuery();
 				
 				while (rs.next()){
-					transactionResult.add(new Transaction(rs.getString(1),rs.getString(2),rs.getString(3)));
-					System.out.println("Transaction: email " + rs.getString(1) + " bookId " + rs.getString(2) + " time " + rs.getString(3));
+					transactionResult.add(new Transaction(rs.getString(1),rs.getString(2),rs.getString(3), rs.getString(4)));
+					System.out.println("Transaction: email " + rs.getString(1) + " bookId " + rs.getString(2) + " time " + rs.getString(3)
+					+ " price: "+ rs.getString(4));
 				}
 				rs.close();
 				stmt.close();

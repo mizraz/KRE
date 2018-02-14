@@ -1,22 +1,31 @@
 <link rel="stylesheet" href="ebookPage/buyRead/buyRead.css">
 
-	
+
 
 <div class='row' id='buyRead' >
 	<div class='col-xs-2 col-sm-8'>
-<likes-list class="col-xs-2 col-sm-2"ebook-id="$ctrl.ebook.id" is-user-liked="$ctrl.isUserliked" is-user-purchased= "$isUserPurchased"></likes-list>
+		<likes-list class="col-xs-2 col-sm-2" ebook-id="$ctrl.ebook.id"
+			is-user-liked="$ctrl.isUserliked"
+			is-user-purchased="$isUserPurchased"></likes-list>
 
-		<button ng-if="!$ctrl.usrBoughtCurBook" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		<button ng-if="!$ctrl.ebook.isPurchased" type="button"
+			class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#myModalBuy">Buy</button>
 		<!-- <a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span> 		</a>  -->
-
-		<button ng-if="$ctrl.usrBoughtCurBook" ng-click="$ctrl.clickedRead()" type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModalRead">Read</button>
+		<button ng-if="$ctrl.ebook.isPurchased" ng-click="$ctrl.clickedRead()"
+			type="button" class="btn btn-info btn-lg">Read</button>
+			
+			
+			
+		<button ng-if="!$ctrl.ebook.isLiked" type="button" class="btn btn-primary"
+			ng-click="$ctrl.submitLike()">Like</button>
+		<button ng-if="$ctrl.ebook.isLiked" type="button" class="btn btn-primary"
+			ng-click="$ctrl.submitLike()">unlike</button>
 
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModalBuy" role="dialog">
+	<div class="modal " id="myModalBuy" role="dialog">
 		<div class="modal-dialog .modal-lg">
 
 			<!-- Modal content-->
@@ -41,7 +50,7 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModalRead" role="dialog">
+	<div class="modal " id="myModalRead" role="dialog">
 		<div class="modal-dialog .modal-lg">
 
 			<!-- Modal content-->
@@ -51,6 +60,8 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Pay Here!</h4>
+					<button type="button" class="btn btn-outline-info"
+						ng-click="$ctrl.goToLastScroll()">Info</button>
 				</div>
 				<div ng-scroll="ctrl.scrolled()" class="modal-body"
 					id="myModalReadBody">
@@ -66,6 +77,31 @@
 
 		</div>
 	</div>
+
+
+	<!-- Modal -->
+	<div class="modal " id="myModalScroll" role="dialog">
+		<div class="modal-dialog .modal-lg">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pay Here!</h4>
+					<button type="button" class="btn btn-outline-info"
+						ng-click="$ctrl.goToLastScroll(true)">Yes</button>
+					<button type="button" class="btn btn-outline-info"
+						ng-click="$ctrl.goToLastScroll(false)">No</button>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+
 
 
 </div>

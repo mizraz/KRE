@@ -2,7 +2,7 @@
 
 
 <div class="ebook-details-s" ng-click="$ctrl.goToEbookPage()"
-	style="border: 2px solid green; box-sizing: border-box;">
+	style=" ">
 	<a href="" class="ebook-dateils-a"><img
 		class="col-xs-6 col-sm-6 col-lg-5 img-cover-wrapper ebook-img "
 		src={{$ctrl.ebook.imageUrl}}>
@@ -15,21 +15,21 @@
 				<li><span>Author: <em><strong>"{{$ctrl.ebook.author}}"</strong></em></span></li>
 				<li><span>Price:
 						<h4>
-							<em><strong>{{$ctrl.ebook.price}}$ 						</strong></em>
-							
+							<em><strong>{{$ctrl.ebook.price}}$ </strong></em>
+
 						</h4>
 				</span></li>
 				<li><span>Description: <em><strong>{{$ctrl.ebook.description}}</strong></em></span></li>
-				
-				</ul>
-				
-				</div> </a>
 
-	<buy-read ng-if="!$ctrl.isCatalogPage" ebook="$ctrl.ebook">
+			</ul>
+
+		</div> </a>
+	<div>{{$ctrl.pur.bookId}}</div>
+	<buy-read ng-if="!$ctrl.isCatalogPage" ebook="$ctrl.ebook" pur="$ctrl.pur">
 	</buy-read>
 
 
-<!-- 	<likes ebook-id="{{$ctrl.ebook.id}}"> </likes>  -->
+	<!-- 	<likes ebook-id="{{$ctrl.ebook.id}}"> </likes>  -->
 
 </div>
 

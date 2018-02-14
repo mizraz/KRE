@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -75,7 +76,7 @@ public class ReviewHandler extends HttpServlet {
     				ResultSet rs = stmt.executeQuery();
     				while (rs.next()){
     					reviewsResult.add(new Review(rs.getString(1),rs.getString(2),rs.getString(3),
-    							rs.getString(4), rs.getString(5), rs.getString(6)));
+    							rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
     					System.out.println("REVIEWer name: " + rs.getString(5));
     				}
     				rs.close();
@@ -91,7 +92,7 @@ public class ReviewHandler extends HttpServlet {
     				ResultSet rs = stmt.executeQuery(DBQueries.SELECT_ALL_REVIEWS_NOT_APPROVED);
     				while (rs.next()){
     					reviewsResult.add(new Review(rs.getString(1),rs.getString(2),rs.getString(3),
-    							rs.getString(4), rs.getString(5), rs.getString(6))); 
+    							rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7))); 
     				System.out.println("review of: " + rs.getString(1));
 					System.out.println("REVIEWer name: " + rs.getString(5));
 
@@ -174,6 +175,9 @@ public class ReviewHandler extends HttpServlet {
 				pstmt.setString(2, rev.getBookId());
 				pstmt.setString(3, rev.getDescription());
 				pstmt.setString(4, rev.getIsApproved());
+				pstmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+
+
 				pstmt.executeUpdate();
 				System.out.println("email: " + rev.getEmail() +"description: "+ rev.getDescription());
 	    		} else {
