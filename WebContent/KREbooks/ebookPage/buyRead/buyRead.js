@@ -10,12 +10,16 @@ var myModalReadBody;
 
 		$scope.$on('$viewContentLoaded', function() {
 			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	
-			});
-		
-		
+		});
+
+		$rootScope.curEbookIdd = '123';
 		var ctrl = this;
 
-		setTimeout(function(){
+//		setTimeout(function(){
+
+		var init = function() {
+
+
 			ctrl.curEbook = ctrl.ebook;
 			ctrl.userEmail = $rootScope.email;
 			ctrl.userPurchases = [];
@@ -37,111 +41,74 @@ var myModalReadBody;
 
 			}			
 
-			console.log("lka " + ctrl.usrBoughtCurBook);		
-			console.log("lka liked  " + ctrl.isLiked);
+			console.log("ctrl.usrBoughtCurBook: " + ctrl.usrBoughtCurBook);		
+			console.log("ctrl.isLiked: " + ctrl.isLiked);
 
 
-		}, 1000);
+			ctrl.clickedRead = function clickedRead() {
+				console.log("clicked Read. ctrl.ebook.bookId " + ctrl.ebook.bookId);
+				$rootScope.curEbookIdd = ctrl.ebook.bookId;
+				console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
 
+				$("#myModalScroll").modal();
+			};			
 
-
-		ctrl.scrolled = function scrolled() {
-			ctrl.scrollPositionOfBook = myModalReadBody.scrollTop;
-			console.log("scrolled!");
-		}
-
-
-		ctrl.clickedRead = function clickedRead() {
-			$("#myModalScroll").modal();
+//			}, 2000);
 		};
+
+		setTimeout(function(){
+			init();
+		}, 1000);
 
 		ctrl.goToLastScroll = function (isToGoToLastScroll) {
 
+
+			
 			$('#myModalScroll').modal('hide');
 			$('body').removeClass('modal-open');
 			$('.modal-backdrop').remove();
 
+//			setTimeout(function(){
+
+//			var myModalReadBody = document.getElementById('myModalReadBody');
+
+			var bookIdClickedToRead = $rootScope.curEbookIdd.bookId;
+			console.log("ctrl.ebook.bookId : " + ctrl.ebook.bookId);
+			console.log("$rootScope.curEbookIdd : " + $rootScope.curEbookIdd);
+			
+			ctrl.curReadEbookPath = 'gutenberg/contents/' + $rootScope.curEbookIdd + '.html';
+			var ebookIdDict = "ebook" + $rootScope.curEbookIdd;
+			console.log("ebookIdDict: " + ebookIdDict);
+			ctrl.curReadEbookScroll = $rootScope.ebooksDict[ebookIdDict].currentScroll;
+			console.log("ctrl.curReadEbookScroll: " + ctrl.curReadEbookScroll);
+			console.log("ctrl.curReadEbookPath: " + ctrl.curReadEbookPath);
+
+			var curScroll = ctrl.curReadEbookScroll;
+			
+			$rootScope.curPage = ctrl.curReadEbookPath;
+
 			setTimeout(function(){
 
-				var myModalReadBody = document.getElementById('myModalReadBody');
+			var bodyId = document.getElementById('body');
 
-				$rootScope.curPage = ctrl.curReadEbook;
-				ctrl.clickedRead();
+			if (isToGoToLastScroll) {
+				console.log("scroll : " + curScroll);
+				body.scrollTop = curScroll;
+				window.curBookIdToSendScroll = $rootScope.curEbookIdd.bookId;
+				window.curEmailToSendScroll = $rootScope.email;
 
-				var bookIdClickedToRead = ctrl.ebook.bookId;
-				console.log("3333" + bookIdClickedToRead);
-				ctrl.curReadEbook = 'gutenberg/contents/' + bookIdClickedToRead + '.html';
-				var ebookIdDict = "ebook" + bookIdClickedToRead;
-				console.log("2222" + ebookIdDict);
-				ctrl.curReadEbookScroll = $rootScope.ebooksDict[ebookIdDict].currentScroll;
-				console.log(ctrl.curReadEbookScroll);
-				console.log("ctrl.curReadEbook " + ctrl.curReadEbook);
+				console.log("yes");
+			}
+			else {
+				console.log("no");	
+			}
 
-				//ctrl.ebook = $rootScope.curEbook;
-				ctrl.email = $rootScope.email;
-//				console.log('$rootScope.curEbook: ' + $rootScope.curEbook.bookId);
+//			}, 1000);
 
+			$('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
 
-				$http.get("http://localhost:8080/ExampleServletv3/purchase/email/"+ctrl.email + "/bookId/" + bookIdClickedToRead)
-				.then(function(response) {
-					$scope.records = response;
-					$scope.result = $scope.records;//this variable will hold the search results
-
-					console.log($scope.result);
-					console.log('arr length ' + $scope.result.data.length);
-					if ($scope.result.data.length != 0) {
-						//the size of array must be 1.
-						var ebookIdDict = "ebook" + $scope.result.data[0].bookId;
-						console.log(ebookIdDict);
-						var curEbook = $rootScope.ebooksDict[ebookIdDict];
-						ctrl.userPurchases.push(curEbook);
-
-						console.log('!@#@#!' + curEbook);
-						console.log("@@@" + $scope.result.data[0].bookId);
-
-//						console.log(curEbook);
-//						ctrl.ebookContentUrl = ctrl.ebookContentUrl.concat(curEbook.bookId);					
-//						ctrl.contentUrlDic.ebookIdDict = ctrl.ebookContentUrl; 
-
-
-						var profilePicSrc = $scope.result.data[0].userImageUrl;
-						var name = $scope.result.data[0].userName;
-						var email = $scope.result.data[0].email;
-						var curScroll = $scope.result.data[0].currentScroll;
-						var purchaseDate = $scope.result.data[0].datePurchased;
-						var isLiked = $scope.result.data[0].isLiked;					
-					} else {
-						$rootScope.usrBoughtCurBook = false;
-					}
-					$rootScope.curPage = ctrl.curReadEbook;
-					console.log("12345:  " + curScroll);
-
-
-					setTimeout(function(){
-
-						var bodyId = document.getElementById('body');
-
-						if (isToGoToLastScroll) {
-							console.log("scroll : " + curScroll);
-							body.scrollTop = curScroll;
-							window.curBookIdToSendScroll = ctrl.ebook.bookId;
-							window.curEmailToSendScroll = $rootScope.email;
-//							var bookContentBody = document.getElementById('bookContentBody');
-//							bookContentBody.addEventListener("unload", function() {
-//							console.log("bye bye");
-//							});	
-							console.log("yes");
-						}
-						else {
-							console.log("no");	
-						}
-
-					}, 1000);
-
-					$('body').removeClass('modal-open');
-					$('.modal-backdrop').remove();
-
-				});
+//			});
 
 
 			}, 1000);
@@ -155,14 +122,14 @@ var myModalReadBody;
 
 		ctrl.submitLike = function() {
 			console.log("clicked like;");
-			
+
 			if(ctrl.ebook.isLiked == 1) {
 				ctrl.ebook.isLiked = 0;
 			} else {
 				ctrl.ebook.isLiked = 1;
 			}
-			
-			
+
+
 			console.log(ctrl.userr);
 			console.log(ctrl.ebook.isLiked);
 
@@ -184,32 +151,6 @@ var myModalReadBody;
 			});
 		};
 
-
-		//TODO: fix this. save last scroll
-//		$("#myModalRead").on("hidden.bs.modal", function () {
-//		// put your default event here
-//		console.log("read modal colsed");
-
-//		var scrolJSON = {
-//		scroll: ctrl.scrollPositionOfBook,
-//		bookId: ctrl.ebook.bookId,
-//		email: ctrl.userEmail
-
-//		}
-//		$http.post("http://localhost:8080/ExampleServletv3/scroll", JSON.stringify(scrolJSON)) 
-//		.then(function(response) {
-////		$scope.records = response;
-////		$scope.result = $scope.records;//this variable will hold the search results
-//		});
-
-
-//		});
-
-//		TODO: check if need this, currently handled by modal hidden trigger.
-//		window.onbeforeunload = function ($scope, $element, $attrs, $http) {
-//		var curScroll = myModalReadBody.scrollTop;
-//		//TODO: post ajax send scroll with: user email, scroll, bookId
-//		}
 
 	};
 

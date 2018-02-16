@@ -7,7 +7,7 @@
 		<likes-list class="col-xs-2 col-sm-2" ebook-id="$ctrl.ebook.bookId"
 			is-user-liked="$ctrl.isUserliked"
 			is-user-purchased="$isUserPurchased"></likes-list>
-
+		<div>{{$ctrl.ebook.bookId}}</div>
 		<button ng-if="!$ctrl.ebook.isPurchased" type="button"
 			class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#myModalBuy">Buy</button>
@@ -49,34 +49,34 @@
 		</div>
 	</div>
 
-	<!-- Modal -->
-	<div class="modal " id="myModalRead" role="dialog">
-		<div class="modal-dialog .modal-lg">
+<!-- 	<!-- Modal -->
+<!-- 	<div class="modal " id="myModalRead" role="dialog"> -->
+<!-- 		<div class="modal-dialog .modal-lg"> -->
 
-			<!-- Modal content-->
-			<div class="modal-content">
-
-
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Pay Here!</h4>
-					<button type="button" class="btn btn-outline-info"
-						ng-click="$ctrl.goToLastScroll()">Info</button>
-				</div>
-				<div ng-scroll="ctrl.scrolled()" class="modal-body"
-					id="myModalReadBody">
-					<p>ENTER CREDIT CARD AND OTHER BILLING DETAILS.</p>
-					<div id="bookContentId" ng-include="$ctrl.curReadEbook"></div>
+<!-- 			<!-- Modal content--> 
+<!-- 			<div class="modal-content"> -->
 
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
+<!-- 				<div class="modal-header"> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal">&times;</button> -->
+<!-- 					<h4 class="modal-title">Pay Here!</h4> -->
+<!-- 					<button type="button" class="btn btn-outline-info" -->
+<!-- 						ng-click="$ctrl.goToLastScroll()">Info</button> -->
+<!-- 				</div> -->
+<!-- 				<div ng-scroll="ctrl.scrolled()" class="modal-body" -->
+<!-- 					id="myModalReadBody"> -->
+<!-- 					<p>ENTER CREDIT CARD AND OTHER BILLING DETAILS.</p> -->
+<!-- 					<div id="bookContentId" ng-include="$ctrl.curReadEbook"></div> -->
 
-		</div>
-	</div>
+
+<!-- 				</div> -->
+<!-- 				<div class="modal-footer"> -->
+<!-- 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 
 	<!-- Modal -->
@@ -88,6 +88,10 @@
 
 
 				<div class="modal-header">
+						<div>{{$ctrl.ebook.bookId}}</div>
+						iija<div>{{curEbookIdd}}</div>
+						
+				
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Pay Here!</h4>
 					<button type="button" class="btn btn-outline-info"
