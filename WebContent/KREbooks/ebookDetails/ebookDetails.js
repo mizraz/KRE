@@ -18,12 +18,12 @@
         $rootScope.color = 'pink';
         $rootScope.curEbook = ctrl.ebook;
         $rootScope.isLikeddd = true;
-        console.log("%%%%" + ctrl.ebook.id);
-    	if($rootScope.curPage != "userPurchases/userPurchases.html") {
+        console.log("%%%%" + ctrl.ebook.bookId);
+//    	if($rootScope.curPage != "userPurchases/userPurchases.html") {
     	
-      // console.log(ebookPar.id);
+      // console.log(ebookPar.bookId);
 
-      // ctrl.ebook.id = ebookPar.id;
+      // ctrl.ebook.bookId = ebookPar.bookId;
       // ctrl.ebook.title = ebookPar.title;
       
       // console.log($rootScope.color);
@@ -32,7 +32,7 @@
       ctrl.curPage = 'ebookPage/ebookPage.html';
       console.log(ctrl.curPage);
       $rootScope.curPage = 'ebookPage/ebookPage.html';
-    }
+//    }
     };
     
 

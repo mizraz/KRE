@@ -1,0 +1,77 @@
+
+
+
+		
+[
+	{
+		"bookId": "56254",
+		"title": "The flowers and gardens of Japan",
+		"author": "Cane, Florence Du",
+		"price": "1",
+		"imageUrl": "gutenberg/56254.jpg",
+		"description": "bla bla"
+	},
+	{
+		"bookId": "56255",
+		"title": "All But Lost Vol 2 of 3 A Novel",
+		"author": "Henty, G. A. (George Alfred)",
+		"price": "1",
+		"imageUrl": "gutenberg/56255.jpg",
+		"description": "bla bla"
+	},
+	{
+		"bookId": "56256",
+		"title": "All But Lost Vol 2 of 3 A Novel",
+		"author": "Henty, G. A. (George Alfred)",
+		"price": "1",
+		"imageUrl": "gutenberg/56256.jpg",
+		"description": "bla bla"
+	},
+	{
+		"bookId": "56238",
+		"title": "Deerfoot on the Prairies",
+		"author": "Ellis, Edward Sylvester",
+		"price": "1",
+		"imageUrl": "gutenberg/56238.jpg",
+		"description": "bla bla"
+	},
+	{
+		"bookId": "56262",
+		"title": "When We Were Strolling Players in the East",
+		"author": "Miln, Louise Jordan",
+		"price": "1",
+		"imageUrl": "gutenberg/56262.jpg",
+		"description": "bla bla"
+	},
+	
+	
+	{
+		"bookId": "56260",
+		"title": "Through Spain to the Sahara",
+		"author": "Betham-Edwards, Matilda",
+		"price": "1",
+		"imageUrl": "gutenberg/56260.jpg",
+		"description": "bla bla"
+	},
+	{
+		"bookId": "56259",
+		"title": "In the Line",
+		"author": "Dudley, Albertus T.",
+		"price": "1",
+		"imageUrl": "gutenberg/56259.jpg",
+		"description": "bla bla"
+	},
+	{
+		"bookId": "56257",
+		"title": "Geschiedenis van Suriname",
+		"author": "Wolbers, J.",
+		"price": "1",
+		"imageUrl": "gutenberg/56257.jpg",
+		"description": "bla bla"
+	}
+]
+
+
+
+
+

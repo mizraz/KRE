@@ -36,7 +36,7 @@ angular.module('myApp').controller("ebookPageController",
 				return 0;
 			}
 
-//			console.log("id: " + ctrl.ebook.id);
+//			console.log("id: " + ctrl.ebook.bookId);
 
 
 		}]);

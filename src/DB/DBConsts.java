@@ -8,9 +8,14 @@ public class DBConsts {
 		REVIEW_IS_APPROVED("is_review_approved"),
 		REVIEW_DATE("date_reviewed"),
 		BOOK_ID("book_id"),
+		TITLE("title"),
+		AUTHOR("author"),
+		BOOK_IMAGE_URL("book_image_url"),
+		BOOK_DESCRIPTION("book_description"),
 		EMAIL("email"),
 		LIKED("is_liked"),
 		PRICE("price"),
+		
 		PURCHASE_TIME("date_purchased"),
 		USER_NAME("user_name"),
 		USER_ADDRESS("address"),
@@ -36,6 +41,8 @@ public class DBConsts {
 		REVIEWS("ALL_REVIEWS"),
 		USERS_DETAILS("USER_DETAILS"),
 		USER_PURCHASES("USER_PURCHASES"),
+		EBOOKS("EBOOKS"),
+
 		;
 		
 		String tableName;
