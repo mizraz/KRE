@@ -7,37 +7,36 @@
 	<ul class="row list-unstyled" ng-repeat="x in userPurchases">
 		<li class="col-xs-12 col-sm-12 col-lg-12 ebook-item well">
 			<ebook-details ebook="x"></ebook-details>
-				 <!-- 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-				data-target="#myModalRead" ng-click="ctrl.updateGlobalCurRead(x.id)">Read</button> -->
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalRead" ng-click="ctrl.updateGlobalCurRead(x.id)">Read</button> -->
 		</li>
 	</ul>
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModalRead" role="dialog">
-		<div class="modal-dialog .modal-lg">
+<!-- 	<div class="modal fade" id="myModalRead" role="dialog"> -->
+<!-- 		<div class="modal-dialog .modal-lg"> -->
 
-			<!-- Modal content-->
-			<div class="modal-content">
-
-
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Pay Here!</h4>
-				</div>
-				<div ng-scroll="ctrl.scrolled()" class="modal-body"
-					id="myModalReadBody">
-					<p>ENTER CREDIT CARD AND OTHER BILLING DETAILS.</p>
-					<div id="bookContentId" ng-include="ctrl.curReadEbook"></div>
+<!-- 			<!-- Modal content--> 
+<!-- 			<div class="modal-content"> -->
 
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
+<!-- 				<div class="modal-header"> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal">&times;</button> -->
+<!-- 					<h4 class="modal-title">Pay Here!</h4> -->
+<!-- 				</div> -->
+<!-- 				<div ng-scroll="ctrl.scrolled()" class="modal-body" -->
+<!-- 					id="myModalReadBody"> -->
+<!-- 					<p>ENTER CREDIT CARD AND OTHER BILLING DETAILS.</p> -->
+<!-- 					<div id="bookContentId" ng-include="ctrl.curReadEbook"></div> -->
 
-		</div>
-	</div>
+
+<!-- 				</div> -->
+<!-- 				<div class="modal-footer"> -->
+<!-- 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 </div>

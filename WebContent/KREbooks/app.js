@@ -1,16 +1,16 @@
 //window.onload = function() {
-//	console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
-//
-//	$http.get("http://localhost:8080/ExampleServletv3/ebooks")
-//	.then(function(response) {
-//		$rootScope.records = response;
-//		$rootScope.result = $rootScope.records;//this variable will hold the search results
-////		ebook1["bookId"] = $rootScope.result[0].bookId;
-//		console.log($rootScope.result);
-//		console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
-//
-//	});	
-//	
+//console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
+
+//$http.get("http://localhost:8080/ExampleServletv3/ebooks")
+//.then(function(response) {
+//$rootScope.records = response;
+//$rootScope.result = $rootScope.records;//this variable will hold the search results
+////ebook1["bookId"] = $rootScope.result[0].bookId;
+//console.log($rootScope.result);
+//console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
+
+//});	
+
 //};
 
 window.onbeforeunload = function () {
@@ -37,19 +37,19 @@ window.onbeforeunload = function () {
 	var app = angular.module('myApp', [/*'ngRoute'*/]);  
 	app.run(function($rootScope, $http) {
 		$rootScope.color = 'blue';
-		
+
 //		$http.get("http://localhost:8080/ExampleServletv3/ebooks")
 //		.then(function(response) {
-//			$rootScope.records = response;
-//			$rootScope.result = $rootScope.records;//this variable will hold the search results
-////			ebook1["bookId"] = $rootScope.result[0].bookId;
-//			console.log($rootScope.result);
-//			console.log("1235545344" + $rootScope.result.data[1].bookId);
-//
+//		$rootScope.records = response;
+//		$rootScope.result = $rootScope.records;//this variable will hold the search results
+////		ebook1["bookId"] = $rootScope.result[0].bookId;
+//		console.log($rootScope.result);
+//		console.log("1235545344" + $rootScope.result.data[1].bookId);
+
 //		});
-		
-		
-		
+
+
+
 	});
 
 
@@ -70,25 +70,29 @@ window.onbeforeunload = function () {
 			'https://he.wikipedia.org/wiki/%D7%91%D7%90%D7%98%D7%9E%D7%9F_(%D7%96%D7%99%D7%9B%D7%99%D7%95%D7%9F_%D7%9E%D7%93%D7%99%D7%94)';
 		$rootScope.purchasesList = [];
 		$rootScope.purchasesDict = {};
+		$rootScope.userPurchases = [];
 		this.isShowEbook = false;
 		this.isShowCatalog = true;
 //		this.curPage = 'catalog/catalog.html';
 
 //		TODO: update all books objects with properties: isPurcased, lastScrool, isLiked etc.  'ebook1' is an example (contains all propeties - still need to update values according to: user, bookId)
 //		TODO: check if everything still works without the 'setTimeout'
-		setTimeout(function(){ 
 
-			$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.email) ///name/Alfreds Futterkiste
-			.then(function(response) {
-				$scope.records = response;
-				$scope.result = $scope.records;//this variable will hold the search results
-				$rootScope.purchasesList = $scope.result;
-				for (var i = 0; i < $scope.records.data.length; i++) {
-					$rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId] = $scope.records.data[i]; 
-					console.log("ebook+ $scope.records.data[i].bookId: " + "ebook"+ $scope.records.data[i].bookId);
-					console.log("val " + $rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId].bookId);
-				}
-			}, 3000)});
+
+
+//		setTimeout(function(){ 
+
+//		$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.email) ///name/Alfreds Futterkiste
+//		.then(function(response) {
+//		$scope.records = response;
+//		$scope.result = $scope.records;//this variable will hold the search results
+//		$rootScope.purchasesList = $scope.result;
+//		for (var i = 0; i < $scope.records.data.length; i++) {
+//		$rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId] = $scope.records.data[i]; 
+//		console.log("ebook+ $scope.records.data[i].bookId: " + "ebook"+ $scope.records.data[i].bookId);
+//		console.log("val " + $rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId].bookId);
+//		}
+//		}, 3000)});
 
 		this.fun = function() {
 			console.log($rootScope.color);
@@ -138,187 +142,233 @@ window.onbeforeunload = function () {
 
 		var ctrl = this;
 		console.log("eeeeee");
-		this.ebook1 = {
-				bookId: 56254,
-				title: 'The flowers and gardens of Japan',
-				author: 'Cane, Florence Du',
-				category: 'text',
-				imageUrl: 'gutenberg/56254.jpg',        
-				datePublished: new Date(2017, 12,26),
-				price: 1,  description: "bla bla",
-				isPurchased: 1,
-				isLiked: 0
-		};
+//		this.ebook1 = {
+//		bookId: 56254,
+//		title: 'The flowers and gardens of Japan',
+//		author: 'Cane, Florence Du',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56254.jpg',        
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla",
+//		isPurchased: 1,
+//		isLiked: 0
+//		};
 //		this.ebook1["bookId"] = $rootScope.result.data[1].bookId;
-		
+
 		$rootScope.listtt = [];
 		$rootScope.ebooksDict = {};
-	    var init = function () {
+		var init = function () {
 			$http.get("http://localhost:8080/ExampleServletv3/ebooks")
 			.then(function(response) {
 				$rootScope.records = response;
 				$rootScope.result = $rootScope.records;//this variable will hold the search results
-				console.log("1234343$$$$$  "  + $rootScope.result.data);
-				ctrl.ebook1["bookId"] = $rootScope.result.data[0].bookId;
-				console.log($rootScope.result);
-				console.log("1235545344" + $rootScope.result.data[1].bookId);
-				console.log("ebook1 bookId: " + ctrl.ebook1.bookId);
-				var i = 0;
-				for (var ebook in $rootScope.result.data) {
-					$rootScope.result.data[i]["isPurchased"] = 1; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
-					$rootScope.result.data[i]["isLiked"] = 1; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
 
+//				console.log("1234343$$$$$  "  + $rootScope.result.data);
+//				ctrl.ebook1["bookId"] = $rootScope.result.data[0].bookId;
+//				console.log($rootScope.result);
+//				console.log("1235545344" + $rootScope.result.data[1].bookId);
+//				console.log("ebook1 bookId: " + ctrl.ebook1.bookId);
+
+				var i = 0;
+
+				for (var ebook in $rootScope.result.data) {
+					$rootScope.result.data[i]["isPurchased"] = 0; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
+					$rootScope.result.data[i]["isLiked"] = 0; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
+					$rootScope.result.data[i]["currentScroll"] = 0;
 					$rootScope.listtt.push($rootScope.result.data[i]);
 					$rootScope.ebooksDict["ebook" + $rootScope.result.data[i].bookId] = $rootScope.result.data[i];
-//					$rootScope.listtt.push($rootScope.result.data[1]);
 					i++;
 				}
 
 
+				$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.email) ///name/Alfreds Futterkiste
+				.then(function(response) {
+					$rootScope.records = response;
+					$rootScope.resultPur = $rootScope.records;//this variable will hold the search results
+
+					console.log($rootScope.resultPur);
+					console.log('arr length ' + $rootScope.resultPur.data.length);
+					for (i = 0; i < $rootScope.resultPur.data.length; ++i) {
+						var ebookIdDict = "ebook" + $rootScope.resultPur.data[i].bookId;
+						console.log(ebookIdDict);
+						var curEbook = $rootScope.ebooksDict[ebookIdDict];
+						$rootScope.userPurchases.push(curEbook);
+						$rootScope.purchasesDict["ebook"+ $rootScope.records.data[i].bookId] = $rootScope.records.data[i]; 
+
+						console.log('curEbook: ' + curEbook);
+
+						console.log("$rootScope.resultPur.data[i].bookId: " + $rootScope.resultPur.data[i].bookId);
+
+					}
+
+					i = 0;
+					console.log("$rootScope.resultPur.data: " + $rootScope.resultPur.data[0].bookId);
+					for (var pur in $rootScope.resultPur.data) {
+						console.log("pur.bookId: "+ $rootScope.resultPur.data[pur].bookId);
+						$rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isPurchased = 1 ; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
+						$rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isliked = $rootScope.resultPur.data[pur].isLiked; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
+						$rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].currentScroll = $rootScope.resultPur.data[pur].currentScroll;
+						
+						console.log("1: " + $rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isPurchased);
+						console.log("2: " + $rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isliked);
+						console.log("3: " + $rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].currentScroll);
+
+
+
+//						$rootScope.listtt.push($rootScope.result.data[1]);
+						i++;
+					}
+
+
+
+
+				});
+
+
 			});
-	    }
-	    init();
+		}
+		init();
 
 
 //		this.ebook2 = {
-//				bookId: 56255,
-//				title: 'All But Lost Vol 2 of 3 A Novel',
-//				author: 'Henty, G. A. (George Alfred)',
-//				category: 'text',
-//				imageUrl: 'gutenberg/56255.jpg',
-//				datePublished: new Date(2017, 12,26),
-//				price: 1,  description: "bla bla",
-//				isPurchased: 1,
-//				isLiked: 0
+//		bookId: 56255,
+//		title: 'All But Lost Vol 2 of 3 A Novel',
+//		author: 'Henty, G. A. (George Alfred)',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56255.jpg',
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla",
+//		isPurchased: 1,
+//		isLiked: 0
 //		};
-//
+
 //		this.ebook3 = {
-//				bookId: 56256,
-//				title: 'All But Lost Vol 2 of 3 A Novel',
-//				author: 'Henty, G. A. (George Alfred)',
-//				category: 'text',
-//				imageUrl: 'gutenberg/56256.jpg',                
-//				datePublished: new Date(2017, 12,26),
-//				price: 1,  description: "bla bla"
+//		bookId: 56256,
+//		title: 'All But Lost Vol 2 of 3 A Novel',
+//		author: 'Henty, G. A. (George Alfred)',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56256.jpg',                
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"
 //		};
-//
+
 //		this.ebook4 = {
-//				bookId: 56238,
-//				title: 'Deerfoot on the Prairies',
-//				author: '	Ellis, Edward Sylvester',
-//				category: 'text',
-//				datePublished: new Date(2017, 12,27),
-//				imageUrl: 'gutenberg/56238.jpg',                
-//
-//				price: 1,  description: "bla bla"
+//		bookId: 56238,
+//		title: 'Deerfoot on the Prairies',
+//		author: '	Ellis, Edward Sylvester',
+//		category: 'text',
+//		datePublished: new Date(2017, 12,27),
+//		imageUrl: 'gutenberg/56238.jpg',                
+
+//		price: 1,  description: "bla bla"
 //		};
-//
+
 //		this.ebook5 = {
-//				bookId: 56262,
-//				title: 'When We Were Strolling Players in the East',
-//				author: 'Miln, Louise Jordan',
-//				category: 'text',
-//				imageUrl: 'gutenberg/56262.jpg',                                        
-//				datePublished: new Date(2017, 12,27),
-//				price: 1,  description: "bla bla"
+//		bookId: 56262,
+//		title: 'When We Were Strolling Players in the East',
+//		author: 'Miln, Louise Jordan',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56262.jpg',                                        
+//		datePublished: new Date(2017, 12,27),
+//		price: 1,  description: "bla bla"
 //		};
-//
-//
+
+
 //		this.ebook6 = {
-//				bookId: 56260,
-//				title: 'Through Spain to the Sahara',
-//				author: 'Betham-Edwards, Matilda',
-//				category: 'text',
-//				datePublished: new Date(2017, 12,27),
-//				imageUrl: 'gutenberg/56260.jpg',                
-//
-//				price: 1,  description: "bla bla"
+//		bookId: 56260,
+//		title: 'Through Spain to the Sahara',
+//		author: 'Betham-Edwards, Matilda',
+//		category: 'text',
+//		datePublished: new Date(2017, 12,27),
+//		imageUrl: 'gutenberg/56260.jpg',                
+
+//		price: 1,  description: "bla bla"
 //		};
-//
+
 //		this.ebook7 = {
-//				bookId: 56259,
-//				title: 'In the Line',
-//				author: 'Dudley, Albertus T.',
-//				category: 'text',
-//				imageUrl: 'gutenberg/56259.jpg',                
-//
-//				datePublished: new Date(2017, 12,27),
-//				price: 1,  description: "bla bla"
+//		bookId: 56259,
+//		title: 'In the Line',
+//		author: 'Dudley, Albertus T.',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56259.jpg',                
+
+//		datePublished: new Date(2017, 12,27),
+//		price: 1,  description: "bla bla"
 //		};
-//
+
 //		this.ebook8 = {
-//				bookId: 56257,
-//				title: 'Geschiedenis van Suriname',
-//				author: 'Wolbers, J.',
-//				category: 'text',
-//				releaseDate: 'Release&nbsp;Date',
-//				datePublished: new Date(2017, 12,27),
-//				imageUrl: 'gutenberg/56257.jpg',                
-//
-//				price: 1,  description: "bla bla"
+//		bookId: 56257,
+//		title: 'Geschiedenis van Suriname',
+//		author: 'Wolbers, J.',
+//		category: 'text',
+//		releaseDate: 'Release&nbsp;Date',
+//		datePublished: new Date(2017, 12,27),
+//		imageUrl: 'gutenberg/56257.jpg',                
+
+//		price: 1,  description: "bla bla"
 //		};
 
 
 
 //		$rootScope.ebooksDict = {
-//				ebook56254: {
-//					bookId: 56254,
-//					title: 'The flowers and gardens of Japan',
-//					author: 'Cane, Florence Du',
-//					category: 'text',
-//					imageUrl: 'gutenberg/56254.jpg',        
-//					datePublished: new Date(2017, 12,26),
-//					price: 1,  description: "bla bla",
-//					isPurchased: 1,
-//					isLiked: 0 },
-//					ebook56255: {
-//						bookId: 56255,
-//						title: 'All But Lost Vol 2 of 3 A Novel',
-//						author: 'Henty, G. A. (George Alfred)',
-//						category: 'text',
-//						imageUrl: 'gutenberg/56255.jpg',
-//						datePublished: new Date(2017, 12,26),
-//						price: 1,  description: "bla bla"},
-//						ebook56256: {
-//							bookId: 56256,
-//							title: 'All But Lost Vol 2 of 3 A Novel',
-//							author: 'Henty, G. A. (George Alfred)',
-//							category: 'text',
-//							imageUrl: 'gutenberg/56256.jpg',                
-//							datePublished: new Date(2017, 12,26),
-//							price: 1,  description: "bla bla"},
-//							ebook56238: {
-//								bookId: 56238,
-//								title: 'The flowers and gardens of Japan',
-//								author: 'Cane, Florence Du',
-//								category: 'text',
-//								imageUrl: 'gutenberg/56254.jpg',        
-//								datePublished: new Date(2017, 12,26),
-//								price: 1,  description: "bla bla"},
-//								ebook56262: {
-//									bookId: 56262,
-//									title: 'The flowers and gardens of Japan',
-//									author: 'Cane, Florence Du',
-//									category: 'text',
-//									imageUrl: 'gutenberg/56254.jpg',        
-//									datePublished: new Date(2017, 12,26),
-//									price: 1,  description: "bla bla"},
-//									ebook56257: {
-//										bookId: 56257,
-//										title: 'The flowers and gardens of Japan',
-//										author: 'Cane, Florence Du',
-//										category: 'text',
-//										imageUrl: 'gutenberg/56254.jpg',        
-//										datePublished: new Date(2017, 12,26),
-//										price: 1,  description: "bla bla"},
-//										ebook56260: {
-//											bookId: 56260,
-//											title: 'The flowers and gardens of Japan',
-//											author: 'Cane, Florence Du',
-//											category: 'text',
-//											imageUrl: 'gutenberg/56254.jpg',        
-//											datePublished: new Date(2017, 12,26),
-//											price: 1,  description: "bla bla"},
+//		ebook56254: {
+//		bookId: 56254,
+//		title: 'The flowers and gardens of Japan',
+//		author: 'Cane, Florence Du',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56254.jpg',        
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla",
+//		isPurchased: 1,
+//		isLiked: 0 },
+//		ebook56255: {
+//		bookId: 56255,
+//		title: 'All But Lost Vol 2 of 3 A Novel',
+//		author: 'Henty, G. A. (George Alfred)',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56255.jpg',
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"},
+//		ebook56256: {
+//		bookId: 56256,
+//		title: 'All But Lost Vol 2 of 3 A Novel',
+//		author: 'Henty, G. A. (George Alfred)',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56256.jpg',                
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"},
+//		ebook56238: {
+//		bookId: 56238,
+//		title: 'The flowers and gardens of Japan',
+//		author: 'Cane, Florence Du',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56254.jpg',        
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"},
+//		ebook56262: {
+//		bookId: 56262,
+//		title: 'The flowers and gardens of Japan',
+//		author: 'Cane, Florence Du',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56254.jpg',        
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"},
+//		ebook56257: {
+//		bookId: 56257,
+//		title: 'The flowers and gardens of Japan',
+//		author: 'Cane, Florence Du',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56254.jpg',        
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"},
+//		ebook56260: {
+//		bookId: 56260,
+//		title: 'The flowers and gardens of Japan',
+//		author: 'Cane, Florence Du',
+//		category: 'text',
+//		imageUrl: 'gutenberg/56254.jpg',        
+//		datePublished: new Date(2017, 12,26),
+//		price: 1,  description: "bla bla"},
 //		}
 	});
 })(window.angular);
