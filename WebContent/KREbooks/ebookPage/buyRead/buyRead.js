@@ -9,7 +9,7 @@ var myModalReadBody;
 
 
 		$scope.$on('$viewContentLoaded', function() {
-			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.id].isLiked;	
+			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	
 			});
 		
 		
@@ -19,16 +19,16 @@ var myModalReadBody;
 			ctrl.curEbook = ctrl.ebook;
 			ctrl.userEmail = $rootScope.email;
 			ctrl.userPurchases = [];
-			console.log("ctrl.ebook: " + ctrl.ebook.id);
-			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.id] "+ $rootScope.purchasesDict["ebook"+ ctrl.curEbook.id].bookId);
-			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.id].bookId == undefined) {
+			console.log("ctrl.ebook: " + ctrl.ebook.bookId);
+			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId] "+ $rootScope.purchasesDict["ebook"+ ctrl.ebook.bookId]);
+			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].bookId == undefined) {
 				ctrl.usrBoughtCurBook = false;
 				ctrl.isLiked = false;
 			} else
 			{
 				ctrl.usrBoughtCurBook = true;
-				console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.id].isLiked" + $rootScope.purchasesDict["ebook"+ ctrl.curEbook.id].isLiked);
-				if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.id].isLiked == '1' || $rootScope.purchasesDict["ebook"+ ctrl.curEbook.id].isLiked == 1) {
+				console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId].isLiked" + $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked);
+				if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked == '1' || $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked == 1) {
 					ctrl.isLiked = true;
 				}
 				else {
@@ -68,7 +68,7 @@ var myModalReadBody;
 				$rootScope.curPage = ctrl.curReadEbook;
 				ctrl.clickedRead();
 
-				var bookIdClickedToRead = ctrl.ebook.id;
+				var bookIdClickedToRead = ctrl.ebook.bookId;
 				console.log("3333" + bookIdClickedToRead);
 				ctrl.curReadEbook = 'gutenberg/contents/' + bookIdClickedToRead + '.html';
 				var ebookIdDict = "ebook" + bookIdClickedToRead;
@@ -79,7 +79,7 @@ var myModalReadBody;
 
 				//ctrl.ebook = $rootScope.curEbook;
 				ctrl.email = $rootScope.email;
-//				console.log('$rootScope.curEbook: ' + $rootScope.curEbook.id);
+//				console.log('$rootScope.curEbook: ' + $rootScope.curEbook.bookId);
 
 
 				$http.get("http://localhost:8080/ExampleServletv3/purchase/email/"+ctrl.email + "/bookId/" + bookIdClickedToRead)
@@ -100,7 +100,7 @@ var myModalReadBody;
 						console.log("@@@" + $scope.result.data[0].bookId);
 
 //						console.log(curEbook);
-//						ctrl.ebookContentUrl = ctrl.ebookContentUrl.concat(curEbook.id);					
+//						ctrl.ebookContentUrl = ctrl.ebookContentUrl.concat(curEbook.bookId);					
 //						ctrl.contentUrlDic.ebookIdDict = ctrl.ebookContentUrl; 
 
 
@@ -124,7 +124,7 @@ var myModalReadBody;
 						if (isToGoToLastScroll) {
 							console.log("scroll : " + curScroll);
 							body.scrollTop = curScroll;
-							window.curBookIdToSendScroll = ctrl.ebook.id;
+							window.curBookIdToSendScroll = ctrl.ebook.bookId;
 							window.curEmailToSendScroll = $rootScope.email;
 //							var bookContentBody = document.getElementById('bookContentBody');
 //							bookContentBody.addEventListener("unload", function() {
@@ -169,7 +169,7 @@ var myModalReadBody;
 			var like =
 			{
 					email: $rootScope.email,
-					bookId: ctrl.ebook.id,
+					bookId: ctrl.ebook.bookId,
 					userName: $rootScope.userName,
 					isLiked: ctrl.ebook.isLiked
 			};
@@ -192,7 +192,7 @@ var myModalReadBody;
 
 //		var scrolJSON = {
 //		scroll: ctrl.scrollPositionOfBook,
-//		bookId: ctrl.ebook.id,
+//		bookId: ctrl.ebook.bookId,
 //		email: ctrl.userEmail
 
 //		}

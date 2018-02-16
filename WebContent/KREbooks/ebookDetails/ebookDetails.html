@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="ebookDetails/ebookDetails.css">
 
 
-<div class="ebook-details-s" ng-click="$ctrl.goToEbookPage()"
+<div class="ebook-details-s" 
 	style=" ">
-	<a href="" class="ebook-dateils-a"><img
+	<a href="" class="ebook-dateils-a" ng-click="$ctrl.goToEbookPage()"><img
 		class="col-xs-6 col-sm-6 col-lg-5 img-cover-wrapper ebook-img "
 		src={{$ctrl.ebook.imageUrl}}>
 		<div class="ebook-details-no-img">
@@ -11,7 +11,7 @@
 				<b><i>{{$ctrl.ebook.title}}</i></b>
 			</h4>
 			<ul class='col-xs-6 col-sm-6 col-lg-7 details-list list-unstyled'>
-				<li><span>ID: <em>{{$ctrl.ebook.id}}</em></span></li>
+				<li><span>ID: <em>{{$ctrl.ebook.bookId}}</em></span></li>
 				<li><span>Author: <em><strong>"{{$ctrl.ebook.author}}"</strong></em></span></li>
 				<li><span>Price:
 						<h4>
@@ -24,14 +24,14 @@
 			</ul>
 
 		</div> </a>
-	<div>{{$ctrl.pur.bookId}}</div>
-	<buy-read ng-if="!$ctrl.isCatalogPage" ebook="$ctrl.ebook" pur="$ctrl.pur">
+<!-- 	<div>{{$ctrl.pur.bookId}}</div> -->
+	<buy-read ng-if="!$ctrl.isCatalogPage" ebook="$ctrl.ebook">
 	</buy-read>
 
 
-	<!-- 	<likes ebook-id="{{$ctrl.ebook.id}}"> </likes>  -->
+	<!-- 	<likes ebook-id="{{$ctrl.ebook.bookId}}"> </likes>  -->
 
 </div>
 
 
-<!--  ngROUTE <a href="/#!/ebookPage/{{$ctrl.ebook.id}}"  > -->
+<!--  ngROUTE <a href="/#!/ebookPage/{{$ctrl.ebook.bookId}}"  > -->

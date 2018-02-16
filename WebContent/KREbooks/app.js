@@ -1,4 +1,17 @@
-
+//window.onload = function() {
+//	console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
+//
+//	$http.get("http://localhost:8080/ExampleServletv3/ebooks")
+//	.then(function(response) {
+//		$rootScope.records = response;
+//		$rootScope.result = $rootScope.records;//this variable will hold the search results
+////		ebook1["bookId"] = $rootScope.result[0].bookId;
+//		console.log($rootScope.result);
+//		console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
+//
+//	});	
+//	
+//};
 
 window.onbeforeunload = function () {
 	var bookContent = document.getElementById('bookContent');	
@@ -22,12 +35,26 @@ window.onbeforeunload = function () {
 (function(angular) {
 	'use strict';  
 	var app = angular.module('myApp', [/*'ngRoute'*/]);  
-	app.run(function($rootScope) {
+	app.run(function($rootScope, $http) {
 		$rootScope.color = 'blue';
+		
+//		$http.get("http://localhost:8080/ExampleServletv3/ebooks")
+//		.then(function(response) {
+//			$rootScope.records = response;
+//			$rootScope.result = $rootScope.records;//this variable will hold the search results
+////			ebook1["bookId"] = $rootScope.result[0].bookId;
+//			console.log($rootScope.result);
+//			console.log("1235545344" + $rootScope.result.data[1].bookId);
+//
+//		});
+		
+		
+		
 	});
 
 
 	app.controller( 'MainCtrl', function MainCtrl($scope, $rootScope, $http) {
+
 		this.userKind = 'admin';
 		this.userPrivel = 1;
 		this.userId = 1;
@@ -75,7 +102,7 @@ window.onbeforeunload = function () {
 			this.isShowEbook = true;
 
 			console.log("hii");
-			console.log(ebook.id);
+			console.log(ebook.bookId);
 			console.log("ebook" + $scope.isShowEbook);
 			console.log("cat" + $scope.isShowCatalog);
 		}
@@ -95,7 +122,7 @@ window.onbeforeunload = function () {
 		/*ebook details: ***********************************************************************************************************/
 
 		this.ebook = {
-				id: "1",
+				bookId: "1",
 				title: 'Spawnkl;kjkfldafklajd;dj',
 				image: '123',
 				price: 5,
@@ -109,10 +136,10 @@ window.onbeforeunload = function () {
 		};
 
 
-
-
+		var ctrl = this;
+		console.log("eeeeee");
 		this.ebook1 = {
-				id: 56254,
+				bookId: 56254,
 				title: 'The flowers and gardens of Japan',
 				author: 'Cane, Florence Du',
 				category: 'text',
@@ -122,147 +149,177 @@ window.onbeforeunload = function () {
 				isPurchased: 1,
 				isLiked: 0
 		};
+//		this.ebook1["bookId"] = $rootScope.result.data[1].bookId;
+		
+		$rootScope.listtt = [];
+		$rootScope.ebooksDict = {};
+	    var init = function () {
+			$http.get("http://localhost:8080/ExampleServletv3/ebooks")
+			.then(function(response) {
+				$rootScope.records = response;
+				$rootScope.result = $rootScope.records;//this variable will hold the search results
+				console.log("1234343$$$$$  "  + $rootScope.result.data);
+				ctrl.ebook1["bookId"] = $rootScope.result.data[0].bookId;
+				console.log($rootScope.result);
+				console.log("1235545344" + $rootScope.result.data[1].bookId);
+				console.log("ebook1 bookId: " + ctrl.ebook1.bookId);
+				var i = 0;
+				for (var ebook in $rootScope.result.data) {
+					$rootScope.result.data[i]["isPurchased"] = 1; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
+					$rootScope.result.data[i]["isLiked"] = 1; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
 
-		this.ebook2 = {
-				id: 56255,
-				title: 'All But Lost Vol 2 of 3 A Novel',
-				author: 'Henty, G. A. (George Alfred)',
-				category: 'text',
-				imageUrl: 'gutenberg/56255.jpg',
-				datePublished: new Date(2017, 12,26),
-				price: 1,  description: "bla bla",
-				isPurchased: 1,
-				isLiked: 0
-		};
-
-		this.ebook3 = {
-				id: 56256,
-				title: 'All But Lost Vol 2 of 3 A Novel',
-				author: 'Henty, G. A. (George Alfred)',
-				category: 'text',
-				imageUrl: 'gutenberg/56256.jpg',                
-				datePublished: new Date(2017, 12,26),
-				price: 1,  description: "bla bla"
-		};
-
-		this.ebook4 = {
-				id: 56238,
-				title: 'Deerfoot on the Prairies',
-				author: '	Ellis, Edward Sylvester',
-				category: 'text',
-				datePublished: new Date(2017, 12,27),
-				imageUrl: 'gutenberg/56238.jpg',                
-
-				price: 1,  description: "bla bla"
-		};
-
-		this.ebook5 = {
-				id: 56262,
-				title: 'When We Were Strolling Players in the East',
-				author: 'Miln, Louise Jordan',
-				category: 'text',
-				imageUrl: 'gutenberg/56262.jpg',                                        
-				datePublished: new Date(2017, 12,27),
-				price: 1,  description: "bla bla"
-		};
+					$rootScope.listtt.push($rootScope.result.data[i]);
+					$rootScope.ebooksDict["ebook" + $rootScope.result.data[i].bookId] = $rootScope.result.data[i];
+//					$rootScope.listtt.push($rootScope.result.data[1]);
+					i++;
+				}
 
 
-		this.ebook6 = {
-				id: 56260,
-				title: 'Through Spain to the Sahara',
-				author: 'Betham-Edwards, Matilda',
-				category: 'text',
-				datePublished: new Date(2017, 12,27),
-				imageUrl: 'gutenberg/56260.jpg',                
-
-				price: 1,  description: "bla bla"
-		};
-
-		this.ebook7 = {
-				id: 56259,
-				title: 'In the Line',
-				author: 'Dudley, Albertus T.',
-				category: 'text',
-				imageUrl: 'gutenberg/56259.jpg',                
-
-				datePublished: new Date(2017, 12,27),
-				price: 1,  description: "bla bla"
-		};
-
-		this.ebook8 = {
-				id: 56257,
-				title: 'Geschiedenis van Suriname',
-				author: 'Wolbers, J.',
-				category: 'text',
-				releaseDate: 'Release&nbsp;Date',
-				datePublished: new Date(2017, 12,27),
-				imageUrl: 'gutenberg/56257.jpg',                
-
-				price: 1,  description: "bla bla"
-		};
+			});
+	    }
+	    init();
 
 
+//		this.ebook2 = {
+//				bookId: 56255,
+//				title: 'All But Lost Vol 2 of 3 A Novel',
+//				author: 'Henty, G. A. (George Alfred)',
+//				category: 'text',
+//				imageUrl: 'gutenberg/56255.jpg',
+//				datePublished: new Date(2017, 12,26),
+//				price: 1,  description: "bla bla",
+//				isPurchased: 1,
+//				isLiked: 0
+//		};
+//
+//		this.ebook3 = {
+//				bookId: 56256,
+//				title: 'All But Lost Vol 2 of 3 A Novel',
+//				author: 'Henty, G. A. (George Alfred)',
+//				category: 'text',
+//				imageUrl: 'gutenberg/56256.jpg',                
+//				datePublished: new Date(2017, 12,26),
+//				price: 1,  description: "bla bla"
+//		};
+//
+//		this.ebook4 = {
+//				bookId: 56238,
+//				title: 'Deerfoot on the Prairies',
+//				author: '	Ellis, Edward Sylvester',
+//				category: 'text',
+//				datePublished: new Date(2017, 12,27),
+//				imageUrl: 'gutenberg/56238.jpg',                
+//
+//				price: 1,  description: "bla bla"
+//		};
+//
+//		this.ebook5 = {
+//				bookId: 56262,
+//				title: 'When We Were Strolling Players in the East',
+//				author: 'Miln, Louise Jordan',
+//				category: 'text',
+//				imageUrl: 'gutenberg/56262.jpg',                                        
+//				datePublished: new Date(2017, 12,27),
+//				price: 1,  description: "bla bla"
+//		};
+//
+//
+//		this.ebook6 = {
+//				bookId: 56260,
+//				title: 'Through Spain to the Sahara',
+//				author: 'Betham-Edwards, Matilda',
+//				category: 'text',
+//				datePublished: new Date(2017, 12,27),
+//				imageUrl: 'gutenberg/56260.jpg',                
+//
+//				price: 1,  description: "bla bla"
+//		};
+//
+//		this.ebook7 = {
+//				bookId: 56259,
+//				title: 'In the Line',
+//				author: 'Dudley, Albertus T.',
+//				category: 'text',
+//				imageUrl: 'gutenberg/56259.jpg',                
+//
+//				datePublished: new Date(2017, 12,27),
+//				price: 1,  description: "bla bla"
+//		};
+//
+//		this.ebook8 = {
+//				bookId: 56257,
+//				title: 'Geschiedenis van Suriname',
+//				author: 'Wolbers, J.',
+//				category: 'text',
+//				releaseDate: 'Release&nbsp;Date',
+//				datePublished: new Date(2017, 12,27),
+//				imageUrl: 'gutenberg/56257.jpg',                
+//
+//				price: 1,  description: "bla bla"
+//		};
 
-		$rootScope.ebooksDict = {
-				ebook56254: {
-					id: 56254,
-					title: 'The flowers and gardens of Japan',
-					author: 'Cane, Florence Du',
-					category: 'text',
-					imageUrl: 'gutenberg/56254.jpg',        
-					datePublished: new Date(2017, 12,26),
-					price: 1,  description: "bla bla",
-					isPurchased: 1,
-					isLiked: 0 },
-					ebook56255: {
-						id: 56255,
-						title: 'All But Lost Vol 2 of 3 A Novel',
-						author: 'Henty, G. A. (George Alfred)',
-						category: 'text',
-						imageUrl: 'gutenberg/56255.jpg',
-						datePublished: new Date(2017, 12,26),
-						price: 1,  description: "bla bla"},
-						ebook56256: {
-							id: 56256,
-							title: 'All But Lost Vol 2 of 3 A Novel',
-							author: 'Henty, G. A. (George Alfred)',
-							category: 'text',
-							imageUrl: 'gutenberg/56256.jpg',                
-							datePublished: new Date(2017, 12,26),
-							price: 1,  description: "bla bla"},
-							ebook56238: {
-								id: 56238,
-								title: 'The flowers and gardens of Japan',
-								author: 'Cane, Florence Du',
-								category: 'text',
-								imageUrl: 'gutenberg/56254.jpg',        
-								datePublished: new Date(2017, 12,26),
-								price: 1,  description: "bla bla"},
-								ebook56262: {
-									id: 56262,
-									title: 'The flowers and gardens of Japan',
-									author: 'Cane, Florence Du',
-									category: 'text',
-									imageUrl: 'gutenberg/56254.jpg',        
-									datePublished: new Date(2017, 12,26),
-									price: 1,  description: "bla bla"},
-									ebook56257: {
-										id: 56257,
-										title: 'The flowers and gardens of Japan',
-										author: 'Cane, Florence Du',
-										category: 'text',
-										imageUrl: 'gutenberg/56254.jpg',        
-										datePublished: new Date(2017, 12,26),
-										price: 1,  description: "bla bla"},
-										ebook56260: {
-											id: 56260,
-											title: 'The flowers and gardens of Japan',
-											author: 'Cane, Florence Du',
-											category: 'text',
-											imageUrl: 'gutenberg/56254.jpg',        
-											datePublished: new Date(2017, 12,26),
-											price: 1,  description: "bla bla"},
-		}
+
+
+//		$rootScope.ebooksDict = {
+//				ebook56254: {
+//					bookId: 56254,
+//					title: 'The flowers and gardens of Japan',
+//					author: 'Cane, Florence Du',
+//					category: 'text',
+//					imageUrl: 'gutenberg/56254.jpg',        
+//					datePublished: new Date(2017, 12,26),
+//					price: 1,  description: "bla bla",
+//					isPurchased: 1,
+//					isLiked: 0 },
+//					ebook56255: {
+//						bookId: 56255,
+//						title: 'All But Lost Vol 2 of 3 A Novel',
+//						author: 'Henty, G. A. (George Alfred)',
+//						category: 'text',
+//						imageUrl: 'gutenberg/56255.jpg',
+//						datePublished: new Date(2017, 12,26),
+//						price: 1,  description: "bla bla"},
+//						ebook56256: {
+//							bookId: 56256,
+//							title: 'All But Lost Vol 2 of 3 A Novel',
+//							author: 'Henty, G. A. (George Alfred)',
+//							category: 'text',
+//							imageUrl: 'gutenberg/56256.jpg',                
+//							datePublished: new Date(2017, 12,26),
+//							price: 1,  description: "bla bla"},
+//							ebook56238: {
+//								bookId: 56238,
+//								title: 'The flowers and gardens of Japan',
+//								author: 'Cane, Florence Du',
+//								category: 'text',
+//								imageUrl: 'gutenberg/56254.jpg',        
+//								datePublished: new Date(2017, 12,26),
+//								price: 1,  description: "bla bla"},
+//								ebook56262: {
+//									bookId: 56262,
+//									title: 'The flowers and gardens of Japan',
+//									author: 'Cane, Florence Du',
+//									category: 'text',
+//									imageUrl: 'gutenberg/56254.jpg',        
+//									datePublished: new Date(2017, 12,26),
+//									price: 1,  description: "bla bla"},
+//									ebook56257: {
+//										bookId: 56257,
+//										title: 'The flowers and gardens of Japan',
+//										author: 'Cane, Florence Du',
+//										category: 'text',
+//										imageUrl: 'gutenberg/56254.jpg',        
+//										datePublished: new Date(2017, 12,26),
+//										price: 1,  description: "bla bla"},
+//										ebook56260: {
+//											bookId: 56260,
+//											title: 'The flowers and gardens of Japan',
+//											author: 'Cane, Florence Du',
+//											category: 'text',
+//											imageUrl: 'gutenberg/56254.jpg',        
+//											datePublished: new Date(2017, 12,26),
+//											price: 1,  description: "bla bla"},
+//		}
 	});
 })(window.angular);
 

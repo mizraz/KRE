@@ -37,6 +37,28 @@ public class DBQueries {
 				DBConsts.SqlColumns.USER_IMAGE.getName() + " varchar(1000) "+
 				")";
 		
+		public static final String CREATE_EBOOKS_TABLE =
+				"CREATE TABLE " + DBConsts.SqlTables.EBOOKS.getName() + "(" +
+				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.TITLE.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.AUTHOR.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.PRICE.getName() + " double, "+
+				DBConsts.SqlColumns.BOOK_IMAGE_URL.getName() + " varchar(100), "+
+				DBConsts.SqlColumns.BOOK_DESCRIPTION.getName() + " varchar(1000) "+
+				")";
+
+		
+		public static final String INSERT_EBOOK =
+				"INSERT INTO "+  DBConsts.SqlTables.EBOOKS.getName() + "(" +
+				DBConsts.SqlColumns.BOOK_ID.getName() + ", "+
+				DBConsts.SqlColumns.TITLE.getName() + ", "+
+				DBConsts.SqlColumns.AUTHOR.getName() + " , "+
+				DBConsts.SqlColumns.PRICE.getName() + " , "+
+				DBConsts.SqlColumns.BOOK_IMAGE_URL.getName() + " , "+
+				DBConsts.SqlColumns.BOOK_DESCRIPTION.getName() + "  "+
+				")" +
+				" VALUES(?,?,?,?,?,?)";
+		
 		
 		public static final String INSERT_USER_DETAILS =
 				"INSERT INTO "+  DBConsts.SqlTables.USERS_DETAILS.getName() + "(" +
@@ -68,6 +90,8 @@ public class DBQueries {
 		public static final String DROP_USER_PURCHASES_TABLE = 
 				"DROP TABLE  " + DBConsts.SqlTables.USER_PURCHASES.getName();		
 		
+		public static final String DROP_EBOOKS_TABLE = 
+				"DROP TABLE  " + DBConsts.SqlTables.EBOOKS.getName();		
 		
 //		public final String SELECT_ALL_REVIEWS_NOT_APPROVED =
 //				"SELECT * " +
@@ -204,6 +228,21 @@ public class DBQueries {
 //						+ SqlTables.USERS_DETAILS.getName() + "." +SqlColumns.EMAIL.getName() + 
 				" WHERE " + SqlColumns.EMAIL.getName() +
 					" = ? " ;
+		
+		
+		public static final String SELECT_ALL_EBOOKS =
+				"SELECT " + SqlTables.EBOOKS.getName() + "." + SqlColumns.BOOK_ID.getName() + ", " +
+							SqlTables.EBOOKS.getName() + "." + SqlColumns.TITLE.getName() + ", " +
+							SqlTables.EBOOKS.getName() + "." + SqlColumns.AUTHOR.getName() + ", " +
+							SqlTables.EBOOKS.getName() + "." + SqlColumns.PRICE.getName() + ", " +
+							SqlTables.EBOOKS.getName() + "." + SqlColumns.BOOK_IMAGE_URL.getName() + ", " +
+							SqlTables.EBOOKS.getName() + "." + SqlColumns.BOOK_DESCRIPTION.getName() + /*", "
+//							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + " " + */
+				" FROM " + SqlTables.EBOOKS.getName() // +
+//				" INNER JOIN " +SqlTables.USERS_DETAILS.getName() +
+//				" ON " + SqlTables.USER_PURCHASES.getName() + "." +SqlColumns.EMAIL.getName() + " = " 
+//						+ SqlTables.USERS_DETAILS.getName() + "." +SqlColumns.EMAIL.getName() + 
+					;
 		
 		
 		

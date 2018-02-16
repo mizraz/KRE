@@ -1,3 +1,20 @@
+<!-- <div  data-ng-init="products=['soda','beer','water','milk','wine','cognac']" class="container"> -->
+<!--     <div ng-repeat="product in products" ng-if="$index % 3 == 0" class="row"> -->
+<!--         <div class="col-xs-12 col-sm-6 col-lg-4">{{products[$index]}}</div> -->
+<!--         <div class="col-xs-12 col-sm-6 col-lg-4">{{products[$index + 1]}}</div> -->
+<!--         <div class="col-xs-12 col-sm-6 col-lg-4">{{products[$index + 2]}}</div> -->
+<!--     </div> -->
+<!-- </div> -->
+
+
+<!--  with ngRepeat NOT WORKING WITH BOOTSTRAP STYLE -->
+	 <ul  ng-repeat="x in listtt" ng-if="$index % 3 == 0" class="list-unstyled ">
+			<li class="list-unstyle col-xs-12 col-sm-6 col-lg-4 ebook-item well"><ebook-details ebook="listtt[$index]" ></ebook-details></li>
+			<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"><ebook-details ebook="listtt[$index+1]"></ebook-details></li>
+			<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"><ebook-details ebook="listtt[$index+2]"></ebook-details></li>
+	</ul> 
+
+
 <!-- with ngRepeat NOT WORKING WITH BOOTSTRAP STYLE
 	 <ul class="row list-unstyled" ng-repeat="x in ebooksDict" >
 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well" >
@@ -6,87 +23,87 @@
 		</li>
 	</ul> -->
 		
-
-<ul class="row list-unstyled" >
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well" id="well-border-no-collapse" >
-			<ebook-details ebook="ctrl.ebook1" ></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well" >
-			<ebook-details ebook="ctrl.ebook2"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook3"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook4"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook5"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item  well">
-			<ebook-details ebook="ctrl.ebook6"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook7"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook8"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook3"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook1"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook2"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook3"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook5"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook6"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item  well">
-			<ebook-details ebook="ctrl.ebook7"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook8"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook2"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook3"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook1"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook2"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook3"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook4"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook5"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item  well">
-			<ebook-details ebook="ctrl.ebook6"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook7"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook8"></ebook-details>
-		</li>
-		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well">
-			<ebook-details ebook="ctrl.ebook3"></ebook-details>
-		</li>
-	</ul>
+ 
+<!-- <ul class="row list-unstyled" > -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well" id="well-border-no-collapse" > -->
+<!-- 			<ebook-details ebook="ctrl.ebook1" ></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well" > -->
+<!-- 			<ebook-details ebook="ctrl.ebook2"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook3"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook4"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook5"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item  well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook6"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook7"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook8"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook3"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook1"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook2"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook3"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook5"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook6"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item  well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook7"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook8"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook2"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook3"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook1"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook2"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook3"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook4"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook5"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item  well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook6"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook7"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook8"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 		<li class="col-xs-12 col-sm-6 col-lg-4 ebook-item well"> -->
+<!-- 			<ebook-details ebook="ctrl.ebook3"></ebook-details> -->
+<!-- 		</li> -->
+<!-- 	</ul>  -->
