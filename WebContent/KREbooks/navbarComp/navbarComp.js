@@ -15,6 +15,8 @@ ctrl.funn = function(par){
   console.log('!!!' + $scope.curPage);
   ctrl.curPage = par;
   
+  
+  
 };
 
 
@@ -23,6 +25,7 @@ ctrl.funn = function(par){
 
 
 angular.module('myApp').component('navbarComp', {
+	
   templateUrl: 'navbarComp/navbarComp.html',
   controller: navbarController,
   bindings: {

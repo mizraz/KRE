@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+	<meta charset="UTF-8">
+	<title>Log-in</title>
+</head>
+<body id="login">
+	<script type="text/javascript" src="jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="angular.min.js"></script>
+
+	<script>
+	var app = angular.module('loginLogic', []);
+	app.controller('Ctrlogin', function($scope,$http,$rootScope)
+	{
+		$('.alert').hide();
+	    $scope.SubmitFunction = function()
+	    {
+	    	if($scope.nick.length>2 && $scope.pwd.length>3)
+	    	{
+	    		var data =
+		    	{
+	    				userNickname: $scope.nick,
+		    			pwd: $scope.pwd
+		    		
+		    	};
+	    		
+	    		$http.post('http://localhost:8080/ExampleServletv3/loginServlet', JSON.stringify(data))
+	    		.then(function(response)
+				{
+	    			
+	    			$('.alert').hide();
+	    			var res = new String(response.data);
+	    			console.log(res);
+	    			
+	    		//	if (res[0]=="N"&&res[1]=="o")
+	    			if(res.indexOf("Failure")==0)
+					{
+	    		   		$scope.error="Info ";
+	    				$scope.errormsg="The username and password you entered did not match our records. Please double-check and try again.";
+	    				$('.alert').show();
+					}
+	    		   else
+	    		   {
+	    			   $rootScope.nick='Ksenia';
+	    			   window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
+	    		   } 
+	    		});
+	    	}
+	    	else
+	    	{
+	    		$scope.error="Info ";
+	    		$scope.errormsg="The Username or Password are too short";
+	    		$('.alert').show();
+	    	}
+	    };
+	});
+	</script>
+	<div class="container ng-scope" ng-app="loginLogic" ng-controller="Ctrlogin">
+		<form>
+	        <h3 class="form-heading">Please sign in</h3>
+	        <div class="form-group">
+	        	<label for="nick">Nickname: </label>
+	        	<input type="text" class="form-control" placeholder="Username" ng-model="nick" id="nick" required >
+	        </div><br>
+	        <div class="form-group">
+	        	<label for="pwd">Password: </label>
+	        	<input type="password" class="form-control" placeholder="Password" ng-model="pwd" id="pwd" required>
+	        </div><br>
+             <br>
+	        <button type="submit" ng-click='SubmitFunction()' class="btn btn-lg btn-primary btn-block">Sign in</button>
+		</form>
+		<br>
+		<p>Not a member?</p>
+		<a href="reg.html" class="btn btn-lg btn-primary btn-block" role="button" >Resigter Now</a>
+		{{result}}
+		<div class="alert alert-danger">
+		<a href="#" class="close" onclick="$('.alert').hide()">&times;</a>
+		<strong>{{error}}</strong>{{errormsg}}
+		<strong><span ng-bind="error"></span></strong><span ng-bind="errormsg"></span>
+		</div>
+	</div> <!-- /container -->
+</body>
+</html>
