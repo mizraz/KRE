@@ -1,4 +1,13 @@
-.buy-read {
+
+
+.buy-read  {
+	padding: 0;
+	margin: 0;
+}
+
+.buy-read * {
+	padding: 0;
+	margin: 0;
 }
 
 

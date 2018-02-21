@@ -7,18 +7,12 @@ var myModalReadBody;
 
 	function buyReadController($rootScope, $http, $scope) {
 
-
-		$scope.$on('$viewContentLoaded', function() {
-			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	
-		});
-
-		$rootScope.curEbookIdd = '123';
 		var ctrl = this;
 
-//		setTimeout(function(){
+		
+		this.$oninit = function() {
 
-		var init = function() {
-
+			$rootScope.curEbookIdd = '123';
 
 			ctrl.curEbook = ctrl.ebook;
 			ctrl.userEmail = $rootScope.email;
@@ -45,20 +39,32 @@ var myModalReadBody;
 			console.log("ctrl.isLiked: " + ctrl.isLiked);
 
 
-			ctrl.clickedRead = function clickedRead() {
-				console.log("clicked Read. ctrl.ebook.bookId " + ctrl.ebook.bookId);
-				$rootScope.curEbookIdd = ctrl.ebook.bookId;
-				console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
-
-				$("#myModalScroll").modal();
-			};			
+		
 
 //			}, 2000);
 		};
 
-		setTimeout(function(){
-			init();
-		}, 1000);
+//		$scope.$on('$viewContentLoaded', function() {
+//			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	
+//		});
+
+
+		ctrl.clickedRead = function clickedRead() {
+			console.log("clicked Read. ctrl.ebook.bookId " + ctrl.ebook.bookId);
+			$rootScope.curEbookIdd = ctrl.ebook.bookId;
+			console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
+
+			$("#myModalScroll").modal();
+		};	
+		
+		
+//		setTimeout(function(){
+
+
+
+//		setTimeout(function(){
+//			init();
+//		}, 1000);
 
 		ctrl.goToLastScroll = function (isToGoToLastScroll) {
 
@@ -87,7 +93,7 @@ var myModalReadBody;
 			
 			$rootScope.curPage = ctrl.curReadEbookPath;
 
-			setTimeout(function(){
+//			setTimeout(function(){
 
 			var bodyId = document.getElementById('body');
 
@@ -111,7 +117,7 @@ var myModalReadBody;
 //			});
 
 
-			}, 1000);
+//			}, 1000);
 
 
 

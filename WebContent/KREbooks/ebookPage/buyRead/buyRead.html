@@ -2,25 +2,15 @@
 
 
 
-<div class='row' id='buyRead' >
-	<div class='col-xs-2 col-sm-8'>
-		<likes-list class="col-xs-2 col-sm-2" ebook-id="$ctrl.ebook.bookId"
-			is-user-liked="$ctrl.isUserliked"
-			is-user-purchased="$isUserPurchased"></likes-list>
-		<div>{{$ctrl.ebook.bookId}}</div>
-		<button ng-if="!$ctrl.ebook.isPurchased" type="button"
-			class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModalBuy">Buy</button>
-		<!-- <a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span> 		</a>  -->
-		<button ng-if="$ctrl.ebook.isPurchased" ng-click="$ctrl.clickedRead()"
-			type="button" class="btn btn-info btn-lg">Read</button>
-			
-			
-			
-		<button ng-if="!$ctrl.ebook.isLiked" type="button" class="btn btn-primary"
-			ng-click="$ctrl.submitLike()">Like</button>
-		<button ng-if="$ctrl.ebook.isLiked" type="button" class="btn btn-primary"
-			ng-click="$ctrl.submitLike()">unlike</button>
+<div class='container buy-read col-xs-5 col-sm-7' id='buyRead' >
+	<div >
+<!-- 		<div>{{$ctrl.ebook.bookId}}</div> -->
+<!-- <a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span> 		</a>  -->			
+		<likes-list ebook-id="$ctrl.ebook.bookId" is-user-liked="$ctrl.isUserliked"         class=" "   is-user-purchased="$isUserPurchased"></likes-list>
+		<button ng-if="!$ctrl.ebook.isPurchased"type="button" ng-click="$ctrl.clickedBuy()" class="btn btn-info btn-lg " data-toggle="modal" data-target="#myModalBuy">Buy</button>
+		<button ng-if="$ctrl.ebook.isPurchased" type="button" ng-click="$ctrl.clickedRead()" class="btn btn-info btn-lg ">Read</button>
+		<button ng-if="!$ctrl.ebook.isLiked" 	type="button" ng-click="$ctrl.submitLike()" class="btn btn-primary " >Like</button>
+		<button ng-if="$ctrl.ebook.isLiked" 	type="button" ng-click="$ctrl.submitLike()" class="btn btn-primary " >unlike</button>
 
 	</div>
 
