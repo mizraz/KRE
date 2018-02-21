@@ -72,6 +72,17 @@ public class DBQueries {
 				DBConsts.SqlColumns.USER_IMAGE.getName() + "  "+
 				")" +
 				" VALUES(?,?,?,?,?,?,?,?)";
+		public static final String UPDATE_USER_DETAILS =
+				"UPDATE "+  DBConsts.SqlTables.USERS_DETAILS.getName() +
+				" SET " +DBConsts.SqlColumns.EMAIL.getName() + " = ? " + " , " +
+				" SET " +DBConsts.SqlColumns.USER_NAME.getName() + " = ? " +" , " +
+				" SET " +DBConsts.SqlColumns.USER_ADDRESS.getName() + " = ?" + " , "+
+				" SET " +DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " = ?" + " , " +
+				" SET " +DBConsts.SqlColumns.USER_PWD.getName() + " = ?" + " , " +
+				" SET " +DBConsts.SqlColumns.USER_NIECKNAME.getName() + " =?"+ " , " +
+				" SET " +DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " = ?" + ", "+
+				" SET " +DBConsts.SqlColumns.USER_IMAGE.getName() + " = ?  "+
+				" WHERE " + DBConsts.SqlColumns.EMAIL.getName() + " = ? ";
 		
 		//TODO: delete this
 //		public final String CREATE_BOOK_READ_TABLE =

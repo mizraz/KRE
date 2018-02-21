@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -66,58 +68,67 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+	try {
 		
-		//Cookie sessionCookie = null;
-		String data = null;
-		StringBuilder buffer = new StringBuilder();
-		BufferedReader reader = request.getReader();
-		String line;
-		while ((line = reader.readLine()) != null)
+		StringBuffer jb = new StringBuffer();
+		String line = null;
+		try
 		{
-			buffer.append(line);
+			BufferedReader reader = request.getReader();
+			while ((line = reader.readLine()) != null)
+			jb.append(line);
 		}
-		data = buffer.toString();
-		
-		
+		catch (Exception e)
+		{
+		/*report an error*/
+		}
+		String data = jb.toString();
 		Gson gson = new Gson();
 		Type type = new TypeToken<User>(){}.getType();
 		User users = gson.fromJson(data, type);
-	
+		System.out.println(users.getUserNickname());
 		
 		int checkUser= 0;
-		try
-		{
+		
 			
 			Context context = new InitialContext();
 			BasicDataSource ds = (BasicDataSource)context.lookup(
 					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
 			
 			Connection conn = ds.getConnection();
+			Collection<User> userResult = new ArrayList<User>();
 			PreparedStatement pstmt;
 			
 			pstmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE user_nickname = '"+users.getUserNickname()+"' AND pwd = '"+users.getPwd() +"'");
 			ResultSet rs = pstmt.executeQuery();
+			
 			while (rs.next())
 			{
 				checkUser++;
+				User usr = new User(rs.getString(1),rs.getString(2),rs.getString(6),rs.getString(5),rs.getString(3),rs.getString(8),rs.getString(4),rs.getString(7));
+				System.out.println(usr);
+				userResult.add(usr);
+				
 			}
-			rs.close();	
-		}
-		
-		catch (SQLException | NamingException e)
-		{
-			getServletContext().log("Error: Connection to DB or SELECT command are not good", e);
-			response.sendError(500);
-		}
-		System.out.println(checkUser);
-		if (checkUser>0)
-		{
 			
-			//sessionCookie = new Cookie("User:",users.getUserNickname());
-			//sessionCookie.setMaxAge(60*60*24); //one day
-			//response.addCookie(sessionCookie);
+			rs.close();	
+			pstmt.close();
+			
+		
+		
+	
+		
+	
+		conn.close();
+		System.out.println(checkUser);
+		if (checkUser == 1)
+		{
+			Gson gsonRet = new Gson();
+			//convert from customers collection to json
+			String userRet = gsonRet.toJson(userResult, AppConstants.USER_COLLECTION);
+			response.addHeader("Content-Type", "application/json");
 			PrintWriter writer = response.getWriter();
-			writer.println(users.getEmail());
+			writer.println(userRet);
 			writer.close();
 		}
 		else
@@ -130,5 +141,10 @@ public class loginServlet extends HttpServlet {
 			
 		}
 	}
+        catch (SQLException | NamingException e) {
+    		getServletContext().log("Error while closing connection", e);
+    		response.sendError(500);//internal server error
+    	}
 
+}
 }

@@ -8,7 +8,7 @@
 			is-user-liked="$ctrl.isUserliked"
 			is-user-purchased="$isUserPurchased"></likes-list>
 		<div>{{$ctrl.ebook.bookId}}</div>
-		<button ng-if="!$ctrl.ebook.isPurchased" type="button"
+		<button ng-if="!$ctrl.ebook.isPurchased" type="button" ng-calick="function_to_open_modal_or_page_with_buy_form(params_of_functuion)"
 			class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#myModalBuy">Buy</button>
 		<!-- <a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span> 		</a>  -->

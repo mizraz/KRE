@@ -33,7 +33,7 @@
 	    			email: $scope.email,
 	    			userNickname : $scope.nick,
 	    			pwd: $scope.pwd,
-	    			address:$scope.country +" " + $scope.city +" "+ $scope.street + " "+ $scope.hnumb +" "+ $scope.zip,
+	    			address:$scope.country +"," + $scope.city +","+ $scope.street + ","+ $scope.hnumb +","+ $scope.zip,
 	    			phoneNumber: $scope.phone,
 	    			description: $scope.desc,
 	    			userImageUrl: $scope.photo	
