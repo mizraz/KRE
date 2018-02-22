@@ -13,7 +13,10 @@ public class DBQueries {
 				DBConsts.SqlColumns.LIKED.getName() + " varchar(1), "+	
 				DBConsts.SqlColumns.PRICE.getName() + " double, "+
 				DBConsts.SqlColumns.PURCHASE_TIME.getName() + " timestamp, "+	
-				DBConsts.SqlColumns.SCROLL.getName() + " int "+	
+				DBConsts.SqlColumns.SCROLL.getName() + " int "+	", " +
+				" PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + "," + SqlColumns.EMAIL.getName() + ") " + ", " +
+				" FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") , " + 
+				" FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ") " +
 				")";
 		
 		public static final String CREATE_ALL_REVIEWS_TABLE =
@@ -22,7 +25,10 @@ public class DBQueries {
 				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.REVIEW_DESCRIPTION.getName() + " varchar(5000), "+
 				DBConsts.SqlColumns.REVIEW_IS_APPROVED.getName() + " varchar(1), "+
-				DBConsts.SqlColumns.REVIEW_DATE.getName() + " timestamp "+	
+				DBConsts.SqlColumns.REVIEW_DATE.getName() + " timestamp ,"+	
+				" PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + "," + SqlColumns.EMAIL.getName() + ") " + ", " +
+				" FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") , " + 
+				" FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ")  " +
 				")";
 		
 		public static final String CREATE_USER_DETAILS_TABLE =
@@ -34,7 +40,8 @@ public class DBQueries {
 				DBConsts.SqlColumns.USER_PWD.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.USER_NIECKNAME.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " varchar(5000), "+
-				DBConsts.SqlColumns.USER_IMAGE.getName() + " varchar(1000) "+
+				DBConsts.SqlColumns.USER_IMAGE.getName() + " varchar(1000) "+ ", " +
+				"PRIMARY KEY (" + SqlColumns.EMAIL.getName() + ") " +
 				")";
 		
 		public static final String CREATE_EBOOKS_TABLE =
@@ -44,7 +51,8 @@ public class DBQueries {
 				DBConsts.SqlColumns.AUTHOR.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.PRICE.getName() + " double, "+
 				DBConsts.SqlColumns.BOOK_IMAGE_URL.getName() + " varchar(100), "+
-				DBConsts.SqlColumns.BOOK_DESCRIPTION.getName() + " varchar(1000) "+
+				DBConsts.SqlColumns.BOOK_DESCRIPTION.getName() + " varchar(1000) "+ ", " +
+				"PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + ") " +
 				")";
 
 		
@@ -275,6 +283,11 @@ public class DBQueries {
 				" UPDATE  " + DBConsts.SqlTables.USER_PURCHASES.getName() + 
 				" SET " + SqlColumns.LIKED.getName() + " = ? " +
 				" WHERE " + SqlColumns.EMAIL.getName() + " = ?";
+		
+		
+		public static final String DELETE_USER_BY_EMAIL = 
+				"DELETE FROM " + DBConsts.SqlTables.USERS_DETAILS.getName() + " " +
+				" WHERE " + DBConsts.SqlColumns.EMAIL.getName() + " = ? ";
 
 
 }

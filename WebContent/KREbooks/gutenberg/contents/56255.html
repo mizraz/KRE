@@ -7,130 +7,54 @@
     <title>
       The Project Gutenberg eBook of All But Lost: A Novel (VOL 2 of 3), by G. A. Henty.
     </title>
-    <link rel="coverpage" href="images/cover.jpg" />
-    <style type="text/css">
+	
+	<script>
 
-body {
-    margin-left: 10%;
-    margin-right: 10%;
-}
+$.fn.scrollEnd = function(callback, timeout) {          
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
 
-    h1,h2 {
-    text-align: center; /* all headings centered */
-    clear: both;}
+// how to call it (with a 1000ms timeout):
+$(window).scrollEnd(function(){
+	
+	
+		var bookContent = document.getElementById('bookContent');	
+	console.log(bookContent);
+	if(bookContent != undefined) {
+	console.log("window.curBookIdToSendScroll: " + window.curBookIdToSendScroll);
+		var scrolJSON = {
+				scroll: body.scrollTop,
+				bookId: window.curBookIdToSendScroll,
+				email: window.curEmailToSendScroll
+		}	
+		var xmlhttpDelClient = new XMLHttpRequest();
+		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+		xmlhttpDelClient.onreadystatechange = function () {
+			/* NOTHING DONE IN HERE*/
+		};
+		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+	}
+	
+	
+}, 1000);
 
-  h1, h2, .chapter, .newpage {page-break-before: always;}
+</script>
+	
+	
 
-p {
-    margin-top: .51em;
-    text-align: justify;
-    margin-bottom: .49em;
-}
-
-.p1    {margin-top: 1em;}
-
-.p2    {text-indent:2em;}
-.p6    {text-indent:6em;}
-.sig1  {text-align: right;
-        padding-right:2em;}
-.sig2  {text-align: right;
-        padding-right:6em;}
-
-.xxsmall   {font-size: 50%;}
-.small     {font-size: 75%;}
-.smaller   {font-size: 90%;}
-.xxlarge   {font-size: 175%;}
-
-hr.chap  {width: 65%; margin: 3em 17.5%;}
-hr.full  {width: 95%; margin: 3em  2.5%;}
-hr.r15   {width: 15%; margin: 1em  42.5%;}
-
-table    {margin-left: auto;
-          margin-right: auto;}
-
-.tdl     {text-align: left;}
-.tdr     {text-align: right;}
-
-/* Index */
-ul.index       {list-style-type: disc;}
-li.isub1_first {text-indent: 1em; margin-top: 1em;}
-li.isub1       {text-indent: 1em;}
-
-.index {margin-left: 1em;}
-
-
-.pagenum {
-    position: absolute;
-    right: 4%;
-    font-size: smaller;
-    text-align: right;
-    padding: .2% .1%;
-    color: #acacac;
-    background: #ffffff;
-}
-
-blockquote   {margin: 2em 5%;
-              Font-size: 95%;}
-
-@media handheld
-{blockquote  {margin: 1.5em 3% 1.5em 3%;}}
-
-.figcenter   {padding-top: 1em; padding-bottom: 1em;
-              margin: auto; text-align: center;
-              border: none; max-width:100%}
-
-.center      {text-align: center;}
-
-.smcap       {font-variant: small-caps;}
-
-.spaced      {line-height: 1.5;}
-
-.space-above {margin-top: 3em;}
-
-.half-title  {text-align: center;
-              font-size: large;}
-
-@media screen
-
-{
-  .half-title
-  {
-      margin: 6em 0;
-  }
-}
-
-@media print, handheld
-{
-  .half-title
-  {
-    page-break-before: always;
-    page-break-after: always;
-    margin: 0;
-    padding-top: 6em;
-  }
-}
-
-/* Transcriber Note */
-.transnote {
-    background-color: #EEE;
-    border: thin dotted;
-    font-family: sans-serif, serif;
-    color: #000;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 4em;
-    margin-bottom: 2em;
-    padding: 1em;
-    page-break-before: always;
-    page-break-after: always;
-}
-
-    </style>
-  </head>
+ </head>
+  
+  
 <body>
 
 
-<pre>
+<pre id="bookContent">
 
 The Project Gutenberg EBook of All But Lost Vol 2 of 3, by G. A. Henty
 

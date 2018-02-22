@@ -69,8 +69,8 @@ public class ManagePurchasesDBFromJsonFile implements ServletContextListener {
 			boolean created = false;
 			try{
 
-				Statement stmt3 = conn.createStatement();
-				stmt3.executeUpdate(DBQueries.DROP_USER_PURCHASES_TABLE);
+//				Statement stmt3 = conn.createStatement();
+//				stmt3.executeUpdate(DBQueries.DROP_USER_PURCHASES_TABLE);
 
 
 				//create Customers table

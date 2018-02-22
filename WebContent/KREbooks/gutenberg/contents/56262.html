@@ -4,8 +4,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>When We Were Strolling Players in the East</title>
-    <link rel="coverpage" href="images/cover.jpg"/>
-    <meta name="cover" content="images/cover.jpg" />
+    <link rel="coverpage" href="gutenberg/images/56262/cover.jpg"/>
+    <meta name="cover" content="gutenberg/images/56262/cover.jpg" />
     <meta name="DC.Title" content="When We Were Strolling Players in the East"/>
     <meta name="DC.Creator" content="Miln, Louise Jordan"/>
     <meta name="DC.Language" content="en"/>
@@ -14,105 +14,51 @@
     <meta name="DC.Subject" content="travel, China, Japan, India, Asia, performing arts"/>
     <meta name="Tags" content="travel, China, Japan, India, Asia, performing arts"/>
     <meta name="generator" content="fpgen 4.56"/>
-    <style type="text/css">
-      body { margin-left:8%;margin-right:10%; }
-      .pageno  { right: 1%; font-size: x-small; background-color: inherit; color: silver;
-               text-indent: 0em; text-align: right; position: absolute;
-               border:1px solid silver; padding:1px 3px; font-style:normal;
-               font-variant: normal; font-weight: normal; text-decoration:none; }
-      .pageno:after { color: gray; content: attr(title); }
-      .it { font-style:italic; }
-      .bold { font-weight:bold; }
-      .sc { font-variant:small-caps; }
-      p { text-indent:0; margin-top:0.5em; margin-bottom:0.5em;
-          text-align: justify; }
-      div.lgc { }
-      div.lgl { }
-      div.lgc p { text-align:center; text-indent:0; margin-top:0; margin-bottom:0; }
-      div.lgl p { text-indent: -17px; margin-left:17px; margin-top:0; margin-bottom:0; }
-      div.lgp {
-        display:inline-block;
-        text-align: left;
-      }
 
-      div.lgp p {
-        text-align:left;
-        margin-top:0;
-        margin-bottom:0;
-      }
+	
+	<script>
 
-      .poetry-container {
-        text-align:center;
-      }
+$.fn.scrollEnd = function(callback, timeout) {          
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
 
-          h1 {
-            text-align:center;
-            font-weight:normal;
-            page-break-before: always;
-            font-size:1.2em; margin:2em auto 1em auto
-          }
+// how to call it (with a 1000ms timeout):
+$(window).scrollEnd(function(){
+	
+	
+		var bookContent = document.getElementById('bookContent');	
+	console.log(bookContent);
+	if(bookContent != undefined) {
+	console.log("window.curBookIdToSendScroll: " + window.curBookIdToSendScroll);
+		var scrolJSON = {
+				scroll: body.scrollTop,
+				bookId: window.curBookIdToSendScroll,
+				email: window.curEmailToSendScroll
+		}	
+		var xmlhttpDelClient = new XMLHttpRequest();
+		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+		xmlhttpDelClient.onreadystatechange = function () {
+			/* NOTHING DONE IN HERE*/
+		};
+		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+	}
+	
+	
+}, 1000);
 
-      hr.tbk100{ border:none; border-bottom:1px solid white; width:30%; margin-top:2em; margin-bottom:2em; text-align:center; margin-left:35%; margin-right:35% }
-      hr.tbk101{ border:none; border-bottom:1px solid white; width:30%; margin-top:1em; margin-bottom:1em; text-align:center; margin-left:35%; margin-right:35% }
-      hr.pbk { border:none; border-bottom:1px solid silver; width:100%; margin-top:2em; margin-bottom:2em }
-      hr.footnotemark {
-                  border:none;
-                  border-bottom:1px solid silver;
-                  width:10%;
-                  margin:1em auto 1em 0;
-                  page-break-after: avoid;
-                }
-      .figcenter {
-        text-align:center;
-        margin:1em auto;
-        page-break-inside: avoid;
-      }
-
-      div.blockquote { margin:1em 2em; text-align:justify; }
-      p.caption { text-align:center; margin:0 auto; width:100%; }
-      .footnote td p.pindent:first-child { text-indent: 0; }
-      .footnote { margin:0 4em 0 0; }
-      .footnoteid { width: 3em; }
-      p.line { text-indent:0; margin-top:0; margin-bottom:0; }
-      div.lgp p.line0 { text-indent:-3em; margin:0 auto 0 3em; }
-      table { page-break-inside: avoid; }
-      table.center { margin:0.5em auto; border-collapse: collapse; padding:3px; }
-      table.flushleft { margin:0.5em 0em; border-collapse: collapse; padding:3px; }
-      table.left { margin:0.5em 1.2em; border-collapse: collapse; padding:3px; }
-      .tab1c1 { }
-      .tab1c2 { }
-      .tab1c3 { }
-      .tab2c1 { }
-      .tab2c2 { }
-      .tab2c3 { }
-      .tab2c4 { }
-      .tab3c1 { }
-      .tab3c2 { }
-      .tdStyle0 {
-      padding: 2px 5px; text-align:center; vertical-align:top;
-      }
-      .tdStyle1 {
-      padding: 2px 5px; text-align:right; vertical-align:top;
-      }
-      .tdStyle2 {
-      padding: 2px 5px; text-align:left; vertical-align:top;
-      }
-      .tdStyle3 {
-      padding: 2px 5px; text-align:left; vertical-align:top;padding-left:29px; text-indent:-24px;
-      }
-      .pindent { margin-top:0; margin-bottom:0; text-indent:1.5em; }
-      .noindent { margin-top:0; margin-bottom:0; text-indent:0; }
-      .hang { padding-left:1.5em; text-indent:-1.5em; }
-    </style>
-   <style type="text/css">
-       h1 { font-size: 1.3em; font-weight:bold;}
-       .poetry-container {text-align:center; margin-bottom: 1em; margin-top: 1em}
-   </style>
+</script>
+  
   </head>
   <body>
 
 
-<pre>
+<pre id="bookContent">
 
 The Project Gutenberg EBook of When We Were Strolling Players in the East, by 
 Louise Jordan Miln
@@ -152,7 +98,7 @@ Archive (https://archive.org)
 </pre>
 
 <div class='figcenter'>
-<img src='images/cover.jpg' alt='' id='iid-0000' style='width:80%;height:auto;'/>
+<img src='gutenberg/images/56262/cover.jpg' alt='' id='iid-0000' style='width:80%;height:auto;'/>
 </div>
 
 <hr class='pbk'/>
@@ -168,7 +114,7 @@ Archive (https://archive.org)
 <p class='pindent'><a id='louise'></a></p>
 
 <div class='figcenter'>
-<img src='images/i002.jpg' alt='' id='iid-0001' style='width:80%;height:auto;'/>
+<img src='gutenberg/images/56262/i002.jpg' alt='' id='iid-0001' style='width:80%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>MRS. MILN AS DESDEMONA.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Frontispiece.</span></span></p>
 </div>
 
@@ -747,7 +693,7 @@ none other.</p>
 <p class='pindent'><a id='street'></a></p>
 
 <div class='figcenter'>
-<img src='images/i023.jpg' alt='' id='iid-0002' style='width:97%;height:auto;'/>
+<img src='gutenberg/images/56262/i023.jpg' alt='' id='iid-0002' style='width:97%;height:auto;'/>
 <p class='caption'><span class='bold'><span style='font-size:smaller'>STREET SCENE IN COLOMBO.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='font-size:smaller'><span class='it'>Page 9.</span></span></p>
 </div>
 
@@ -1321,7 +1267,7 @@ to be sorry that our pleasant jaunt was ending.</p>
 <p class='pindent'><a id='natives'></a></p>
 
 <div class='figcenter'>
-<img src='images/i041.jpg' alt='' id='iid-0003' style='width:97%;height:auto;'/>
+<img src='gutenberg/images/56262/i041.jpg' alt='' id='iid-0003' style='width:97%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>NATIVES WEAVING MATS IN CEYLON.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 25.</span></span></p>
 </div>
 
@@ -2526,7 +2472,7 @@ before I reached the East.</p>
 <p class='pindent'><a id='delhi'></a></p>
 
 <div class='figcenter'>
-<img src='images/i074.jpg' alt='' id='iid-0004' style='width:97%;height:auto;'/>
+<img src='gutenberg/images/56262/i074.jpg' alt='' id='iid-0004' style='width:97%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>DELHI NAUTCH GIRL.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 56.</span></span></p>
 </div>
 
@@ -3384,7 +3330,7 @@ the river wallow gruesome alligators.</p>
 <p class='pindent'><a id='king'></a></p>
 
 <div class='figcenter'>
-<img src='images/i100.jpg' alt='' id='iid-0005' style='width:97%;height:auto;'/>
+<img src='gutenberg/images/56262/i100.jpg' alt='' id='iid-0005' style='width:97%;height:auto;'/>
 <p class='caption'><span class='bold'><span style='font-size:smaller'>KING THEEBAW’S STATE BARGE.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='font-size:smaller'><span class='it'>Page 80.</span></span></p>
 </div>
 
@@ -3527,7 +3473,7 @@ drift up and down those wonderful rivers.</p>
 <p class='pindent'><a id='burm'></a></p>
 
 <div class='figcenter'>
-<img src='images/i107.jpg' alt='' id='iid-0006' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i107.jpg' alt='' id='iid-0006' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>BURMESE POSTURE GIRLS.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 85.</span></span></p>
 </div>
 
@@ -3660,7 +3606,7 @@ place.</p>
 <p class='pindent'><a id='pagoda'></a></p>
 
 <div class='figcenter'>
-<img src='images/i112.jpg' alt='' id='iid-0007' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i112.jpg' alt='' id='iid-0007' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>PAGODA NEAR MANDALAY.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 88.</span></span></p>
 </div>
 
@@ -3753,7 +3699,7 @@ they are buried.</p>
 <p class='pindent'><a id='band'></a></p>
 
 <div class='figcenter'>
-<img src='images/i116.jpg' alt='' id='iid-0008' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i116.jpg' alt='' id='iid-0008' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>BAND AT A BURMESE THEATRICAL PERFORMANCE.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 90.</span></span></p>
 </div>
 
@@ -3885,7 +3831,7 @@ they have for the women of America.</p>
 <p class='pindent'><a id='child'></a></p>
 
 <div class='figcenter'>
-<img src='images/i122.jpg' alt='' id='iid-0009' style='width:78%;height:auto;'/>
+<img src='gutenberg/images/56262/i122.jpg' alt='' id='iid-0009' style='width:78%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>BURMESE MOTHER AND CHILD.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 94.</span></span></p>
 </div>
 
@@ -3947,7 +3893,7 @@ women, but that is truth, Nature’s greatest truth!</p>
 <p class='pindent'><a id='musi'></a></p>
 
 <div class='figcenter'>
-<img src='images/i127.jpg' alt='' id='iid-0010' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i127.jpg' alt='' id='iid-0010' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>BURMESE MUSICIANS.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 97.</span></span></p>
 </div>
 
@@ -4038,7 +3984,7 @@ divorce decreed by death.</p>
 <p class='pindent'><a id='wom'></a></p>
 
 <div class='figcenter'>
-<img src='images/i131.jpg' alt='' id='iid-0011' style='width:74%;height:auto;'/>
+<img src='gutenberg/images/56262/i131.jpg' alt='' id='iid-0011' style='width:74%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>BHÂMO WOMEN.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 99.</span></span></p>
 </div>
 
@@ -4511,7 +4457,7 @@ perhaps I ought to add, forbidden by our Consul.</p>
 <p class='pindent'><a id='city'></a></p>
 
 <div class='figcenter'>
-<img src='images/i146.jpg' alt='' id='iid-0012' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i146.jpg' alt='' id='iid-0012' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>CITY WALL, OLD SHANGHAI.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 112.</span></span></p>
 </div>
 
@@ -5377,7 +5323,7 @@ dedicated wisely, or unwisely, to their service.</p>
 <p class='pindent'><a id='actor'></a></p>
 
 <div class='figcenter'>
-<img src='images/i172.jpg' alt='' id='iid-0013' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i172.jpg' alt='' id='iid-0013' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>CHINESE ACTORS.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 136.</span></span></p>
 </div>
 
@@ -6537,7 +6483,7 @@ of the dead.</p>
 <p class='pindent'><a id='foochow'></a></p>
 
 <div class='figcenter'>
-<img src='images/i207.jpg' alt='' id='iid-0014' style='width:78%;height:auto;'/>
+<img src='gutenberg/images/56262/i207.jpg' alt='' id='iid-0014' style='width:78%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>FOOCHOW SINGING GIRLS.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 169.</span></span></p>
 </div>
 
@@ -7091,7 +7037,7 @@ first ward had English roses at her belt.</p>
 <p class='pindent'><a id='chimus'></a></p>
 
 <div class='figcenter'>
-<img src='images/i224.jpg' alt='' id='iid-0015' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i224.jpg' alt='' id='iid-0015' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>CHINESE MUSICIANS.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 184.</span></span></p>
 </div>
 
@@ -7614,7 +7560,7 @@ and laughed and waved her hand.</p>
 <p class='pindent'><a id='mrs'></a></p>
 
 <div class='figcenter'>
-<img src='images/i242.jpg' alt='' id='iid-0016' style='width:78%;height:auto;'/>
+<img src='gutenberg/images/56262/i242.jpg' alt='' id='iid-0016' style='width:78%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>MRS. KEUTAKO’S DAUGHTER.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 242.</span></span></p>
 </div>
 
@@ -7868,7 +7814,7 @@ curriculum.</p>
 <p class='pindent'><a id='dan'></a></p>
 
 <div class='figcenter'>
-<img src='images/i253.jpg' alt='' id='iid-0017' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i253.jpg' alt='' id='iid-0017' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>DANJERO IN HIS FAVOURITE RÔLE. DANJERO IN EUROPEAN COSTUME. DANJERO AS I KNEW HIM.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>P. 253.</span></span></p>
 </div>
 
@@ -8498,7 +8444,7 @@ burlesque.</p>
 <p class='pindent'><a id='baby'></a></p>
 
 <div class='figcenter'>
-<img src='images/i270.jpg' alt='' id='iid-0018' style='width:78%;height:auto;'/>
+<img src='gutenberg/images/56262/i270.jpg' alt='' id='iid-0018' style='width:78%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>MRS. KEUTAKO’S BABY.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 224.</span></span></p>
 </div>
 
@@ -9321,7 +9267,7 @@ which Japanese women play the principal parts.</p>
 <p class='pindent'><a id='coolie'></a></p>
 
 <div class='figcenter'>
-<img src='images/i297.jpg' alt='' id='iid-0019' style='width:74%;height:auto;'/>
+<img src='gutenberg/images/56262/i297.jpg' alt='' id='iid-0019' style='width:74%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>HINDOO COOLIE WOMEN WITH LOADS OF BAMBOO.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 249.</span></span></p>
 </div>
 
@@ -9526,7 +9472,7 @@ quite gone.</p>
 <p class='pindent'><a id='palm'></a></p>
 
 <div class='figcenter'>
-<img src='images/i305.jpg' alt='' id='iid-0020' style='width:80%;height:auto;'/>
+<img src='gutenberg/images/56262/i305.jpg' alt='' id='iid-0020' style='width:80%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>FAN PALM AT SINGAPORE.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 255.</span></span></p>
 </div>
 
@@ -9610,7 +9556,7 @@ And neither sea nor sky could have been uglier.</p>
 <p class='pindent'><a id='penang'></a></p>
 
 <div class='figcenter'>
-<img src='images/i308.jpg' alt='' id='iid-0021' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i308.jpg' alt='' id='iid-0021' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>NATIVES READING AT PENANG.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 256.</span></span></p>
 </div>
 
@@ -9902,7 +9848,7 @@ printed on tissue, make a rather thick volume.</p>
 <p class='pindent'><a id='hill'></a></p>
 
 <div class='figcenter'>
-<img src='images/i318.jpg' alt='' id='iid-0022' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i318.jpg' alt='' id='iid-0022' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>HILL PEOPLE—BHOOTEAS AND NEPAULESE.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 264.</span></span></p>
 </div>
 
@@ -10223,7 +10169,7 @@ to the throb of some distant kinship.</p>
 <p class='pindent'><a id='black'></a></p>
 
 <div class='figcenter'>
-<img src='images/i329.jpg' alt='' id='iid-0023' style='width:74%;height:auto;'/>
+<img src='gutenberg/images/56262/i329.jpg' alt='' id='iid-0023' style='width:74%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>A THORNLESS BLACK BLOSSOM.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 273.</span></span></p>
 </div>
 
@@ -11857,7 +11803,7 @@ feeling to last.</p>
 <p class='pindent'><a id='racer'></a></p>
 
 <div class='figcenter'>
-<img src='images/i378.jpg' alt='' id='iid-0024' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i378.jpg' alt='' id='iid-0024' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>H.H. THE MAHARAJAH OF PATIALA ON HIS FAVOURITE RACER.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 320.</span></span></p>
 </div>
 
@@ -12147,7 +12093,7 @@ infection.”</p>
 <p class='pindent'><a id='pass'></a></p>
 
 <div class='figcenter'>
-<img src='images/i389.jpg' alt='' id='iid-0025' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i389.jpg' alt='' id='iid-0025' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>AFREDEEDS AT THE KHYBER PASS.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 329.</span></span></p>
 </div>
 
@@ -12556,7 +12502,7 @@ old Punjabi cantonments! Shall I ever see them again?</p>
 <p class='pindent'><a id='idols'></a></p>
 
 <div class='figcenter'>
-<img src='images/i403.jpg' alt='' id='iid-0026' style='width:100%;height:auto;'/>
+<img src='gutenberg/images/56262/i403.jpg' alt='' id='iid-0026' style='width:100%;height:auto;'/>
 <p class='caption'><span style='font-size:smaller'><span class='bold'>IDOLS IN A SIAMESE PAGODA.</span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='font-size:smaller'><span class='it'>Page 341.</span></span></p>
 </div>
 

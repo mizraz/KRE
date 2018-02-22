@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -28,6 +29,7 @@ import DB.DBQueries;
 import DB.DBConsts.SqlColumns;
 import example.AppConstants;
 import example.URIConsts;
+import example.Utils;
 import example.model.Review;
 import example.model.User;
 
@@ -37,7 +39,8 @@ import example.model.User;
 @WebServlet(
 		description = "Servlet to provide users", 
 		urlPatterns = { 
-				"/usersList"
+				"/usersList",
+				"/deleteUser"
 		})
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -109,7 +112,66 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+
+	
+	
+	
+	
+		try {
+
+			//obtain CustomerDB data source from Tomcat's context
+			Context context = new InitialContext();
+			BasicDataSource ds = (BasicDataSource)context.lookup(
+					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
+			Connection conn = ds.getConnection();
+			String data = Utils.getPostBody(request);
+			    			System.out.println("!!!!!!!!!!!! " + data);
+			Gson gson = new Gson();
+			User user = gson.fromJson(data, User.class);
+			    			System.out.println("!!!!!!!!!!!! " + user.getEmail());
+
+			try {
+//TODO: need to insert timestamp
+				
+	    		String uri = request.getRequestURI();
+	    		if (uri.indexOf(URIConsts.DELETE_USER) != -1){//filter customer by specific name
+
+				PreparedStatement pstmt = conn.prepareStatement(DBQueries.DELETE_USER_BY_EMAIL);
+				pstmt.setString(1, user.getEmail());
+				pstmt.executeUpdate();
+				System.out.println("in delete user: email: " + user.getEmail());
+	    		} 
+	    		
+				
+
+
+			} catch (SQLException e) {
+				getServletContext().log("Error while querying for customers", e);
+				response.sendError(500);//internal server error
+			}
+			conn.close();
+
+		} catch (SQLException | NamingException e) {
+			getServletContext().log("Error while closing connection", e);
+			response.sendError(500);//internal server error
+		}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 
 }
