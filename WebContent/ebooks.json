@@ -61,6 +61,14 @@
 		"imageUrl": "gutenberg/56259.jpg",
 		"description": "bla bla"
 	},
+		{
+		"bookId": "76",
+		"title": "Adventures of Huckleberry Finn",
+		"author": "Mark Twain",
+		"price": "1",
+		"imageUrl": "gutenberg/76.jpg",
+		"description": "bla bla"
+	},
 	{
 		"bookId": "56257",
 		"title": "Geschiedenis van Suriname",

@@ -3,46 +3,55 @@ var reviewList;
 (function (angular) {
 	'use strict';
 
-	function reviewEbookController($scope, $element, $attrs, $http) {
+	function reviewEbookController($scope, $element, $attrs, $http, $rootScope) {
 		var ctrl = this;
 		ctrl.editMode = false;
 		ctrl.clickedOnce = false;
 		ctrl.isCollapsed = false;
-		ctrl.getAllReviewsOfThisEbook = function(){
+
+
+		this.$onInit = function() {
 			reviewList = document.getElementById('chati');
+			$rootScope.ebooksDict["ebook" + ctrl.ebookId].isReviewd = 0;
+			$rootScope.isCurEbookReviewed = 0;
+			ctrl.clickedOnce = true;
+			$http.get("http://localhost:8080/ExampleServletv3/reviews/bookId/"+ctrl.ebookId) ///name/Alfreds Futterkiste
+			.then(function(response) {
+				$scope.records = response;
+				$scope.result = $scope.records;//this variable will hold the search results
+				console.log($scope.result);
+				console.log('arr length ' + $scope.result.data.length);
+				for (var i = 0; i < $scope.result.data.length; ++i) {
 
-//			console.log('collapse ' + ctrl.isCollapsed);
+					console.log("@@@" + $scope.result.data[i].bookId);
+
+					var profilePicSrc = $scope.result.data[i].userImageUrl;
+					var name = $scope.result.data[i].userName;
+					var email = $scope.result.data[i].email;
+					var msgText = $scope.result.data[i].description;
+					var date = '';
+					var msgIdNumberDel = '';
+					var msgId = '';
+					var dateTime = '';
+					var newMessage = '';
+
+					if(email == $rootScope.email) {
+						$rootScope.ebooksDict["ebook" + ctrl.ebookId].isReviewd = 1;
+						$rootScope.isCurEbookReviewed = 1;
+					} 
+
+					drawReview(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date);
+//					console.log(newMessage);
+				}
+
+			});
+
+		};
+
+
+
+		ctrl.getAllReviewsOfThisEbook = function(){
 			ctrl.isCollapsed = !ctrl.isCollapsed;
-//			console.log('collapse ' + ctrl.isCollapsed);
-
-			if (!ctrl.clickedOnce) {
-				ctrl.clickedOnce = true;
-				$http.get("http://localhost:8080/ExampleServletv3/reviews/bookId/"+ctrl.ebookId) ///name/Alfreds Futterkiste
-				.then(function(response) {
-					$scope.records = response;
-					$scope.result = $scope.records;//this variable will hold the search results
-					console.log($scope.result);
-					console.log('arr length ' + $scope.result.data.length);
-					for (var i = 0; i < $scope.result.data.length; ++i) {
-
-						console.log("@@@" + $scope.result.data[i].bookId);
-
-						var profilePicSrc = $scope.result.data[i].userImageUrl;
-						var name = $scope.result.data[i].userName;
-						var email = $scope.result.data[i].email;
-						var msgText = $scope.result.data[i].description;
-						var date = '';
-						var msgIdNumberDel = '';
-						var msgId = '';
-						var dateTime = '';
-						var newMessage = '';
-						drawReview(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date);
-//						console.log(newMessage);
-					}
-
-				});
-			}
-
 		}
 
 	}
@@ -95,29 +104,29 @@ drawReview = function(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId
 		";
 //	console.log(newMessage);
 	reviewList.appendChild(newMessage);	
-	
-    (function () {
-        var localMsgId = email;
-        var localBookId = msgId;
-        console.log("77777" + localMsgId + localBookId);
-        (document.getElementById('approve-review-btn-' + localMsgId+localBookId)).addEventListener('click', function () {
 
-          var curMsgEmail = document.getElementById(localMsgId)
-            .getElementsByClassName('email')[0];
-          var email = curMsgEmail.innerHTML;
-          if (true) {
-        	  console.log("approve clicked  " + email);
-        	  
-        	  
-          } else {
-            console.log("YOU TRIED DEL MESSAGE NOT YOURS! your email vs message email: " + msgId + " " + Babble.email + " " + email);
-          }
-        });
-      }());
-	
-	
-	
-	
+	(function () {
+		var localMsgId = email;
+		var localBookId = msgId;
+		console.log("77777" + localMsgId + localBookId);
+		(document.getElementById('approve-review-btn-' + localMsgId+localBookId)).addEventListener('click', function () {
+
+			var curMsgEmail = document.getElementById(localMsgId)
+			.getElementsByClassName('email')[0];
+			var email = curMsgEmail.innerHTML;
+			if (true) {
+				console.log("approve clicked  " + email);
+
+
+			} else {
+				console.log("YOU TRIED DEL MESSAGE NOT YOURS! your email vs message email: " + msgId + " " + Babble.email + " " + email);
+			}
+		});
+	}());
+
+
+
+
 //	console.log("33333 " + reviewList.innerHTML);
 //	$scope.mmm = newMessage;
 };

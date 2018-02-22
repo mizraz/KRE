@@ -68,8 +68,8 @@ public class ManageEbooksDBFromJsonFile implements ServletContextListener {
 			boolean created = false;
 			try{
 
-				Statement stmt3 = conn.createStatement();
-				stmt3.executeUpdate(DBQueries.DROP_EBOOKS_TABLE);
+//				Statement stmt3 = conn.createStatement();
+//				stmt3.executeUpdate(DBQueries.DROP_EBOOKS_TABLE);
 
 
 				//create Customers table

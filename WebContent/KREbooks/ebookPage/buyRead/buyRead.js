@@ -10,7 +10,7 @@ var myModalReadBody;
 		var ctrl = this;
 
 		
-		this.$oninit = function() {
+		this.$onInit = function() {
 
 			$rootScope.curEbookIdd = '123';
 
@@ -19,7 +19,7 @@ var myModalReadBody;
 			ctrl.userPurchases = [];
 			console.log("ctrl.ebook: " + ctrl.ebook.bookId);
 			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId] "+ $rootScope.purchasesDict["ebook"+ ctrl.ebook.bookId]);
-			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].bookId == undefined) {
+			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId] == undefined) {
 				ctrl.usrBoughtCurBook = false;
 				ctrl.isLiked = false;
 			} else
@@ -54,6 +54,14 @@ var myModalReadBody;
 			$rootScope.curEbookIdd = ctrl.ebook.bookId;
 			console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
 
+			
+			window.curBookIdToSendScroll = $rootScope.curEbookIdd;
+			console.log("ctrl.ebook.bookId " + ctrl.ebook.bookId);
+			console.log("window.curBookIdToSendScroll " + window.curBookIdToSendScroll);
+
+			window.curEmailToSendScroll = $rootScope.email;
+			
+			
 			$("#myModalScroll").modal();
 		};	
 		
@@ -95,15 +103,20 @@ var myModalReadBody;
 
 //			setTimeout(function(){
 
-			var bodyId = document.getElementById('body');
 
 			if (isToGoToLastScroll) {
 				console.log("scroll : " + curScroll);
-				body.scrollTop = curScroll;
-				window.curBookIdToSendScroll = $rootScope.curEbookIdd.bookId;
-				window.curEmailToSendScroll = $rootScope.email;
+				setTimeout(function() {
+					
+					var bodyId = document.getElementById('bookContent');
+					body.scrollTop = curScroll;
+					console.log("body.scrollTop : " + body.scrollTop);
 
-				console.log("yes");
+
+					console.log("yes");					
+					
+				}, 1000);
+
 			}
 			else {
 				console.log("no");	

@@ -11,7 +11,43 @@ onunload="func()"
 of Japan, by Florence du Cane.
 </title>
 
+<script>
 
+$.fn.scrollEnd = function(callback, timeout) {          
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
+
+// how to call it (with a 1000ms timeout):
+$(window).scrollEnd(function(){
+	
+	
+		var bookContent = document.getElementById('bookContent');	
+	console.log(bookContent);
+	if(bookContent != undefined) {
+	console.log("window.curBookIdToSendScroll: " + window.curBookIdToSendScroll);
+		var scrolJSON = {
+				scroll: body.scrollTop,
+				bookId: window.curBookIdToSendScroll,
+				email: window.curEmailToSendScroll
+		}	
+		var xmlhttpDelClient = new XMLHttpRequest();
+		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+		xmlhttpDelClient.onreadystatechange = function () {
+			/* NOTHING DONE IN HERE*/
+		};
+		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+	}
+	
+	
+}, 1000);
+
+</script>
 
   </head>
 <body>
@@ -71,8 +107,8 @@ clicking on the image will bring up a larger version.)</span></p>
 </table>
 
 <div class="figcenter" style="width: 365px;">
-<a href="images/cover_lg.jpg">
-<img src="images/cover.jpg" width="365" height="500" alt="[Image unavailable.]" /></a>
+<a href="gutenberg/images/56254/cover_lg.jpg">
+<img src="gutenberg/images/56254/cover.jpg" width="365" height="500" alt="[Image unavailable.]" /></a>
 </div>
 
 <div class="samart">
@@ -140,7 +176,7 @@ OF JAPAN<br />
 </p>
 <div class="figcenter">
 <a href="images/i_frontis_lg.jpg">
-<img src="images/i_frontis_sml.jpg" width="342" height="500" alt="WISTARIA, KYOMIDZU" /></a>
+<img src="gutenberg/images/56254/i_frontis_sml.jpg" width="342" height="500" alt="WISTARIA, KYOMIDZU" /></a>
 <br />
 <span class="caption">WISTARIA, KYOMIDZU</span>
 </div>
@@ -161,7 +197,7 @@ DESCRIBED BY<br />
 <br />
 FLORENCE DU CANE</p>
 
-<p class="c"><img src="images/colophon.png"
+<p class="c"><img src="gutenberg/images/56254/colophon.png"
 width="350"
 alt="PUBLISHED BY
 ADAM &amp; CHARLES
@@ -436,7 +472,10 @@ adhered to. Large rocks and boulders are out of</p>
 </p>
 <div class="figcenter" style="width: 346px;">
 <a href="images/i_004fp_lg.jpg">
-<img src="images/i_004fp_sml.jpg" width="346" height="500" alt="[Image unavailable.]" /></a>
+
+
+
+<img src="gutenberg/images/56254/i_004fp_sml.jpg" width="346" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>WISTARIA IN A KYOTO GARDEN</p></div>
 </div>
 
@@ -602,7 +641,7 @@ death and destruction to the pines and cherry-trees</p>
 </p>
 <div class="figcenter" style="width: 249px;">
 <a href="images/i_012fp_lg.jpg">
-<img src="images/i_012fp_sml.jpg" width="249" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_012fp_sml.jpg" width="249" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE STORKS</p></div>
 </div>
 
@@ -794,7 +833,7 @@ suggesting</p>
 </p>
 <div class="figcenter" style="width: 378px;">
 <a href="images/i_022fp_lg.jpg">
-<img src="images/i_022fp_sml.jpg" width="378" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_022fp_sml.jpg" width="378" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AZALEAS IN A KYOTO GARDEN</p></div>
 </div>
 
@@ -935,7 +974,7 @@ either a wooden or thatched roof with</p>
 </p>
 <div class="figcenter" style="width: 382px;">
 <a href="images/i_028fp_lg.jpg">
-<img src="images/i_028fp_sml.jpg" width="382" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_028fp_sml.jpg" width="382" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AZALEAS, KYOTO</p></div>
 </div>
 
@@ -1070,7 +1109,7 @@ leads to. The actual garden doors are of</p>
 </p>
 <div class="figcenter" style="width: 363px;">
 <a href="images/i_034fp_lg.jpg">
-<img src="images/i_034fp_sml.jpg" width="363" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_034fp_sml.jpg" width="363" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>TIGER LILIES</p></div>
 </div>
 
@@ -1191,7 +1230,7 @@ with</p>
 </p>
 <div class="figcenter" style="width: 357px;">
 <a href="images/i_040fp_lg.jpg">
-<img src="images/i_040fp_sml.jpg" width="357" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_040fp_sml.jpg" width="357" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AN OLD GARDEN</p></div>
 </div>
 
@@ -1242,7 +1281,7 @@ with lanterns.</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_042fp_lg.jpg">
-<img src="images/i_042fp_sml.jpg" width="500" height="346" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_042fp_sml.jpg" width="500" height="346" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>SATAKE GARDEN, TOKYO</p></div>
 </div>
 
@@ -1331,7 +1370,7 @@ tea-ceremony, invented and elaborated by a pious monk to</p></div>
 </p>
 <div class="figcenter" style="width: 324px;">
 <a href="images/i_046fp_lg.jpg">
-<img src="images/i_046fp_sml.jpg" width="324" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_046fp_sml.jpg" width="324" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>A TOKYO GARDEN</p></div>
 </div>
 
@@ -1465,7 +1504,7 @@ the lake, in which stood the “Elysian Isle” with its pine-tree</p>
 </p>
 <div class="figcenter" style="width: 344px;">
 <a href="images/i_052fp_lg.jpg">
-<img src="images/i_052fp_sml.jpg" width="344" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_052fp_sml.jpg" width="344" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>A LANDSCAPE GARDEN</p></div>
 </div>
 
@@ -1617,7 +1656,7 @@ though not to be treasured as works of art, is at</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_060fp_lg.jpg">
-<img src="images/i_060fp_sml.jpg" width="500" height="342" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_060fp_sml.jpg" width="500" height="342" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE OLD WISTARIA</p></div>
 </div>
 
@@ -1869,7 +1908,7 @@ saying better</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_072fp_lg.jpg">
-<img src="images/i_072fp_sml.jpg" width="500" height="352" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_072fp_sml.jpg" width="500" height="352" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AT KITANO TENJIN</p></div>
 </div>
 
@@ -1923,7 +1962,7 @@ miniature the</p>
 </p>
 <div class="figcenter" style="width: 341px;">
 <a href="images/i_074fp_lg.jpg">
-<img src="images/i_074fp_sml.jpg" width="341" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_074fp_sml.jpg" width="341" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE DROOPING CHERRY</p></div>
 </div>
 
@@ -2011,7 +2050,7 @@ neighbouring platform to gaze at the moon. Do not imagine</p>
 </p>
 <div class="figcenter" style="width: 339px;">
 <a href="images/i_078fp_lg.jpg">
-<img src="images/i_078fp_sml.jpg" width="339" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_078fp_sml.jpg" width="339" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>A SHRINE AT KYOMIDZU</p></div>
 </div>
 
@@ -2061,7 +2100,7 @@ evidently well cared for should be carpeted thickly</p>
 </p>
 <div class="figcenter" style="width: 347px;">
 <a href="images/i_080fp_lg.jpg">
-<img src="images/i_080fp_sml.jpg" width="347" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_080fp_sml.jpg" width="347" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>WHITE CHERRY AT KITANO</p></div>
 </div>
 
@@ -2151,7 +2190,7 @@ large enough for the main building of this mighty edifice, some</p>
 </p>
 <div class="figcenter" style="width: 351px;">
 <a href="images/i_084fp_lg.jpg">
-<img src="images/i_084fp_sml.jpg" width="351" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_084fp_sml.jpg" width="351" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>CHERRY BLOSSOM, CHION-IN TEMPLE</p></div>
 </div>
 
@@ -2302,7 +2341,7 @@ summer</p>
 </p>
 <div class="figcenter" style="width: 324px;">
 <a href="images/i_092fp_lg.jpg">
-<img src="images/i_092fp_sml.jpg" width="324" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_092fp_sml.jpg" width="324" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE KOBAI PLUM BLOSSOM</p></div>
 </div>
 
@@ -2391,7 +2430,7 @@ and truly defined as in the cultivated form which</p>
 </p>
 <div class="figcenter" style="width: 228px;">
 <a href="images/i_096fp_lg.jpg">
-<img src="images/i_096fp_sml.jpg" width="228" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_096fp_sml.jpg" width="228" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p><i>LILIUM AURATUM</i></p></div>
 </div>
 
@@ -2449,7 +2488,7 @@ their bulbs from the hand</p>
 </p>
 <div class="figcenter" style="width: 251px;">
 <a href="images/i_098fp_lg.jpg">
-<img src="images/i_098fp_sml.jpg" width="251" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_098fp_sml.jpg" width="251" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>LILIES ON THE ROCKS, ATAMI</p></div>
 </div>
 
@@ -2498,7 +2537,7 @@ its more loosely formed heads,</p>
 </p>
 <div class="figcenter" style="width: 240px;">
 <a href="images/i_100fp_lg.jpg">
-<img src="images/i_100fp_sml.jpg" width="240" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_100fp_sml.jpg" width="240" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AN HYDRANGEA BUSH</p></div>
 </div>
 
@@ -2575,7 +2614,7 @@ not yet gone, every passer-by seems to be talking of <i>ume</i>, discussing</p>
 </p>
 <div class="figcenter" style="width: 254px;">
 <a href="images/i_104fp_lg.jpg">
-<img src="images/i_104fp_sml.jpg" width="254" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_104fp_sml.jpg" width="254" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>VIEWING THE PLUM BLOSSOMS</p></div>
 </div>
 
@@ -2628,7 +2667,7 @@ brought forth on the</p>
 </p>
 <div class="figcenter" style="width: 233px;">
 <a href="images/i_106fp_lg.jpg">
-<img src="images/i_106fp_sml.jpg" width="233" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_106fp_sml.jpg" width="233" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE GATE OF THE PLUM GARDENS</p></div>
 </div>
 
@@ -2727,7 +2766,7 @@ inseparable companions, and represent</p>
 </p>
 <div class="figcenter" style="width: 354px;">
 <a href="images/i_110fp_lg.jpg">
-<img src="images/i_110fp_sml.jpg" width="354" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_110fp_sml.jpg" width="354" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE TIME OF THE PLUM BLOSSOMS</p></div>
 </div>
 
@@ -2887,7 +2926,7 @@ ume</i> grows in the Bungo</p>
 </p>
 <div class="figcenter" style="width: 347px;">
 <a href="images/i_116fp_lg.jpg">
-<img src="images/i_116fp_sml.jpg" width="347" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_116fp_sml.jpg" width="347" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>PLUM BLOSSOM AND LANTERNS</p></div>
 </div>
 
@@ -2974,7 +3013,7 @@ found favour in the ancient days, as on Momoyama stood</p>
 </p>
 <div class="figcenter" style="width: 335px;">
 <a href="images/i_120fp_lg.jpg">
-<img src="images/i_120fp_sml.jpg" width="335" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_120fp_sml.jpg" width="335" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>PEACH BLOSSOM</p></div>
 </div>
 
@@ -3098,7 +3137,7 @@ the fruit.</p>
 </p>
 <div class="figcenter" style="width: 342px;">
 <a href="images/i_126fp_lg.jpg">
-<img src="images/i_126fp_sml.jpg" width="342" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_126fp_sml.jpg" width="342" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE PAGODA, KYOMIDZU</p></div>
 </div>
 
@@ -3186,7 +3225,7 @@ the stone steps of the temple of Kyomizu&mdash;or Good Water&mdash;in Kyoto, and
 
 <div class="figcenter" style="width: 364px;">
 <a href="images/i_130fp_lg.jpg">
-<img src="images/i_130fp_sml.jpg" width="364" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_130fp_sml.jpg" width="364" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>A BUDDHIST SHRINE</p></div>
 </div>
 
@@ -3236,7 +3275,7 @@ Katahana characters. Or should it be a late season</p>
 </p>
 <div class="figcenter" style="width: 342px;">
 <a href="images/i_132fp_lg.jpg">
-<img src="images/i_132fp_sml.jpg" width="342" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_132fp_sml.jpg" width="342" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE FEAST OF THE CHERRY BLOSSOMS</p></div>
 </div>
 
@@ -3372,7 +3411,7 @@ of pedestrians, carrying their gourds of wine, inaugurate a veritable
 </p>
 <div class="figcenter" style="width: 343px;">
 <a href="images/i_138fp_lg.jpg">
-<img src="images/i_138fp_sml.jpg" width="343" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_138fp_sml.jpg" width="343" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE PINK CHERRY</p></div>
 </div>
 
@@ -3481,7 +3520,7 @@ the past; broad streets with tramways, brick and stone houses, are</p>
 </p>
 <div class="figcenter" style="width: 233px;">
 <a href="images/i_142fp_lg.jpg">
-<img src="images/i_142fp_sml.jpg" width="233" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_142fp_sml.jpg" width="233" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>CHERRY-TREE AT KYOMIDZU</p></div>
 </div>
 
@@ -3620,7 +3659,7 @@ grow longer from its desire to reach the jar; so I ordered my</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_148fp_lg.jpg">
-<img src="images/i_148fp_sml.jpg" width="500" height="337" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_148fp_sml.jpg" width="500" height="337" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>WISTARIA, KAMEIDO</p></div>
 </div>
 
@@ -3711,7 +3750,7 @@ hates to say her quick</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_152fp_lg.jpg">
-<img src="images/i_152fp_sml.jpg" width="500" height="363" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_152fp_sml.jpg" width="500" height="363" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>WISTARIA, NAGAOKA</p></div>
 </div>
 
@@ -3763,7 +3802,7 @@ spend</p>
 </p>
 <div class="figcenter" style="width: 323px;">
 <a href="images/i_154fp_lg.jpg">
-<img src="images/i_154fp_sml.jpg" width="323" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_154fp_sml.jpg" width="323" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>A PÆONY GARDEN</p></div>
 </div>
 
@@ -3852,7 +3891,7 @@ of water to the roots of</p>
 </p>
 <div class="figcenter" style="width: 317px;">
 <a href="images/i_158fp_lg.jpg">
-<img src="images/i_158fp_sml.jpg" width="317" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_158fp_sml.jpg" width="317" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>WISTARIA, KABATA</p></div>
 </div>
 
@@ -3940,7 +3979,7 @@ been told they numbered eight million instead of</p>
 </p>
 <div class="figcenter" style="width: 355px;">
 <a href="images/i_162fp_lg.jpg">
-<img src="images/i_162fp_sml.jpg" width="355" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_162fp_sml.jpg" width="355" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AZALEAS</p></div>
 </div>
 
@@ -3993,7 +4032,7 @@ is entertained in a</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_164fp_lg.jpg">
-<img src="images/i_164fp_sml.jpg" width="500" height="342" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_164fp_sml.jpg" width="500" height="342" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AZALEAS, NAGAOKA</p></div>
 </div>
 
@@ -4047,7 +4086,7 @@ clothe the</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_166fp_lg.jpg">
-<img src="images/i_166fp_sml.jpg" width="500" height="339" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_166fp_sml.jpg" width="500" height="339" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AZALEAS, AWATA</p></div>
 </div>
 
@@ -4158,7 +4197,7 @@ following year. The beds are</p>
 </p>
 <div class="figcenter" style="width: 329px;">
 <a href="images/i_172fp_lg.jpg">
-<img src="images/i_172fp_sml.jpg" width="329" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_172fp_sml.jpg" width="329" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AN IRIS GARDEN</p></div>
 </div>
 
@@ -4300,7 +4339,7 @@ each individual bloom appearing to last only from one</p>
 </p>
 <div class="figcenter" style="width: 246px;">
 <a href="images/i_178fp_lg.jpg">
-<img src="images/i_178fp_sml.jpg" width="246" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_178fp_sml.jpg" width="246" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>IRISES</p></div>
 </div>
 
@@ -4468,7 +4507,7 @@ the Dai butsu at Kamakura and Nara sit in immovable calm as</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_186fp_lg.jpg">
-<img src="images/i_186fp_sml.jpg" width="500" height="341" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_186fp_sml.jpg" width="500" height="341" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>LOTUS AT KODAIJI</p></div>
 </div>
 
@@ -4520,7 +4559,7 @@ suddenly, even as one</p>
 </p>
 <div class="figcenter" style="width: 343px;">
 <a href="images/i_188fp_lg.jpg">
-<img src="images/i_188fp_sml.jpg" width="343" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_188fp_sml.jpg" width="343" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>LOTUS AT KYOMIDZU</p></div>
 </div>
 
@@ -4669,7 +4708,7 @@ a new day.</p>
 </p>
 <div class="figcenter" style="width: 245px;">
 <a href="images/i_194fp_lg.jpg">
-<img src="images/i_194fp_sml.jpg" width="245" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_194fp_sml.jpg" width="245" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>LOTUS FLOWERS</p></div>
 </div>
 
@@ -4772,7 +4811,7 @@ of the <i>sikunshi</i> or four</p>
 </p>
 <div class="figcenter" style="width: 359px;">
 <a href="images/i_198fp_lg.jpg">
-<img src="images/i_198fp_sml.jpg" width="359" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_198fp_sml.jpg" width="359" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>CHRYSANTHEMUMS, KYOTO</p></div>
 </div>
 
@@ -4908,7 +4947,7 @@ stopped in front of a large fish-stall, and at the magic word <i>kiku</i></p>
 </p>
 <div class="figcenter" style="width: 253px;">
 <a href="images/i_204fp_lg.jpg">
-<img src="images/i_204fp_sml.jpg" width="253" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_204fp_sml.jpg" width="253" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>A CHRYSANTHEMUM GARDEN</p></div>
 </div>
 
@@ -4997,7 +5036,7 @@ of that country, so here in Japan, the yellow blossoms</p>
 </p>
 <div class="figcenter" style="width: 360px;">
 <a href="images/i_208fp_lg.jpg">
-<img src="images/i_208fp_sml.jpg" width="360" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_208fp_sml.jpg" width="360" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>CHRYSANTHEMUMS</p></div>
 </div>
 
@@ -5131,7 +5170,7 @@ scarlet</p>
 </p>
 <div class="figcenter" style="width: 247px;">
 <a href="images/i_214fp_lg.jpg">
-<img src="images/i_214fp_sml.jpg" width="247" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_214fp_sml.jpg" width="247" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>THE SCARLET MAPLE</p></div>
 </div>
 
@@ -5233,7 +5272,7 @@ is it carpeted with the fallen leaves. If one takes a</p>
 </p>
 <div class="figcenter" style="width: 223px;">
 <a href="images/i_218fp_lg.jpg">
-<img src="images/i_218fp_sml.jpg" width="223" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_218fp_sml.jpg" width="223" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>VIEWING THE MAPLES</p></div>
 </div>
 
@@ -5475,7 +5514,7 @@ wonderful that his true heart moved even Heaven</p>
 </p>
 <div class="figcenter" style="width: 237px;">
 <a href="images/i_230fp_lg.jpg">
-<img src="images/i_230fp_sml.jpg" width="237" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_230fp_sml.jpg" width="237" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>IRISES, HORIKIRI</p></div>
 </div>
 
@@ -5630,7 +5669,7 @@ praises have been sung by</p>
 </p>
 <div class="figcenter" style="width: 500px;">
 <a href="images/i_238fp_lg.jpg">
-<img src="images/i_238fp_sml.jpg" width="500" height="342" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_238fp_sml.jpg" width="500" height="342" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>PINE-TREE AT MATSUSHIMA</p><p>PINE-TREE AT MATSUSHIMA</p></div>
 </div>
 
@@ -5776,7 +5815,7 @@ me, “It is simply wonderful to know what a good harmony the pine-tree</p>
 </p>
 <div class="figcenter" style="width: 355px;">
 <a href="images/i_244fp_lg.jpg">
-<img src="images/i_244fp_sml.jpg" width="355" height="500" alt="[Image unavailable.]" /></a>
+<img src="gutenberg/images/56254/i_244fp_sml.jpg" width="355" height="500" alt="[Image unavailable.]" /></a>
 <div class="caption"><p>AZALEA AND PINE-TREE</p></div>
 </div>
 
