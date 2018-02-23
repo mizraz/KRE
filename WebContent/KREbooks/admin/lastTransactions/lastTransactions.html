@@ -14,6 +14,24 @@
 		<div>
 			<span><u>Number of purchases in period:</u> <strong>{{ctrl.countPurchases}}</strong></span>
 		</div>
+		<form name="myForm">
+   <label for="exampleInput">Select dates of transactions:</label>
+   <input type="date" id="exampleInput" name="input" ng-model="dates.first"
+       placeholder="yyyy-MM-dd" required />
+
+   <input type="date" id="exampleInput" name="input" ng-model="dates.second"
+       placeholder="yyyy-MM-dd" required />       
+   <div role="alert">
+     <span class="error" ng-show="myForm.input.$error.required">
+         Required!</span>
+     <span class="error" ng-show="myForm.input.$error.date">
+         Not a valid date!</span>
+    </div>
+
+<button ng-click="ctrl.getTranscationsBetweenDates()">send</button>
+
+</form>
+		
 		<div class="table-responsive">
 
 

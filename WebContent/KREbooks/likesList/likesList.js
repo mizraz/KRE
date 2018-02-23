@@ -1,7 +1,7 @@
 (function (angular) {
 	'use strict';
 
-	function likesListController($scope, $element, $attrs, $http) {
+	function likesListController($scope, $element, $attrs, $http, $rootScope) {
 		var ctrl = this;
 
 		this.$onInit = function () {
@@ -21,8 +21,9 @@
 
 					ctrl.userNamesList.push(name);
 //					console.log("userNamesList[0] " + ctrl.userNamesList[0]);
-					ctrl.usersListHtml = ctrl.usersListHtml.concat('\n', name);
-
+//					ctrl.usersListHtml = ctrl.usersListHtml.concat('\n', name);
+					ctrl.usersListHtml = ctrl.usersListHtml + '\n' +  name;
+//					console.log("ctrl.usersListHtml: " + ctrl.usersListHtml);
 //					console.log(newMessage);
 				}
 //				console.log("likers: " + ctrl.usersListHtml);
@@ -30,6 +31,12 @@
 			});  
 			
 		};
+		
+		
+		ctrl.clickedAName = function (user){
+			console.log("$ctrl.clickedAName($user): " + user);
+			$rootScope.curPage = 'catalog/catalog.html';
+		}
 		
 		ctrl.likeListClickedOnce = false;
 
@@ -61,7 +68,7 @@
 
 						ctrl.userNamesList.push(name);
 //						console.log("userNamesList[0] " + ctrl.userNamesList[0]);
-						ctrl.usersListHtml = ctrl.usersListHtml.concat('\n', name);
+						ctrl.usersListHtml = ctrl.usersListHtml.concat('\\n', name);
 
 //						console.log(newMessage);
 					}

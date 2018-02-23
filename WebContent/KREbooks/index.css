@@ -22,3 +22,10 @@ footer {
 	    box-sizing: border-box;
 
 }
+
+
+
+img, .figcenter {
+	
+	max-width: 100%;
+} 

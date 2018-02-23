@@ -43,6 +43,35 @@
 		"imageUrl": "gutenberg/56262.jpg",
 		"description": "bla bla"
 	},
+
+	{
+		"bookId": "56617",
+		"title": "THE ART OF THEATRICAL MAKE-UP",
+		"author": "CAVENDISH MORTON",
+		"price": "1",
+		"imageUrl": "gutenberg/56617.jpg",
+		"description": "bla bla"
+	},
+		{
+		"bookId": "56620",
+		"title": "RUBY ROLAND, THE GIRL SPY.",
+		"author": "CAVENDISH MORTON",
+		"price": "1",
+		"imageUrl": "gutenberg/56620.jpg",
+		"description": "bla bla"
+	},
+	
+			{
+		"bookId": "56612",
+		"title": "MY STORY",
+		"author": "ANSON MILLS",
+		"price": "1",
+		"imageUrl": "gutenberg/56612.jpg",
+		"description": "bla bla"
+	},
+
+
+
 	
 	
 	{
