@@ -16,7 +16,9 @@
 
 /* message stype ************************************************************/
 
-
+img {
+	max-width: 10000px; /*need this to cancel this attribute who takes care images in READ BOOK page are not too big. this fix shows the reviewer photo */
+}
 
 .message {
   display: flex;

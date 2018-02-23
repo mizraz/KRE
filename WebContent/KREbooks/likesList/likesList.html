@@ -1,14 +1,33 @@
 
 <link rel="stylesheet" href="likesList/likesList.css">
 
+    <script>
+        var myName=["avichai","raz","mama"]
+        function a() {
+            for (i = 0; i < myName.length; i++) {
+                document.getElementById("myTool").innerHTML += myName[i]+"<br/>";
+            }
+
+        }
+    </script>
 
 
-		<button type="button" class="btn btn-default btn-lg"><span data-toggle="modal" data-target="#myModal"  data-toggle="tooltip" 
+
+		<button type="button" class="tooltipp btn-likes-list btn btn-default btn-lg"><span data-toggle="modal" data-target="#myModal"  data-toggle="tooltip" 
 					data-placement="top" title={{$ctrl.usersListHtml}}
 							ng-click='$ctrl.getLikesList()'>
 								<img src="resources/glyphicons-344-thumbs-up.jpg">Likes
 			</span>
+
+		    <div id="myTool" ng-repeat="user in $ctrl.userNamesList"  class=" tooltipptext" >
+        			<a ng-click="$ctrl.clickedAName(user)">{{user}}</a>
+        			
+			    </div>
+
+
 		</button>
+		
+
 		
 		
 			<!-- <li><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">Top</a></li> -->
