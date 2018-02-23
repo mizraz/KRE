@@ -43,6 +43,14 @@ var myModalReadBody;
 
 //			}, 2000);
 		};
+		
+		
+		ctrl.clickedBuy = function () {
+			
+			console.log('clicked buy');
+			$rootScope.curPage = 'PaymentForm/payPage.html';
+			
+		}
 
 //		$scope.$on('$viewContentLoaded', function() {
 //			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	

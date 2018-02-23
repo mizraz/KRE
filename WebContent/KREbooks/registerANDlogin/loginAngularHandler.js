@@ -1,24 +1,14 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
-	<meta charset="UTF-8">
-	<title>Log-in</title>
-</head>
-<body id="login">
-	<script type="text/javascript" src="jquery-3.2.1.js"></script>
-	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="angular.min.js"></script>
-
-	<script>
-	var app = angular.module('loginLogic', []);
-	app.controller('Ctrlogin', function($scope,$http,$rootScope)
-	{
-		$('.alert').hide();
+angular.module('myApp').controller("Ctrlogin", 
+			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {	
+				
+		$scope.error="Error ";		
+		
+		$scope.errormsgg1="";
+		$('#alert1').hide();
+		
 	    $scope.SubmitFunction = function()
 	    {
+	    	$('#alert1').hide();
 	    	if($scope.nick.length>2 && $scope.pwd.length>3)
 	    	{
 	    		var data =
@@ -38,14 +28,14 @@
 	    			 console.log($rootScope.test);
 	    			 console.log($rootScope.email);
 	    		 
+	    			 console.log("response.data[0].email: " + response.data[0].email);
 				
 	    			
 	    			//TODO: $rootScope.eamil = email_of_user_just_loged_in_from_the_response; 
 //	    			$rootScope.userImageUrl , userName etc... 
 	    			$('.alert').hide();
 	    			
-	    			console.log("HELLO");
-	    			console.log(response);
+	    			
 	    			var res = new String(response.data);
 	    			
 	    			
@@ -55,13 +45,14 @@
 					{
 	    				console.log("HELLO");
 	    		   		$scope.error="Info ";
-	    				$scope.errormsg="The username and password you entered did not match our records. Please double-check and try again.";
-	    				$('.alert').show();
+	    				$scope.errormsg1="The username and password you entered did not match our records. Please double-check and try again.";
+	    				$('#alert1').show();
 					}//if failure
 	    		   else
 	    		   {
 	    			   
 	    			  $rootScope.nick=response.data[0].userNickname;
+	    			  console.log(response.data[0].userNickname);
 	    			  localStorage.setItem('nick', response.data[0].userNickname);
 	    			   $rootScope.email=response.data[0].email;
 	    			   localStorage.setItem('email', response.data[0].emai);
@@ -78,7 +69,7 @@
 	    			   $rootScope.photo=response.data[0].userImageUrl;
 	    			   localStorage.setItem('userImageUrl', response.data[0].userImageUrl);
 	    			   console.log($rootScope.nick);
-	    			   //$ctrl.curPage='index.html';
+	    			  // $Ctrlogin.curPage='index.html';
 	    			   window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
 	    		   } 
 	    		
@@ -91,35 +82,8 @@
 	    		$('.alert').show();
 	    	}
 	    };
-	});
+	}]);
 	
 
 	
 	
-	</script>
-	<div class="container ng-scope" ng-app="loginLogic" ng-controller="Ctrlogin">
-		<form>
-	        <h3 class="form-heading">Please sign in</h3>
-	        <div class="form-group">
-	        	<label for="nick">Nickname: </label>
-	        	<input type="text" class="form-control" placeholder="Username" ng-model="nick" id="nick" required >
-	        </div><br>
-	        <div class="form-group">
-	        	<label for="pwd">Password: </label>
-	        	<input type="password" class="form-control" placeholder="Password" ng-model="pwd" id="pwd" required>
-	        </div><br>
-             <br>
-	        <button type="submit" ng-click='SubmitFunction()' class="btn btn-lg btn-primary btn-block">Sign in</button>
-		</form>
-		<br>
-		<p>Not a member?</p>
-		<a href="reg.html" class="btn btn-lg btn-primary btn-block" role="button" >Resigter Now</a>
-		{{result}}
-		<div class="alert alert-danger">
-		<a href="#" class="close" onclick="$('.alert').hide()">&times;</a>
-		<strong>{{error}}</strong>{{errormsg}}
-		<strong><span ng-bind="error"></span></strong><span ng-bind="errormsg"></span>
-		</div>
-	</div> <!-- /container -->
-</body>
-</html>
