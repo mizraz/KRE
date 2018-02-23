@@ -37,6 +37,11 @@
      margin: 0;
      padding: 0;
  } */
+ 
+ .img-cover-wrapper {
+ 	margin-bottom: 50px;
+ 	
+ }
 
   .ebook-item {
     /* margin: 0;

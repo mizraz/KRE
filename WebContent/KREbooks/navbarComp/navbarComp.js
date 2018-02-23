@@ -56,4 +56,3 @@ angular.module('myApp').component('navbarComp', {
 
 
 })(window.angular);
-

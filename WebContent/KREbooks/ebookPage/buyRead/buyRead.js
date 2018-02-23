@@ -7,25 +7,19 @@ var myModalReadBody;
 
 	function buyReadController($rootScope, $http, $scope) {
 
-
-		$scope.$on('$viewContentLoaded', function() {
-			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	
-		});
-
-		$rootScope.curEbookIdd = '123';
 		var ctrl = this;
 
-//		setTimeout(function(){
+		
+		this.$onInit = function() {
 
-		var init = function() {
-
+			$rootScope.curEbookIdd = '123';
 
 			ctrl.curEbook = ctrl.ebook;
 			ctrl.userEmail = $rootScope.email;
 			ctrl.userPurchases = [];
 			console.log("ctrl.ebook: " + ctrl.ebook.bookId);
 			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId] "+ $rootScope.purchasesDict["ebook"+ ctrl.ebook.bookId]);
-			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].bookId == undefined) {
+			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId] == undefined) {
 				ctrl.usrBoughtCurBook = false;
 				ctrl.isLiked = false;
 			} else
@@ -45,20 +39,40 @@ var myModalReadBody;
 			console.log("ctrl.isLiked: " + ctrl.isLiked);
 
 
-			ctrl.clickedRead = function clickedRead() {
-				console.log("clicked Read. ctrl.ebook.bookId " + ctrl.ebook.bookId);
-				$rootScope.curEbookIdd = ctrl.ebook.bookId;
-				console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
-
-				$("#myModalScroll").modal();
-			};			
+		
 
 //			}, 2000);
 		};
 
-		setTimeout(function(){
-			init();
-		}, 1000);
+//		$scope.$on('$viewContentLoaded', function() {
+//			ctrl.isLiked = $rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId].isLiked;	
+//		});
+
+
+		ctrl.clickedRead = function clickedRead() {
+			console.log("clicked Read. ctrl.ebook.bookId " + ctrl.ebook.bookId);
+			$rootScope.curEbookIdd = ctrl.ebook.bookId;
+			console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
+
+			
+			window.curBookIdToSendScroll = $rootScope.curEbookIdd;
+			console.log("ctrl.ebook.bookId " + ctrl.ebook.bookId);
+			console.log("window.curBookIdToSendScroll " + window.curBookIdToSendScroll);
+
+			window.curEmailToSendScroll = $rootScope.email;
+			
+			
+			$("#myModalScroll").modal();
+		};	
+		
+		
+//		setTimeout(function(){
+
+
+
+//		setTimeout(function(){
+//			init();
+//		}, 1000);
 
 		ctrl.goToLastScroll = function (isToGoToLastScroll) {
 
@@ -87,17 +101,22 @@ var myModalReadBody;
 			
 			$rootScope.curPage = ctrl.curReadEbookPath;
 
-			setTimeout(function(){
+//			setTimeout(function(){
 
-			var bodyId = document.getElementById('body');
 
 			if (isToGoToLastScroll) {
 				console.log("scroll : " + curScroll);
-				body.scrollTop = curScroll;
-				window.curBookIdToSendScroll = $rootScope.curEbookIdd.bookId;
-				window.curEmailToSendScroll = $rootScope.email;
+				setTimeout(function() {
+					
+					var bodyId = document.getElementById('bookContent');
+					body.scrollTop = curScroll;
+					console.log("body.scrollTop : " + body.scrollTop);
 
-				console.log("yes");
+
+					console.log("yes");					
+					
+				}, 1000);
+
 			}
 			else {
 				console.log("no");	
@@ -111,7 +130,7 @@ var myModalReadBody;
 //			});
 
 
-			}, 1000);
+//			}, 1000);
 
 
 

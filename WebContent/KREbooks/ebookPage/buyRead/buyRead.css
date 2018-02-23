@@ -1,12 +1,21 @@
-.buy-read {
+
+
+.buy-read  {
+	padding: 0;
+	margin: 0;
+}
+/*
+.buy-read * {
+	padding: 0;
+	margin: 0;
 }
 
-
+*/
 .btn-info{
 	padding: 10px;
 }
 
-.modal {
+/*.modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -74,4 +83,4 @@
   left: 0;
   height: 60px;
   padding: 10px;
-}
+} */

@@ -1,46 +1,72 @@
 
-  <link rel="stylesheet" href="likesList/likesList.css">
-  
+<link rel="stylesheet" href="likesList/likesList.css">
 
-<div class="">
-<div class='col-xs-12 col-sm-2'>
+    <script>
+        var myName=["avichai","raz","mama"]
+        function a() {
+            for (i = 0; i < myName.length; i++) {
+                document.getElementById("myTool").innerHTML += myName[i]+"<br/>";
+            }
 
-  <button type="button" class="btn btn-default btn-sm" >
-      <!-- <li><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">Top</a></li> -->
-      <span data-toggle="modal" data-target="#myModal">
-      <span class="glyphicon glyphicon-thumbs-up" data-toggle="tooltip" data-placement="top" title={{$ctrl.usersListHtml}} ng-click='$ctrl.getLikesList()' >Likes</span>  </span>
-    </button>
+        }
+    </script>
 
-  <!--   <script>
+
+
+		<button type="button" class="tooltipp btn-likes-list btn btn-default btn-lg"><span data-toggle="modal" data-target="#myModal"  data-toggle="tooltip" 
+					data-placement="top" title={{$ctrl.usersListHtml}}
+							ng-click='$ctrl.getLikesList()'>
+								<img src="resources/glyphicons-344-thumbs-up.jpg">Likes
+			</span>
+
+		    <div id="myTool" ng-repeat="user in $ctrl.userNamesList"  class=" tooltipptext" >
+        			<a ng-click="$ctrl.clickedAName(user)">{{user}}</a>
+        			
+			    </div>
+
+
+		</button>
+		
+
+		
+		
+			<!-- <li><a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">Top</a></li> -->
+
+		<!--   <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
         });
         </script>  -->
 
-  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"></button> -->
+		<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"></button> -->
 
-  <!-- Modal -->
-  <div class="modal " id="myModalLikes" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-          <p ng-repeat="userName in $ctrl.userNamesList"> {{userName}} </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-</div>
+
+
+
+
+
+
+
+		<!-- Modal -->
+		<div class="modal " id="myModalLikes" role="dialog">
+			<div class="modal-dialog modal-sm">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Modal Headerr</h4>
+					</div>
+					<div class="modal-body">
+						<p>Some text in the modal.</p>
+						<p ng-repeat="userName in $ctrl.userNamesList">{{userName}}</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
 

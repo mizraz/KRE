@@ -2,117 +2,56 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-  <head>  <link rel="coverpage" href="images/cover.jpg" />
+  <head>  <link rel="coverpage" href="gutenberg/images/56260/cover.jpg" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>
   The Project Gutenberg eBook of Through Spain To The Sahara, by Matilda Betham Edwards.
 </title>
-<style type="text/css">
- p {margin-top:.2em;text-align:justify;margin-bottom:.2em;text-indent:4%;}
 
-.c {text-align:center;text-indent:0%;}
 
-.cb {text-align:center;text-indent:0%;font-weight:bold;}
+<script>
 
-.hang {text-indent:-2%;margin-left:2%;}
+$.fn.scrollEnd = function(callback, timeout) {          
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
 
-.lftspc {margin-left:.25em;}
+// how to call it (with a 1000ms timeout):
+$(window).scrollEnd(function(){
+	
+	
+		var bookContent = document.getElementById('bookContent');	
+	console.log(bookContent);
+	if(bookContent != undefined) {
+	console.log("window.curBookIdToSendScroll: " + window.curBookIdToSendScroll);
+		var scrolJSON = {
+				scroll: body.scrollTop,
+				bookId: window.curBookIdToSendScroll,
+				email: window.curEmailToSendScroll
+		}	
+		var xmlhttpDelClient = new XMLHttpRequest();
+		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+		xmlhttpDelClient.onreadystatechange = function () {
+			/* NOTHING DONE IN HERE*/
+		};
+		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+	}
+	
+	
+}, 1000);
 
-.drop {font-size:250%;float:left;margin-top:-.251%;}
- @media print, handheld
- { .drop
- {font-size:250%;margin:auto auto;padding:0%;}
- }
-
-.red {color:#7A322B;}
-
-.nind {text-indent:0%;}
-
-.rt {text-align:right;}
-
-small {font-size: 70%;}
-
-big {font-size: 130%;}
-
- h1 {margin-top:5%;text-align:center;clear:both;}
-
- h2 {margin-top:4%;margin-bottom:2%;text-align:center;clear:both;
- font-size:120%;}
-
- hr {width:90%;margin:2em auto 2em auto;clear:both;color:black;}
-
- hr.full {width: 60%;margin:2% auto 2% auto;border-top:1px solid black;
-padding:.1em;border-bottom:1px solid black;border-left:none;border-right:none;}
-
- table {margin:2em 5em;border:none;}
- @media print, handheld
-{table {margin:2em 1em;}
-}
-
-th {padding-top:.5em;padding-bottom:.25em;}
-
-td {font-size:80%;}
-
- body{margin-left:4%;margin-right:6%;background:#ffffff;color:black;font-family:"Times New Roman", serif;font-size:medium;}
-
-a:link {background-color:#ffffff;color:blue;text-decoration:none;}
-
-  link {background-color:#ffffff;color:blue;text-decoration:none;}
-
-a:visited {background-color:#ffffff;color:purple;text-decoration:none;}
-
-a:hover {background-color:#ffffff;color:#FF0000;text-decoration:underline;}
-
-.smcap  {font-variant:small-caps;font-size:100%;}
-
- img {border:none;}
-
-.blockquot {margin-top:2%;margin-bottom:2%;}
-.blockquot p{text-indent:-2%;margin-left:2%;
-font-size:70%;}
-
-.bbox     {border:solid 2px black;margin:auto auto;padding:.5em;}
-.bboxr     {border:solid 3px #7A322B;padding:.5em;
-max-width:25em;margin:auto auto;}
-
-.caption  {font-weight:bold;font-size:70%;}
-
-.figcenter   {margin-top:3%;margin-bottom:3%;clear:both;
-margin-left:auto;margin-right:auto;text-align:center;text-indent:0%;}
- @media handheld, print
- {.figcenter
- {page-break-before: avoid;}
- }
-
-.footnotes  {border:dotted 3px gray;margin-top:5%;clear:both;}
-
-.footnote   {width:95%;margin:auto 3% 1% auto;font-size:0.9em;position:relative;}
-
-.label  {position:relative;left:-.5em;top:0;text-align:left;font-size:.8em;}
-
-.fnanchor   {vertical-align:30%;font-size:.8em;}
-
-div.poetry {text-align:center;}
-div.poem {font-size:90%;margin:auto auto;text-indent:0%;
-display: inline-block; text-align: left;}
-.poem .stanza     {margin-top: 1em;margin-bottom:1em;}
-.poem span.i0     {display: block; margin-left: 0em; padding-left: 3em; text-indent: -3em;}
-.poem span.i1     {display: block; margin-left: .45em; padding-left: 3em; text-indent: -3em;}
-.poem span.i6     {display: block; margin-left: 4em; padding-left: 3em; text-indent: -3em;}
-
-.pagenum  {font-style:normal;position:absolute;
-left:95%;font-size:55%;text-align:right;color:gray;
-background-color:#ffffff;font-variant:normal;font-style:normal;font-weight:normal;text-decoration:none;text-indent:0em;}
-@media print, handheld
-{.pagenum
- {display: none;}
- }
-</style>
+</script>
+  
   </head>
 <body>
 
 
-<pre>
+<pre id="bookContent">
 
 Project Gutenberg's Through Spain to the Sahara, by Matilda Betham-Edwards
 
@@ -152,29 +91,29 @@ available by The Internet Archive/American Libraries.)
 <hr class="full" />
 
 <div class="figcenter">
-<a href="images/cover_lg.jpg">
-<img src="images/cover.jpg" width="308" height="500" alt="[Image
+<a href="gutenberg/images/56260/cover_lg.jpg">
+<img src="gutenberg/images/56260/cover.jpg" width="308" height="500" alt="[Image
 of the book's cover unavailable.]"/></a>
 </div>
 
 <div class="figcenter">
-<img src="images/i_a_001a.jpg" width="450" alt="text decoration" />
+<img src="gutenberg/images/56260/i_a_001a.jpg" width="450" alt="text decoration" />
 </div>
 
 <p class="cb">THROUGH SPAIN TO THE SAHARA.</p>
 
 <div class="figcenter">
-<img src="images/through.jpg" width="500" alt="THROUGH
+<img src="gutenberg/images/56260/through.jpg" width="500" alt="THROUGH
 SPAIN TO THE SAHARA" />
 </div>
 
 <div class="figcenter">
-<img src="images/i_a_001b.jpg" width="250" alt="text decoration" />
+<img src="gutenberg/images/56260/i_a_001b.jpg" width="250" alt="text decoration" />
 </div>
 
 <div class="figcenter">
-<a href="images/i_frontis_lg.jpg">
-<img src="images/i_frontis.jpg" height="500" alt="THE ALHAMBRA. FROM AN ORIGINAL PHOTOGRAPH." /></a>
+<a href="gutenberg/images/56260/i_frontis_lg.jpg">
+<img src="gutenberg/images/56260/i_frontis.jpg" height="500" alt="THE ALHAMBRA. FROM AN ORIGINAL PHOTOGRAPH." /></a>
 <br />
 <span class="caption">THE ALHAMBRA. FROM AN ORIGINAL PHOTOGRAPH.</span>
 </div>
@@ -189,7 +128,7 @@ SPAIN TO THE SAHARA" />
 <small>T H E &nbsp; S A H A R A.</small></h1>
 
 <p class="c">
-<img src="images/colophon.jpg"
+<img src="gutenberg/images/56260/colophon.jpg"
 width="275"
 alt="" />
 <br />
@@ -213,10 +152,10 @@ LONDON:<br />
 </p>
 
 <div class="figcenter">
-<img src="images/i_a_005.jpg" width="450" height="99" alt="text decoration" title="" />
+<img src="gutenberg/images/56260/i_a_005.jpg" width="450" height="99" alt="text decoration" title="" />
 </div>
 
-<h2><a name="CONTENTS" id="CONTENTS"></a><img src="images/contents.jpg"
+<h2><a name="CONTENTS" id="CONTENTS"></a><img src="gutenberg/images/56260/contents.jpg"
 width="175"
 alt="CONTENTS."
 /></h2>
@@ -331,13 +270,13 @@ OPINIONS ON THE ARABS&mdash;WILD BIRDS&mdash;THE EARTHQUAKE</td><td class="rt" v
 </table>
 
 <div class="figcenter" style="width: 153px;">
-<img src="images/i_a_008.jpg" width="153" alt="" />
+<img src="gutenberg/images/56260/i_a_008.jpg" width="153" alt="" />
 </div>
 
 <p><span class="pagenum"><a name="page_001" id="page_001"></a>{1}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_001.jpg" width="450" height="103" alt="" />
+<img src="gutenberg/images/56260/i_b_001.jpg" width="450" height="103" alt="" />
 </div>
 
 <h2><a name="CHAPTER_I" id="CHAPTER_I"></a>CHAPTER I.</h2>
@@ -346,7 +285,7 @@ OPINIONS ON THE ARABS&mdash;WILD BIRDS&mdash;THE EARTHQUAKE</td><td class="rt" v
 FRENCH PARSONAGE.&mdash;THROUGH THE LANDES.&mdash;THE SOPORIFIC EFFECTS OF
 ARCACHON.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/io.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/io.jpg"
 width="70"
 alt="O" /></span>N a golden autumn afternoon we found ourselves in the old city of
 Tours, bound for Spain and the enchanted lands lying north of the Great
@@ -737,14 +676,14 @@ nowhere else in the world, it would be quite possible to become
 oblivious of every care and responsibility under the sun!</p>
 
 <div class="figcenter" style="width: 193px;">
-<img src="images/i_b_023.jpg" width="193" height="66" alt="" />
+<img src="gutenberg/images/56260/i_b_023.jpg" width="193" height="66" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_024" id="page_024"></a>{24}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_024.jpg" width="450" height="97" alt="" />
+<img src="gutenberg/images/56260/i_b_024.jpg" width="450" height="97" alt="" />
 
 </div>
 
@@ -754,7 +693,7 @@ oblivious of every care and responsibility under the sun!</p>
 TRAVELLING.&mdash;OUR LIBRARY.&mdash;FROM THE TROPICS TO THE
 STEPPES.&mdash;GREGORIA AND ISIDORA.&mdash;JOURNEY TO MADRID.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/id.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/id.jpg"
 width="70"
 alt="“D" /></span>OS billetes de primera clase para Burgos?” (Two first-class tickets to
 Burgos) with astonishment repeated the young woman acting as collector
@@ -1055,13 +994,13 @@ undulating table-lands, a weird, fiery, unimagined splendour not to be
 put into any words!</p>
 
 <div class="figcenter" style="width: 151px;">
-<img src="images/i_b_040.jpg" width="151" height="70" alt="" />
+<img src="gutenberg/images/56260/i_b_040.jpg" width="151" height="70" alt="" />
 </div>
 
 <p><span class="pagenum"><a name="page_041" id="page_041"></a>{41}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_041.jpg" width="450" height="97" alt="" />
+<img src="gutenberg/images/56260/i_b_041.jpg" width="450" height="97" alt="" />
 
 </div>
 
@@ -1071,7 +1010,7 @@ put into any words!</p>
 THERE.&mdash;THE QUEEN AND THE ROYAL BIRTHDAY.&mdash;ROADS AND
 RIVER-BANKS.&mdash;APROPOS OF BULLS.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/it.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/it.jpg"
 width="70"
 alt="T" /></span>HERE is no more stir at the railway-station of Madrid than at that of
 Tunbridge Wells or Chelmsford; and as you rattle along the quiet
@@ -1430,14 +1369,14 @@ prejudiced observer.</p>
 annals are so stained with blood and tears?</p>
 
 <div class="figcenter" style="width: 175px;">
-<img src="images/i_b_062.jpg" width="175" height="163" alt="" />
+<img src="gutenberg/images/56260/i_b_062.jpg" width="175" height="163" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_063" id="page_063"></a>{63}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_063.jpg" width="450" height="101" alt="" />
+<img src="gutenberg/images/56260/i_b_063.jpg" width="450" height="101" alt="" />
 
 </div>
 
@@ -1448,7 +1387,7 @@ ANGELS.&mdash;RIBERA, THE PAINTER OF INQUISITORS.&mdash;ZURBARAN, THE PAINTER
 OF MONKS.&mdash;GOZA, THE HOFFMAN OF SPANISH ART.&mdash;THE QUIETUDE OF THE
 GALLERIES.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/iw.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/iw.jpg"
 width="70"
 alt="W" /></span>E had come ostensibly to Madrid to see the works of Velasquez, and we
 carried out our intention, not glancing at, but really looking into and
@@ -1763,14 +1702,14 @@ but refreshed and invigorated with a calm intellectual enjoyment that is
 as good and simple as it is deep and lasting.</p>
 
 <div class="figcenter" style="width: 188px;">
-<img src="images/i_b_080.jpg" width="188" height="59" alt="" />
+<img src="gutenberg/images/56260/i_b_080.jpg" width="188" height="59" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_081" id="page_081"></a>{81}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_081.jpg" width="450" height="96" alt="" />
+<img src="gutenberg/images/56260/i_b_081.jpg" width="450" height="96" alt="" />
 
 </div>
 
@@ -1780,7 +1719,7 @@ as good and simple as it is deep and lasting.</p>
 REMAINS.&mdash;COMMENTARIES ON STREET’S GOTHIC ARCHITECTURE, AND ON
 TOLEDAN LANDLORDS.&mdash;TILES, AND A DISCOURSE THEREON.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/it.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/it.jpg"
 width="70"
 alt="T" /></span>HE railway journey from Madrid to Toledo is easy enough, occupying
 about eight hours. Time is given for refreshment on the way, and you are
@@ -2255,14 +2194,14 @@ dangerous. We took refuge, as usual, in our soft, clean beds, and, by
 dint of rugs and wraps, contrived to get warm at last.</p>
 
 <div class="figcenter" style="width: 185px;">
-<img src="images/i_b_107.jpg" width="185" height="149" alt="" />
+<img src="gutenberg/images/56260/i_b_107.jpg" width="185" height="149" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_108" id="page_108"></a>{108}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_108.jpg" width="450" height="99" alt="" />
+<img src="gutenberg/images/56260/i_b_108.jpg" width="450" height="99" alt="" />
 
 </div>
 
@@ -2271,7 +2210,7 @@ dint of rugs and wraps, contrived to get warm at last.</p>
 <div class="blockquot"><p>A MIDNIGHT HALT.&mdash;ITS CHARMS AND COUNTER-CHARMS.&mdash;DON QUIXOTE’S
 COUNTRY.&mdash;THE SLEEP AT CORDOVA.&mdash;THE WAKE IN THE EAST.&mdash;SHOPPING.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/ii.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/ii.jpg"
 width="70"
 alt="I" /></span>T was with real regret we left Toledo, as one leaves some rare old
 book, only glanced at, but enticing months’ study. Notwithstanding the
@@ -2743,14 +2682,14 @@ especially in the beautiful autumn, when all kinds of glories are cast
 about hill, and tower, and river.</p>
 
 <div class="figcenter" style="width: 156px;">
-<img src="images/i_b_133.jpg" width="156" height="216" alt="" />
+<img src="gutenberg/images/56260/i_b_133.jpg" width="156" height="216" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_134" id="page_134"></a>{134}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_134.jpg" width="450" height="96" alt="" />
+<img src="gutenberg/images/56260/i_b_134.jpg" width="450" height="96" alt="" />
 
 </div>
 
@@ -2760,7 +2699,7 @@ about hill, and tower, and river.</p>
 THAT CAIN BUILT.&mdash;PALMS.&mdash;THE GOOD WORKS OF THE SISTERS.&mdash;THE
 PRIESTS AND THE PEOPLE.&mdash;IS SPAIN UTOPIA?</p></div>
 
-<p class="nind"><span class="drop"><img src="images/it.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/it.jpg"
 width="70"
 alt="T" /></span>HE journey from Cordova to Malaga lasts from six in the morning till
 five in the afternoon. You are, of course, aroused at four and carried
@@ -3174,7 +3113,7 @@ Utopia myself, but when tested by stern facts, it all melts away like a
 dream.</i>”<span class="pagenum"><a name="page_158" id="page_158"></a>{158}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_158.jpg" width="450" height="91" alt="" />
+<img src="gutenberg/images/56260/i_b_158.jpg" width="450" height="91" alt="" />
 
 </div>
 
@@ -3184,7 +3123,7 @@ dream.</i>”<span class="pagenum"><a name="page_158" id="page_158"></a>{158}</s
 FISH.&mdash;SENOR BENSAKEN SPEAKS HIS MIND, AND WE ARE
 REPROVED.&mdash;RUNNING WATERS.&mdash;HOWLINGS OF TARSHISH.&mdash;PEPA’S FAMILY.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/iw.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/iw.jpg"
 width="70"
 alt="W" /></span>E had another amusing instance of Spanish <i>nonchalance</i> at Malaga. The
 original plan of our journey was this:&mdash;to see the galleries of Madrid,
@@ -3496,14 +3435,14 @@ is over, there is no more regard shown for the dead than for the
 slaughtered horse at a bull-fight. It is horrible.</p>
 
 <div class="figcenter" style="width: 111px;">
-<img src="images/i_b_174.jpg" width="111" height="63" alt="" />
+<img src="gutenberg/images/56260/i_b_174.jpg" width="111" height="63" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_175" id="page_175"></a>{175}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_175.jpg" width="450" height="96" alt="" />
+<img src="gutenberg/images/56260/i_b_175.jpg" width="450" height="96" alt="" />
 
 </div>
 
@@ -3513,7 +3452,7 @@ slaughtered horse at a bull-fight. It is horrible.</p>
 WITHIN.&mdash;“CIELED WITH CEDAR, AND PAINTED WITH VERMILION.”&mdash;AZULEJOS
 AND ARTESONADOS.&mdash;MR. OWEN JONES’ HANDBOOK.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/it.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/it.jpg"
 width="70"
 alt="T" /></span>HERE is no place in the world like the Alhambra, so graceful, so
 perfect, so sad. No words can describe it, no pencil can portray it; it
@@ -3717,14 +3656,14 @@ useless. <i>Vidi tantum!</i> Having seen the Alhambra, one seems to have seen
 everything.</p>
 
 <div class="figcenter" style="width: 238px;">
-<img src="images/i_b_186.jpg" width="238" height="61" alt="" />
+<img src="gutenberg/images/56260/i_b_186.jpg" width="238" height="61" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_187" id="page_187"></a>{187}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_187.jpg" width="450" height="98" alt="" />
+<img src="gutenberg/images/56260/i_b_187.jpg" width="450" height="98" alt="" />
 
 </div>
 
@@ -3734,7 +3673,7 @@ everything.</p>
 GO DOWN TO THE POTTER’S HOUSE.&mdash;A FAMILY DANCE.&mdash;AN AWFUL
 DISCOVERY.&mdash;A BOOKSELLER OF TARSHISH.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/ii.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/ii.jpg"
 width="70"
 alt="I" /></span> HEARD two horrid stories at Granada, which I would not repeat except
 that I feel some of their truth. We were walking in the town one day,
@@ -4138,14 +4077,14 @@ flesh, I mean to thank her for the pleasure she gave us in a bookless
 “city of Tarshish.”</p>
 
 <div class="figcenter" style="width: 157px;">
-<img src="images/i_b_208.jpg" width="157" height="21" alt="" />
+<img src="gutenberg/images/56260/i_b_208.jpg" width="157" height="21" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_209" id="page_209"></a>{209}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_209.jpg" width="450" height="90" alt="" />
+<img src="gutenberg/images/56260/i_b_209.jpg" width="450" height="90" alt="" />
 
 </div>
 
@@ -4154,7 +4093,7 @@ flesh, I mean to thank her for the pleasure she gave us in a bookless
 <div class="blockquot"><p>THE ARCHBISHOP BLESSES THE ENGINE, AND WE HELP HIM.&mdash;DELIGHTFUL
 LOJA.&mdash;A FUNNY DINNER.&mdash;STARLIGHT, TWILIGHT, MORNING.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/iw.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/iw.jpg"
 width="70"
 alt="W" /></span>E “had heard, but not believed,” that the line of railway between
 Granada and Malaga, as far as Loja, was to be opened on or about the day
@@ -4370,14 +4309,14 @@ sunrise over the many-coloured hills, as if of altar fires raised to the
 Power that had created them.</p>
 
 <div class="figcenter" style="width: 216px;">
-<img src="images/i_b_221.jpg" width="216" height="128" alt="" />
+<img src="gutenberg/images/56260/i_b_221.jpg" width="216" height="128" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_222" id="page_222"></a>{222}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_222.jpg" width="450" height="100" alt="" />
+<img src="gutenberg/images/56260/i_b_222.jpg" width="450" height="100" alt="" />
 
 </div>
 
@@ -4387,7 +4326,7 @@ Power that had created them.</p>
 THE LEAN ENGLISHMAN.&mdash;A RED-LETTER DAY AT GIBRALTAR.&mdash;THE
 LIGHTS.&mdash;ADIEU TO EUROPE.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/ia.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/ia.jpg"
 width="70"
 alt="A" /></span>LL the old difficulties about boats recommenced at Malaga; and, much as
 we disliked the place, which seemed to have grown dustier and fishier
@@ -4702,14 +4641,14 @@ those shining fields above and below, we had happy auspices for our
 onward journey.</p>
 
 <div class="figcenter" style="width: 196px;">
-<img src="images/i_b_238.jpg" width="196" height="65" alt="" />
+<img src="gutenberg/images/56260/i_b_238.jpg" width="196" height="65" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_239" id="page_239"></a>{239}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_239.jpg" width="450" height="104" alt="" />
+<img src="gutenberg/images/56260/i_b_239.jpg" width="450" height="104" alt="" />
 
 </div>
 
@@ -4718,7 +4657,7 @@ onward journey.</p>
 <div class="blockquot"><p class="c">A BRIDAL PARTY.&mdash;HORRIBLE STORIES.&mdash;A LONG DAY.&mdash;THE CAID AND THE
 DRIVER.&mdash;A NEW ATMOSPHERE.&mdash;TCLEMCEN.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/iw.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/iw.jpg"
 width="70"
 alt="W" /></span>E had originally intended to take tickets for Oran, but finding that
 the <i>Spahis</i>, if weather permitting, stopped at a little town called
@@ -4975,14 +4914,14 @@ rooms and Algerian fare, and gracious Algerian courtesy. We could
 willingly have stayed at Tclemcen for months.</p>
 
 <div class="figcenter" style="width: 196px;">
-<img src="images/i_b_252.jpg" width="196" height="69" alt="" />
+<img src="gutenberg/images/56260/i_b_252.jpg" width="196" height="69" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_253" id="page_253"></a>{253}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_253.jpg" width="450" height="96" alt="" />
+<img src="gutenberg/images/56260/i_b_253.jpg" width="450" height="96" alt="" />
 
 </div>
 
@@ -4991,7 +4930,7 @@ willingly have stayed at Tclemcen for months.</p>
 <div class="blockquot"><p>TCLEMCEN.&mdash;THE GRANADA OF THE WEST.&mdash;ARAB POETS.&mdash;CHILDREN.&mdash;THE
 MOKBARA.&mdash;MANSOURA.&mdash;PHILO-ARABES.&mdash;TEMPTATIONS TO TCLEMCEN.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/ia.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/ia.jpg"
 width="70"
 alt="A" /></span>T Tclemcen, we found ourselves in a second and hardly less beautiful
 Granada&mdash;a Granada moreover peopled with those who had made it what it
@@ -5297,14 +5236,14 @@ romantic, isolated Eastern life, none of the material comforts of modern
 civilization are missing.</p>
 
 <div class="figcenter" style="width: 188px;">
-<img src="images/i_b_269.jpg" width="188" height="64" alt="" />
+<img src="gutenberg/images/56260/i_b_269.jpg" width="188" height="64" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_270" id="page_270"></a>{270}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_270.jpg" width="450" height="100" alt="" />
+<img src="gutenberg/images/56260/i_b_270.jpg" width="450" height="100" alt="" />
 
 </div>
 
@@ -5314,7 +5253,7 @@ civilization are missing.</p>
 PHALANSTERIANS.&mdash;BARRAGES.&mdash;THE MALARIA.&mdash;ABD-EL-KADER’S
 MOSQUE.&mdash;SAÏDA.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/is.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/is.jpg"
 width="70"
 alt="S" /></span>ORRY enough were we to leave beautiful Tclemcen, and the many friendly
 faces that had made the place so homelike to us; but at the end of a
@@ -5630,14 +5569,14 @@ that threatened their little all.</p>
 <p>We reached Saïda in good time that afternoon.</p>
 
 <div class="figcenter" style="width: 145px;">
-<img src="images/i_b_286.jpg" width="145" height="108" alt="" />
+<img src="gutenberg/images/56260/i_b_286.jpg" width="145" height="108" alt="" />
 
 </div>
 
 <p><span class="pagenum"><a name="page_287" id="page_287"></a>{287}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_287.jpg" width="450" height="92" alt="" />
+<img src="gutenberg/images/56260/i_b_287.jpg" width="450" height="92" alt="" />
 
 </div>
 
@@ -5647,7 +5586,7 @@ that threatened their little all.</p>
 GEESE.&mdash;OUR SPAHIS, AND THE CARE THEY TAKE OF US.&mdash;A NORMANDY
 APPLE-ORCHARD IN AFRICA.&mdash;NEW YEAR’S DAY.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/is.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/is.jpg"
 width="70"
 alt="S" /></span>OME authorities declare Saïda to be an oasis in the Little Desert, some
 declare it to be an oasis in the Great Desert, others declare it to be
@@ -5794,7 +5733,7 @@ sheep, which were marvellously transformed in the yellow light, their
 fleeces looking like bosses of bright, orange colour. Whilst resting
 thus, a<span class="pagenum"><a name="page_295" id="page_295"></a>{295}</span> serried line of wild geese slowly flew towards us, keeping a
 line like the German letter
-<img src="images/ltr.png"
+<img src="gutenberg/images/56260/ltr.png"
 width="40"
 style="vertical-align:middle;"
 alt="[image of sript L unavailable.]"
@@ -5977,7 +5916,7 @@ were getting drowsy, came a loud rat-tat-tat at our doors and the noise
 of Arab porters crying out, “La Diligence! La Diligence!”<span class="pagenum"><a name="page_304" id="page_304"></a>{304}</span></p>
 
 <div class="figcenter" style="width: 450px;">
-<img src="images/i_b_304.jpg" width="450" height="102" alt="" />
+<img src="gutenberg/images/56260/i_b_304.jpg" width="450" height="102" alt="" />
 
 </div>
 
@@ -5986,7 +5925,7 @@ of Arab porters crying out, “La Diligence! La Diligence!”<span class="pagenu
 <div class="blockquot"><p class="c">RAIN.&mdash;AN ENGLISH LADY’S OPINION ON THE ARABS.&mdash;WILD BIRDS.&mdash;THE
 EARTHQUAKE.</p></div>
 
-<p class="nind"><span class="drop"><img src="images/ia.jpg"
+<p class="nind"><span class="drop"><img src="gutenberg/images/56260/ia.jpg"
 width="70"
 alt="A" /></span>ND the blessed rain came. We had heard it pattering and plashing
 between our dreams, and, when we came out into the open air, it was
@@ -6231,7 +6170,7 @@ and pleasant faces, and bring home from Spain and Oran as many happy
 memories as we did.</p>
 
 <div class="figcenter" style="width: 266px;">
-<img src="images/i_b_317.jpg" width="266" height="147" alt="" />
+<img src="gutenberg/images/56260/i_b_317.jpg" width="266" height="147" alt="" />
 
 </div>
 

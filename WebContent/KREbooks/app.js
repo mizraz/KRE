@@ -13,23 +13,23 @@
 
 //};
 
-window.onbeforeunload = function () {
-	var bookContent = document.getElementById('bookContent');	
-	console.log(bookContent);
-	if(bookContent != undefined) {
-		var scrolJSON = {
-				scroll: body.scrollTop,
-				bookId: window.curBookIdToSendScroll,
-				email: window.curEmailToSendScroll
-		}	
-		var xmlhttpDelClient = new XMLHttpRequest();
-		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
-		xmlhttpDelClient.onreadystatechange = function () {
-			/* NOTHING DONE IN HERE*/
-		};
-		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
-	}
-};
+//window.onbeforeunload = function () {
+//	var bookContent = document.getElementById('bookContent');	
+//	console.log(bookContent);
+//	if(bookContent != undefined) {
+//		var scrolJSON = {
+//				scroll: body.scrollTop,
+//				bookId: window.curBookIdToSendScroll,
+//				email: window.curEmailToSendScroll
+//		}	
+//		var xmlhttpDelClient = new XMLHttpRequest();
+//		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+//		xmlhttpDelClient.onreadystatechange = function () {
+//			/* NOTHING DONE IN HERE*/
+//		};
+//		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+//	}
+//};
 
 
 (function(angular) {

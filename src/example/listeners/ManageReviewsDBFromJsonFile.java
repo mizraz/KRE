@@ -72,6 +72,19 @@ public class ManageReviewsDBFromJsonFile implements ServletContextListener {
     		boolean created = false;
     		try{
     			
+    			
+    			
+//    			System.out.println(DBQueries.DROP_REVIEWS_TABLE_CONSTRAINT_PK);
+//    			Statement stmt6 = conn.createStatement();
+//    			stmt6.executeUpdate(DBQueries.DROP_REVIEWS_TABLE_CONSTRAINT_PK);    			
+//
+//    			Statement stmt4 = conn.createStatement();
+//    			stmt4.executeUpdate(DBQueries.DROP_REVIEWS_TABLE_CONSTRAINT_EMAIL);
+//    			Statement stmt5 = conn.createStatement();
+//    			stmt5.executeUpdate(DBQueries.DROP_EBOOKS_TABLE_CONSTRAINT_EBOOK_ID);
+    			
+    			
+    			
     			Statement stmt3 = conn.createStatement();
     			stmt3.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
     			

@@ -6,6 +6,31 @@
 		ctrl.editMode = false;
 
 		ctrl.userName = $rootScope.userName;
+		
+		
+		this.$onInit = function() {
+			
+			setTimeout(function(){
+				
+				console.log("$rootScope.isCurEbookReviewed: "+ $rootScope.isCurEbookReviewed);
+				
+			}, 3000);
+			
+			
+		};
+		
+		setTimeout(function(){
+			
+			console.log($rootScope.ebooksDict["ebook" + ctrl.ebookId]);
+			
+		}, 3000);
+		
+		
+		
+		
+		
+		
+		
 		ctrl.submitReview = function() {
 			console.log("clicked;");
 			console.log(ctrl.userr);
@@ -47,15 +72,15 @@
 		};
 
 
-		makeGrowable(document.querySelector('.ta-message-container'));
-
-		function makeGrowable(container) {
-			var area = container.querySelector('textarea');
-			var clone = container.querySelector('span');
-			area.addEventListener('input', function (e) {
-				clone.textContent = area.value + '\n';
-			});
-		}
+//		makeGrowable(document.querySelector('.ta-message-container'));
+//
+//		function makeGrowable(container) {
+//			var area = container.querySelector('textarea');
+//			var clone = container.querySelector('span');
+//			area.addEventListener('input', function (e) {
+//				clone.textContent = area.value + '\n';
+//			});
+//		}
 
 	};
 
