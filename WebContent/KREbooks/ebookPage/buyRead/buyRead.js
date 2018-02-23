@@ -137,8 +137,7 @@ var myModalReadBody;
 //			myModalReadBody.scrollTop = 1700;
 
 		};
-
-
+		
 		ctrl.submitLike = function() {
 			console.log("clicked like;");
 
@@ -169,6 +168,16 @@ var myModalReadBody;
 				$scope.result = $scope.records;//this variable will hold the search results
 			});
 		};
+		
+		
+		//ctrl.function_to_open_modal_or_page_with_buy_form = function(/* some params if needed (book id etc) if has params, should send them from the html*/) {
+			//TODO: implement what happen when user click 'buy' button.
+//			possible to open modal: like this '
+//			$("#myModalScroll").modal();' and do some other logic
+		//};
+		
+		
+		
 
 
 	};

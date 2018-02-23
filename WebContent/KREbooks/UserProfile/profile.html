@@ -1,32 +1,24 @@
- <!-- <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- -->
 
 
 
-
-
-
+<!DOCTYPE html>
+<html>
 <head>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<!--<link rel="stylesheet" href="userDetails/userDetails.css">-->
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
 	<script type="text/javascript" src="angular.min.js"></script>
-    <script type="text/javascript" src="udetailsAndularHandler.js"></script>
-
+	<script  src="functions.js"></script>
 	
 	<meta charset="UTF-8">
-	<title>User Profile</title>	
+	<title>Register</title>	
 </head>
 <body id="registration">
 	<script type="text/javascript" src="jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
+    <script type="text/javascript" src="angularRegister.js"></script>
 	<div class="container ng-scope" ng-app="RegLogic" ng-controller="Ctrl">
       <form class="form-inline" method="post">
-        <h3 class="form-heading">User Details</h3>
+        <h3 class="form-heading">Registration</h3>
         <div class="form-group">
         	<label for="name">Name: </label>
         	<input type="text" class="form-control" placeholder="Name" id="name" maxlength="10" required ng-model="name">
@@ -37,7 +29,7 @@
   		</div>
         <div class="form-group">
         	<label for="nick">Nickname: </label>
-        	<input type="text" class="form-control" value = {{name1}} placeholder="Nickname" id="nick" maxlength="20" required ng-model="nick">
+        	<input type="text" class="form-control" placeholder="Nickname" id="nick" maxlength="20" required ng-model="nick">
         </div><br>
         <div class="form-group">
         	<label for="pwd">Password: </label>
@@ -45,16 +37,22 @@
         	<div class="form-group" id="out"></div>
         </div><br>
 
-
-
+        	 <div class="alert alert-danger" id="alert1">
+    			<a href="#" class="close" onclick="$('#alert1').hide()">&times;</a>
+    			<strong>{{error}}</strong>{{errormsg}}
+  			</div>
+  			<div class="alert alert-danger" id="alert3">
+    			<a href="#" class="close" onclick="$('#alert3').hide()">&times;</a>
+    			<strong>{{error}}</strong>{{errormsg3}}
+  			</div>
         <br>
         <div class="form-group">
         	<label for="desc">Description: </label>
-        	<textarea maxlength="300" rows="4" cols="50"  class="form-control" id="desc" ng-model="desc"></textarea>
+        	<textarea maxlength="300" rows="4" cols="50" class="form-control" id="desc" ng-model="desc"></textarea>
         </div><br>
 		<div class="form-group">
         	<label for="email">Email: </label>
-        	<input type="email" value = {{email}} class="form-control" placeholder="Email" id="email" ng-model="email" required>
+        	<input type="email" class="form-control" placeholder="Email" id="email" ng-model="email" required>
         </div><br>
 		<div class="form-group">
         	<label for="email">Phone Number: </label>
@@ -63,8 +61,8 @@
         </div><br>
 			
 		<div class="form-group">
-			<label for="country">Country: </label>
-        	<input type="text" name="country" onkeypress="focusCountry()" class="form-control" id="country"  ng-model="country" required>
+			<label for="cntry">Country: </label>
+        	<input type="text" name="country" onkeypress="focusCountry()" class="form-control" id="cntr"  ng-model="country" required>
 			</div>
 			<div class="form-group" id="outc"></div><br>
 		<div class="form-group">	
@@ -95,3 +93,5 @@
         <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click='Update()'>Update</button>
       </form>
     </div>
+</body>
+</html>

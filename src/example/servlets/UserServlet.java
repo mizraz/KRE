@@ -74,8 +74,8 @@ public class UserServlet extends HttpServlet {
 				ResultSet rs = stmt.executeQuery(DBQueries.SELECT_ALL_USERS);
 				while (rs.next()){
 
-					usersResult.add(new User(rs.getString(1),rs.getString(2),rs.getString(3),
-							rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7))); 
+					usersResult.add(new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
+							rs.getString(5), rs.getString(6), rs.getString(7))); 
 					System.out.println("name of: " + rs.getString(2));
 					System.out.println("email : " + rs.getString(1));
 				}
