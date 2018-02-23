@@ -39,16 +39,44 @@
 	    			userImageUrl: $scope.photo	
 	    		}
 	    		request = $.post("http://localhost:8080/ExampleServletv3/UserRegisterServlet",JSON.stringify(data));
-	    		request.done(function (response, textStatus, jqXHR)
-	    		{
-	    	        	window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
+	    		console.log(request);
+	    		request.then(function (response, textStatus, jqXHR)
+	    		{      console.log("HELLO");
+	    	       	window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
 	    	    });
 	    		request.fail(function() {
+	    			//console.log(response);
 	    			$scope.error="Error ";
 					$scope.errormsgg="Nickname "+$scope.nick+" already exists, enter a new one and try again";
 					$('#alert2').show();
+					//window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
 	    		});
+	    		//window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
+	    		//$http.post("http://localhost:8080/ExampleServletv3/UserRegisterServlet",JSON.stringify(data))
+	    		//.then(function(response) {
+	    			//console.log("HELLO");
+	    			//var res = new String(response.responseText);
+		    		//if(res.indexOf("Success")==0)
+					//{
+		    			//window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
+					//}//if success
+		    		//else
+					//{
+		    			//console.log(response);
+		    			//$scope.error="Error ";
+						//$scope.errormsgg="Nickname "+$scope.nick+" already exists, enter a new one and try again";
+						//$('#alert2').show();
+					//}//if failure
+
+
+	    		//});
 	    		
+	    	}//
+	    	else
+	    	{
+	    		$scope.error="Info ";
+	    		$scope.errormsgg="The Username or Password are too short";
+	    		$('.alert').show();
 	    	}
 	    };
 	});

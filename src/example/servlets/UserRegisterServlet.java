@@ -7,8 +7,9 @@ import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.sql.ResultSet;
 import javax.naming.Context;
+import javax.servlet.http.Cookie;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -43,20 +44,20 @@ public class UserRegisterServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Context context;
-		try {
-			context = new InitialContext();
-			BasicDataSource ds = (BasicDataSource)context.lookup(
-					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
-			Connection conn = ds.getConnection();
+	//	Context context;
+		///try {
+			//context = new InitialContext();
+			//BasicDataSource ds = (BasicDataSource)context.lookup(
+				//	getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
+		//	Connection conn = ds.getConnection();
 			
-		} catch (NamingException e) {
+	//	} catch (NamingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-    		getServletContext().log("Error while closing connection", e);
-    		response.sendError(500);//internal server error
-    	}
+		//	e.printStackTrace();
+		//} catch (SQLException e) {
+    		//getServletContext().log("Error while closing connection", e);
+    		//response.sendError(500);//internal server error
+    	//}
 		
 		
 	
@@ -83,22 +84,31 @@ public class UserRegisterServlet extends HttpServlet {
 		Gson gson = new Gson();
 		Type type = new TypeToken<User>(){}.getType();
 		User user = gson.fromJson(data, type);
+		if (UsernameExist(user.getUserNickname(),response))
+		{
+			 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			//PrintWriter writer = response.getWriter();
+			//writer.println("Failure");
+			//writer.close();
+			return;
+		}
+		//System.out.println(user.getUserName());
+	else { 
+			
 		
-		System.out.println(user.getUserName());
-		
-		final String name = user.getUserName();
-		final String password =user.getPwd();
-		final String nickname = user.getUserNickname();
-		final String desc = user.getDescription();
-        final String address = user.getAddress();
-        final String phoneNumber = user.getPhoneNumber();
-        final String email = user.getEmail();
-        final String photo = user.getImageUrl();
-        if (email != null && name != null &&
+			final String name = user.getUserName();
+			final String password =user.getPwd();
+			final String nickname = user.getUserNickname();
+			final String desc = user.getDescription();
+			final String address = user.getAddress();
+			final String phoneNumber = user.getPhoneNumber();
+			final String email = user.getEmail();
+			final String photo = user.getImageUrl();
+			if (email != null && name != null &&
                 !email.isEmpty() && !name.isEmpty() ) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
         }
 	try
 		{
@@ -120,6 +130,10 @@ public class UserRegisterServlet extends HttpServlet {
 			pstmt.setString(8,photo);
 			
 			pstmt.executeUpdate();
+			Cookie cook = null;
+			cook = new Cookie("email",email);
+			cook.setMaxAge(120*3);
+			response.addCookie(cook);
 			
 		}
 		catch ( SQLException | NamingException e)
@@ -128,6 +142,8 @@ public class UserRegisterServlet extends HttpServlet {
 			//log error 
 			//cntx.log("Error during database initialization",e);
 			e.printStackTrace();
+			//getServletContext().log("Error while closing connection", e);
+    		//response.sendError(500);//internal server error
 		}
 		
         // just to illustrate the use of Json in Servlets, we return the input to the client
@@ -146,12 +162,50 @@ public class UserRegisterServlet extends HttpServlet {
         }*/
 
 
-        response.setContentType("application/json");
+      //  response.setContentType("application/json");
         // Get the printwriter object from response to write the required json object to the output stream
-        final PrintWriter out = response.getWriter();
+        //final PrintWriter out = response.getWriter();
+		//System.out.println(response.getStatus());
+
+        //PrintWriter writer = response.getWriter();
+		//writer.println("Success");
+		//writer.close();
         // Assuming your json object is **jsonObject**, perform the following, it will return your json object
       //  out.print(jsonObject.toString());
     }
 	
+		
+		return;
+	}
+	protected Boolean UsernameExist(String username, HttpServletResponse response) throws ServletException, IOException
+	{
+		int check = 0;
+		try
+		{
+			Context context = new InitialContext();
+			BasicDataSource ds = (BasicDataSource)context.lookup(
+					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
+			Connection conn = ds.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE user_nickname ='"+username.toString()+"'");
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+			{
+				check++;
+	 		}
+		 	rs.close();
+		 	pstmt.close();
+		 	conn.close();
+		 	context.close();
+		}
+		catch(SQLException | NamingException e)
+		{
+			getServletContext().log("Error: Connection to DB or SELECT command are not good", e);
+			response.sendError(500);
+		}
+		if (check > 0)
+			return true;
+		else
+			return false;
+	}
 
 }

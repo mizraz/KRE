@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
 	<script type="text/javascript" src="angular.min.js"></script>
-	<script  src="functions.js"></script>
+	<script  src="focusingRegisterParams.js"></script>
 	
 	<meta charset="UTF-8">
 	<title>Register</title>	
@@ -23,14 +23,15 @@
         	<label for="name">Name: </label>
         	<input type="text" class="form-control" placeholder="Name" id="name" maxlength="10" required ng-model="name">
         </div><br>
-        <div class="alert alert-danger" id="alert2">
-    		<a href="#" class="close" onclick="$('#alert2').hide()">&times;</a>
-    		<strong>{{error}}</strong>{{errormsgg}}
-  		</div>
+
         <div class="form-group">
         	<label for="nick">Nickname: </label>
         	<input type="text" class="form-control" placeholder="Nickname" id="nick" maxlength="20" required ng-model="nick">
-        </div><br>
+        </div>
+        <div class="alert alert-danger" id="alert2">
+    		<a href="#" class="close" onclick="$('#alert2').hide()">&times;</a>
+    		<strong>{{error}}</strong>{{errormsgg}}
+  		</div><br>
         <div class="form-group">
         	<label for="pwd">Password: </label>
         	<input type="password" name="pass" onkeypress="focusPassword()" class="form-control" placeholder="Password" id="pwd" maxlength="8" required ng-model="pwd">

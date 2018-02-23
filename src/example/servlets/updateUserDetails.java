@@ -6,8 +6,9 @@ import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import javax.servlet.http.Cookie;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -83,9 +84,18 @@ public class updateUserDetails extends HttpServlet {
 		Gson gson = new Gson();
 		Type type = new TypeToken<User>(){}.getType();
 		User user = gson.fromJson(data, type);
+		Cookie[] sessionCookie = null;
+		sessionCookie = request.getCookies();
 		
-		System.out.println(user.getUserName());
-		
+		if( (UsernameExist(user.getUserNickname(),response)) && (user.getEmail() != sessionCookie[0].getValue()))
+		{
+			 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			//PrintWriter writer = response.getWriter();
+			//writer.println("Failure");
+			//writer.close();
+			return;
+		}
+	else {	
 		final String name = user.getUserName();
 		final String password =user.getPwd();
 		final String nickname = user.getUserNickname();
@@ -100,7 +110,8 @@ public class updateUserDetails extends HttpServlet {
         } else {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         }
-	try
+	
+      try
 		{
 		
 		Context context = new InitialContext();
@@ -147,12 +158,44 @@ public class updateUserDetails extends HttpServlet {
         }*/
 
 
-        response.setContentType("application/json");
+       // response.setContentType("application/json");
         // Get the printwriter object from response to write the required json object to the output stream
-        final PrintWriter out = response.getWriter();
+        ///final PrintWriter out = response.getWriter();
         // Assuming your json object is **jsonObject**, perform the following, it will return your json object
       //  out.print(jsonObject.toString());
+	}
+	return;
     }
 	
+	protected Boolean UsernameExist(String username, HttpServletResponse response) throws ServletException, IOException
+	{
+		int check = 0;
+		try
+		{
+			Context context = new InitialContext();
+			BasicDataSource ds = (BasicDataSource)context.lookup(
+					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
+			Connection conn = ds.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE user_nickname ='"+username.toString()+"'");
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+			{
+				check++;
+	 		}
+		 	rs.close();
+		 	pstmt.close();
+		 	conn.close();
+		 	context.close();
+		}
+		catch(SQLException | NamingException e)
+		{
+			getServletContext().log("Error: Connection to DB or SELECT command are not good", e);
+			response.sendError(500);
+		}
+		if (check > 0)
+			return true;
+		else
+			return false;
+	}
 
 }

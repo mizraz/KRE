@@ -11,12 +11,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
+import javax.servlet.http.Cookie;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -92,8 +93,10 @@ public class returnUserDetails extends HttpServlet {
     		String[] segments = uri.split("/");
     		String param = segments[segments.length-1];
     		PreparedStatement stmt;
-    		
-    			stmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE  email= '"+param+"'");
+    		Cookie[] sessionCookie = null;
+    		sessionCookie = request.getCookies();
+    		System.out.println(sessionCookie[0].getValue());
+    			stmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE  email= '"+sessionCookie[0].getValue()+"'");
     	 	
 			try {		
 				ResultSet rs = stmt.executeQuery();

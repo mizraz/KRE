@@ -8,9 +8,9 @@
 			is-user-liked="$ctrl.isUserliked"
 			is-user-purchased="$isUserPurchased"></likes-list>
 		<div>{{$ctrl.ebook.bookId}}</div>
-		<button ng-if="!$ctrl.ebook.isPurchased" type="button" ng-calick="function_to_open_modal_or_page_with_buy_form(params_of_functuion)"
+		<button ng-if="!$ctrl.ebook.isPurchased" type="button" ng-click="$ctrl.funn('PaymantForm/payPage.html')"
 			class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModalBuy">Buy</button>
+			data-target="#myModalBuy" >Buy</button>
 		<!-- <a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span> 		</a>  -->
 		<button ng-if="$ctrl.ebook.isPurchased" ng-click="$ctrl.clickedRead()"
 			type="button" class="btn btn-info btn-lg">Read</button>

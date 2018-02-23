@@ -75,13 +75,13 @@ public class DBQueries {
 		public static final String UPDATE_USER_DETAILS =
 				"UPDATE "+  DBConsts.SqlTables.USERS_DETAILS.getName() +
 				" SET " +DBConsts.SqlColumns.EMAIL.getName() + " = ? " + " , " +
-				" SET " +DBConsts.SqlColumns.USER_NAME.getName() + " = ? " +" , " +
-				" SET " +DBConsts.SqlColumns.USER_ADDRESS.getName() + " = ?" + " , "+
-				" SET " +DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " = ?" + " , " +
-				" SET " +DBConsts.SqlColumns.USER_PWD.getName() + " = ?" + " , " +
-				" SET " +DBConsts.SqlColumns.USER_NIECKNAME.getName() + " =?"+ " , " +
-				" SET " +DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " = ?" + ", "+
-				" SET " +DBConsts.SqlColumns.USER_IMAGE.getName() + " = ?  "+
+				  DBConsts.SqlColumns.USER_NAME.getName() + " = ? " +" , " +
+				  DBConsts.SqlColumns.USER_ADDRESS.getName() + " = ?" + " , "+
+				  DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " = ?" + " , " +
+				  DBConsts.SqlColumns.USER_PWD.getName() + " = ?" + " , " +
+				  DBConsts.SqlColumns.USER_NIECKNAME.getName() + " =?"+ " , " +
+				  DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " = ?" + ", "+
+				  DBConsts.SqlColumns.USER_IMAGE.getName() + " = ?  "+
 				" WHERE " + DBConsts.SqlColumns.EMAIL.getName() + " = ? ";
 		
 		//TODO: delete this

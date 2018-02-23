@@ -41,7 +41,7 @@
 	    		}
 	    		
 				//$http({url:"http://localhost:8080/ExampleServletv3/returnUserDetails",method:"GET", params:{email: 'goofy@disney.com'}}) //
-	    		$http.get("http://localhost:8080/ExampleServletv3/returnUserDetails/"+data.email)
+	    		$http.get("http://localhost:8080/ExampleServletv3/returnUserDetails")
 				.then(function(response) {
 					$scope.records = response;
 					console.log(response);
@@ -50,7 +50,7 @@
 					console.log('arr length ' + $scope.result.data.length);
 					//for (var i = 0; i < $scope.result.data.length; ++i) {
                         
-						console.log(response.data[0].userName);
+						//console.log(response.data[0].userName);
 						$scope.name = response.data[0].userName;
 						$scope.email = response.data[0].email;
 						$scope.nick = response.data[0].userNickname;
@@ -58,10 +58,12 @@
 						$scope.pwd = response.data[0].pwd;
 						$scope.phone = response.data[0].phoneNumber;
 						$scope.photo = response.data[0].userImageUrl;
+						console.log(response.data[0].address.split(",")[0]);
+						console.log(response.data[0].address.split(",")[1]);
 						if(response.data[0].address.split(",")[0] != null)
 						$scope.country = response.data[0].address.split(",")[0];
 						if(response.data[0].address.split(",")[1] != null)
-							$scope.country = response.data[0].address.split(",")[1];
+							$scope.city = response.data[0].address.split(",")[1];
 						if(response.data[0].address.split(",")[2] != null)
 							$scope.street = response.data[0].address.split(",")[2];
 						if(response.data[0].address.split(",")[3] != null)

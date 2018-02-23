@@ -16,7 +16,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.Cookie;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,13 +51,13 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		//Cookie[] sessionCookie = null;
-		//sessionCookie = request.getCookies();
-		//if (sessionCookie == null) //if no session is open
-		//{
-		//	response.sendRedirect("http://localhost:8080/ExampleServletv3/KREbooks/registerANDlogin/login.html");
-		//}
-	//	else
+		Cookie[] sessionCookie = null;
+		sessionCookie = request.getCookies();
+		if (sessionCookie == null) //if no session is open
+		{
+			response.sendRedirect("http://localhost:8080/ExampleServletv3/KREbooks/registerANDlogin/login.html");
+		}
+		//else
 		//{
 			response.sendRedirect("http://localhost:8080/ExampleServletv3/KREbooks/registerANDlogin/login.html");
 		//}
@@ -69,7 +69,7 @@ public class loginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 	try {
-		
+		Cookie cook = null;
 		StringBuffer jb = new StringBuffer();
 		String line = null;
 		try
@@ -108,21 +108,23 @@ public class loginServlet extends HttpServlet {
 				User usr = new User(rs.getString(1),rs.getString(2),rs.getString(6),rs.getString(5),rs.getString(3),rs.getString(8),rs.getString(4),rs.getString(7));
 				System.out.println(usr);
 				userResult.add(usr);
+				if(checkUser == 1)
+				{
+					cook = new Cookie("email",usr.getEmail());
+					cook.setMaxAge(60*60*24);
+					response.addCookie(cook);
+					System.out.println(cook.getValue());
+				}
 				
 			}
 			
 			rs.close();	
-			pstmt.close();
-			
-		
-		
-	
-		
-	
+			pstmt.close();	
 		conn.close();
 		System.out.println(checkUser);
 		if (checkUser == 1)
 		{
+			
 			Gson gsonRet = new Gson();
 			//convert from customers collection to json
 			String userRet = gsonRet.toJson(userResult, AppConstants.USER_COLLECTION);
