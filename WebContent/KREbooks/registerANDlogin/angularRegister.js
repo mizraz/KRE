@@ -1,7 +1,5 @@
-
-	var app = angular.module('RegLogic', []);
-	app.controller('Ctrl', function($scope,$http,$rootScope)
-	{
+angular.module('myApp').controller("Ctrl", 
+			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {	
 		$scope.error="Error ";
 		$scope.desc="";
 		$scope.photo="";
@@ -79,5 +77,5 @@
 	    		$('.alert').show();
 	    	}
 	    };
-	});
+	}]);
 	

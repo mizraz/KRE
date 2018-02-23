@@ -60,12 +60,15 @@
 		this.userId = 1;
 		this.userName = "raz"; //TODO: delete if didnt break anything
 		$rootScope.curPage = 'catalog/catalog.html';
+		
+		
+		$rootScope.modalCurPath = 'login.html';
 		$rootScope.curBookContent = 'gutenberg/contents/blab.html';
 		$rootScope.nnn = '123';
 		$rootScope.curEbook = '1';
 		$rootScope.usrBoughtCurBook = true;
-		//$rootScope.email = 'bruce.wayne@gotham.com';
-		//$rootScope.userName = 'bruce Wayne';
+		$rootScope.email = 'bruce.wayne@gotham.com';
+		$rootScope.userName = 'bruce Wayne';
 		$rootScope.userImageUrl = 
 			'https://he.wikipedia.org/wiki/%D7%91%D7%90%D7%98%D7%9E%D7%9F_(%D7%96%D7%99%D7%9B%D7%99%D7%95%D7%9F_%D7%9E%D7%93%D7%99%D7%94)';
 		$rootScope.purchasesList = [];
@@ -157,7 +160,16 @@
 
 		$rootScope.listtt = [];
 		$rootScope.ebooksDict = {};
+		
+		
+		
+		
 		var init = function () {
+			
+			$("#myModalRegisterLogin").modal();
+
+			
+			
 			$http.get("http://localhost:8080/ExampleServletv3/ebooks")
 			.then(function(response) {
 				$rootScope.records = response;
