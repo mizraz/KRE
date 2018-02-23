@@ -1,10 +1,19 @@
 angular.module('myApp').controller("Ctrlogin", 
 			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {	
+			
 				
+		var ctrl = this;
 		$scope.error="Error ";		
 		
 		$scope.errormsgg1="";
 		$('#alert1').hide();
+		
+		
+		$scope.clickedRegister = function()
+		{
+			$rootScope.modalCurPath = 'registerANDlogin/reg.html';
+			console.log("clickedRegister");
+		}
 		
 	    $scope.SubmitFunction = function()
 	    {

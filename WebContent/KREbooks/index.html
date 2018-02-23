@@ -35,7 +35,8 @@
 <script type="text/javascript" src="userDetails/udetailsAndularHandler.js"></script>
 <script type="text/javascript" src="PaymentForm/PaymentHandler.js"></script>
 <script type="text/javascript" src="registerANDlogin/loginAngularHandler.js"></script>
-
+<script  src="registerANDlogin/focusingRegisterParams.js"></script>
+<script  src="registerANDlogin/angularRegister.js"></script>
 
 
 
@@ -72,6 +73,32 @@
 			<!-- <div data-ng-view> </div> -->
 
 		</div>
+		
+					<!-- Modal -->
+	<div class="modal container" id="myModalRegisterLogin" role="dialog">
+		<div class="modal-dialog .modal-lg modal-register">
+
+			<!-- Modal content-->
+			<div class="modal-content col-xs-12">
+				<div class="modal-header">
+					<h4 class="modal-title">Register</h4>
+			
+					</div>
+					
+			<div  ng-include="modalCurPath"></div>
+					
+
+
+				<div class="modal-footer">
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+		
+		
 	</div>
 
 </body>
