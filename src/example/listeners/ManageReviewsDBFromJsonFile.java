@@ -85,8 +85,8 @@ public class ManageReviewsDBFromJsonFile implements ServletContextListener {
     			
     			
     			
-    			Statement stmt3 = conn.createStatement();
-    			stmt3.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
+//    			Statement stmt3 = conn.createStatement();
+//    			stmt3.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
     			
     			//create Customers table
     			Statement stmt = conn.createStatement();

@@ -1,7 +1,7 @@
+	angular.module('myApp').controller("CtrlBuy", 
+			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {
+	
 
-	var app = angular.module('BuyLogic', []);
-	app.controller('CtrlBuy', function($scope,$http,$rootScope)
-	{
 		$scope.error="Error ";
 		$scope.desc="";
 		$scope.photo="";
@@ -109,5 +109,5 @@
 	    		//$('.alert').show();
 	    	//}
 	    };
-	});
+	}]);
 	
