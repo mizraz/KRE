@@ -14,9 +14,8 @@
 
 
 		<button type="button" class="tooltipp btn-likes-list btn btn-default btn-lg"><span data-toggle="modal" data-target="#myModal"  data-toggle="tooltip" 
-					data-placement="top" title={{$ctrl.usersListHtml}}
-							ng-click='$ctrl.getLikesList()'>
-								<img src="resources/glyphicons-344-thumbs-up.jpg">Likes
+					data-placement="top"  ng-click='$ctrl.getLikesList()' style="background: deepskyblue;" > <!-- title={{$ctrl.usersListHtml}}  --> 
+								<img src="resources/glyphicons-344-thumbs-up.jpg"> <b><u>{{$ctrl.countLikers}}</u></b> Likes
 			</span>
 
 		    <div id="myTool" ng-repeat="user in $ctrl.userNamesList"  class=" tooltipptext" >

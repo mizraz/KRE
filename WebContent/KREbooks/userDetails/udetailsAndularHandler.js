@@ -34,7 +34,7 @@
 	    		var data =
 	    		{
 	    			
-	    			email : $rootScope.email,
+	    			email : $rootScope.userLogedIn.email,
 	    			userNickname :"goofy"
 
 	    		}

@@ -5,7 +5,7 @@ angular.module('myApp').controller("userPurchasesController",
 //			ctrl.contentUrlDic = {};
 			
 			console.log($rootScope.nnn);
-			ctrl.email = $rootScope.email;
+			ctrl.email = $rootScope.userLogedIn.email;
 //			$rootScope.userPurchases = [];
 
 
