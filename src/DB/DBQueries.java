@@ -141,7 +141,17 @@ public class DBQueries {
 				"DROP TABLE  " + DBConsts.SqlTables.EBOOKS.getName() ;//+
 //				" cascade constraints; ";		
 		
-
+		public static final String UPDATE_USER_DETAILS =
+				"UPDATE "+  DBConsts.SqlTables.USERS_DETAILS.getName() +
+				" SET " +DBConsts.SqlColumns.EMAIL.getName() + " = ? " + " , " +
+				  DBConsts.SqlColumns.USER_NAME.getName() + " = ? " +" , " +
+				  DBConsts.SqlColumns.USER_ADDRESS.getName() + " = ?" + " , "+
+				  DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " = ?" + " , " +
+				  DBConsts.SqlColumns.USER_PWD.getName() + " = ?" + " , " +
+				  DBConsts.SqlColumns.USER_NIECKNAME.getName() + " =?"+ " , " +
+				  DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " = ?" + ", "+
+				  DBConsts.SqlColumns.USER_IMAGE.getName() + " = ?  "+
+				" WHERE " + DBConsts.SqlColumns.EMAIL.getName() + " = ? ";
 		
 		
 //		public final String SELECT_ALL_REVIEWS_NOT_APPROVED =

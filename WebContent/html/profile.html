@@ -7,12 +7,12 @@
 	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css"/>
 	
 	<meta charset="UTF-8">
-	<title>Register</title>	
+	<title>UserDetails</title>	
 </head>
 <body id="registration">
-	<div class="container ng-scope" ng-app="RegLogic" ng-controller="Ctrl">
+	<div class="container ng-scope"  ng-controller="CtrlDetail">
       <form class="form-inline" method="post">
-        <h3 class="form-heading">Registration</h3>
+        <h3 class="form-heading">UserDetails</h3>
         <div class="form-group">
         	<label for="name">Name: </label>
         	<input type="text" class="form-control" placeholder="Name" id="name" maxlength="10" required ng-model="userLogedIn.userName">
@@ -27,7 +27,7 @@
         </div><br>
         <div class="form-group">
         	<label for="pwd">Password: </label>
-        	<input type="password" name="pass" onkeypress="focusPassword()" class="form-control" placeholder="Password" id="pwd" maxlength="8" required ng-model="pwd">
+        	<input type="password" name="pass" onkeypress="focusPassword()" class="form-control" placeholder="Password" id="pwd" maxlength="8" required ng-model="userLogedIn.pwd">
         	<div class="form-group" id="out"></div>
         </div><br>
 
@@ -56,28 +56,28 @@
 			
 		<div class="form-group">
 			<label for="cntry">Country: </label>
-        	<input type="text" name="country" onkeypress="focusCountry()" class="form-control" id="cntr"  ng-model="country" required>
+        	<input type="text" name="country" onkeypress="focusCountry()" class="form-control" id="cntr"  ng-model="userLogedIn.country" required>
 			</div>
 			<div class="form-group" id="outc"></div><br>
 		<div class="form-group">	
 			<label for="city">City: </label>
-        	<input type="text" name="city" onkeypress="focusCity()"class="form-control" id="city" ng-model="city" required>
+        	<input type="text" name="city" onkeypress="focusCity()"class="form-control" id="city" ng-model="userLogedIn.city" required>
 			</div>
 			<div class="form-group" id="outci"></div><br>
 		<div class="form-group">	
 			<label for="city">Street: </label>
-        	<input type="text" name="street" onkeypress="focusStreet()"class="form-control" id="street" ng-model="street" required>
+        	<input type="text" name="street" onkeypress="focusStreet()"class="form-control" id="street" ng-model="userLogedIn.street" required>
 			</div>
 			
 			<div class="form-group" id="outs"></div><br>
 		<div class="form-group">
 		    <label for="hnum">Number: </label>
-        	<input type="text" name="hnumb" onkeypress="focushNumber()" class="form-control" id="hnumb" ng-model="hnumb" required>
+        	<input type="text" name="hnumb" onkeypress="focushNumber()" class="form-control" id="hnumb" ng-model="userLogedIn.hnumb" required>
 			</div>
 			<div class="form-group" id="outn"></div><br>
 		<div class="form-group">	
 			<label for="zc">Zip Code: </label>
-        	<input type="text" name="zip" onkeypress="focusZip()"class="form-control" id="zip" ng-model="zip" required>
+        	<input type="text" name="zip" onkeypress="focusZip()"class="form-control" id="zip" ng-model="userLogedIn.zip" required>
         </div>
 		<div class="form-group" id="outz"></div><br>
         <div class="form-group">

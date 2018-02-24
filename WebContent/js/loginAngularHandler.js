@@ -65,7 +65,13 @@ angular.module('myApp').controller("Ctrlogin",
 	    						userImageUrl: response.data[0].userImageUrl,
 	    						phoneNumber: response.data[0].phoneNumber,
 	    						description: response.data[0].description,
-	    						address: response.data[0].address
+	    						country:response.data[0].address.split(",")[0],
+	    						city:response.data[0].address.split(",")[1],
+	    						street:response.data[0].address.split(",")[2],
+	    						hnumb:response.data[0].address.split(",")[3],
+	    						zip:response.data[0].address.split(",")[4]
+	    						
+	    				
 	    				};
 
 	    					
