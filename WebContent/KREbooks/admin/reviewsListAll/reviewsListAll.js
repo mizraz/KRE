@@ -1,7 +1,5 @@
 var reviewList;
 window.onload = function () {
-
-
 };
 
 angular.module('myApp').controller("reviewsListAllController", 
@@ -26,7 +24,7 @@ angular.module('myApp').controller("reviewsListAllController",
 					console.log("@@@" + $scope.result.data[i].bookId);
 
 					var profilePicSrc = $scope.result.data[i].userImageUrl;
-					var name = $scope.result.data[i].userName;
+					var nickname = $scope.result.data[i].userNickname;
 					var email = $scope.result.data[i].email;
 					var msgText = $scope.result.data[i].description;
 					var date = '';
@@ -35,28 +33,16 @@ angular.module('myApp').controller("reviewsListAllController",
 					console.log("543454" + bookId);
 					var dateTime = '';
 					var newMessage = '';
-					drawReview(email, name, profilePicSrc, msgText, msgIdNumberDel, bookId, dateTime, newMessage, date);
+					drawReview(email, nickname, profilePicSrc, msgText, msgIdNumberDel, bookId, dateTime, newMessage, date);
 				}
 
 			});
 
-//			ctrl.funnn = function() {
-//
-//				$http.get("http://localhost:8080/ExampleServletv3/allReviewsNotApproved") ///name/Alfreds Futterkiste
-//				.success(function(response) {
-//					$scope.records = response;
-//					$scope.result = $scope.records;//this variable will hold the search results
-//					console.log($scope.result);
-//				});
-//
+//			ctrl.approveReview = function() {
+//				console.log("review approved!");
 //			}
 
-			
-			ctrl.approveReview = function() {
-				console.log("review approved!");
-			}
-			
-			drawReview = function(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date) {
+			drawReview = function(email, nickname, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date) {
 				newMessage = document.createElement('li');
 				newMessage.classList.add('message');
 				newMessage.setAttribute("id", msgId);
@@ -68,7 +54,7 @@ angular.module('myApp').controller("reviewsListAllController",
 					<img alt='' class='img-circle' src=" + profilePicSrc + "> \
 					</div> \n <div class='message-body'> \
 					<header class='message-header'> \
-					<cite class='message-user-name'>" + name + "</cite> \
+					<cite class='message-user-name'>" + nickname + "</cite> \
 					<time datetime=" + date + " class='message-time-sent'>" + dateTime + "</time> \
 					<div hidden class='email' id='review-email'>" + email + "</div> \
 					<div hidden class='email' id='review-book-id'>" + msgId + "</div> \
@@ -93,60 +79,42 @@ angular.module('myApp').controller("reviewsListAllController",
 					";
 //				console.log(newMessage);
 				reviewList.appendChild(newMessage);
-				
-			    (function () {
-			        var localMsgId = email;
-			        var localBookId = msgId;
-			        console.log("77777" + localMsgId + localBookId);
-			        (document.getElementById('approve-review-btn-' + localMsgId+localBookId)).addEventListener('click', function () {
-			        	console.log("!21312213 " + localMsgId);
-			        	
-			          var curMsgEmail = email;
-			          var curBookId = localBookId;
 
-			          if (true) {
-			        	  console.log("approve clicked email: " + curMsgEmail + " bookId: " + curBookId);
-			        	  
-			        	  
-			  			var reviewApproval =
-						{
-							email: curMsgEmail,
-							bookId: curBookId
-						};
-			        	  
-			  			//$http is AngularJS way to do ajax-like communications
-			  			$http.post("http://localhost:8080/ExampleServletv3/reviewApprove", JSON.stringify(reviewApproval)) 
-			  			.then(function(response) {
-			  				$scope.records = response;
-			  				$scope.result = $scope.records;//this variable will hold the search results
-			  			});
-			  			
-			  			
-			        	  
-			          } else {
-			            console.log("YOU TRIED DEL MESSAGE NOT YOURS! your email vs message email: " + msgId + " " + Babble.email + " " + email);
-			          }
-			        });
-			      }());
-				
-				
-				
-				
-				
-				
-				
-				
-//				console.log("33333 " + reviewList.innerHTML);
-//				$scope.mmm = newMessage;
+				(function () {
+					var localMsgId = email;
+					var localBookId = msgId;
+					console.log("77777" + localMsgId + localBookId);
+					(document.getElementById('approve-review-btn-' + localMsgId+localBookId)).addEventListener('click', function () {
+						console.log("!21312213 " + localMsgId);
+
+						var curMsgEmail = email;
+						var curBookId = localBookId;
+
+						if (true) {
+							console.log("approve clicked email: " + curMsgEmail + " bookId: " + curBookId);
+
+
+							var reviewApproval =
+							{
+									email: curMsgEmail,
+									bookId: curBookId
+							};
+
+							//$http is AngularJS way to do ajax-like communications
+							$http.post("http://localhost:8080/ExampleServletv3/reviewApprove", JSON.stringify(reviewApproval)) 
+							.then(function(response) {
+								$scope.records = response;
+								$scope.result = $scope.records;//this variable will hold the search results
+							});
+
+
+
+						} else {
+							console.log("YOU TRIED DEL MESSAGE NOT YOURS! your email vs message email: " + msgId + " " + Babble.email + " " + email);
+						}
+					});
+				}());
+
 			};
-
-
-
-
-
-
-
-			
-			
 		}]);
 

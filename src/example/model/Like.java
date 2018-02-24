@@ -4,7 +4,7 @@ public class Like {
 
 	private String email;
 	private String bookId;
-	private String userName;
+	private String userNickname;
 	private String isLiked;
 
 	
@@ -16,10 +16,10 @@ public class Like {
 		
 	}
 	
-	public Like (String email, String bookId, String userName, String isLiked) {
+	public Like (String email, String bookId, String userNickname, String isLiked) {
 		this.email = email;
 		this.bookId = bookId;
-		this.userName = userName;
+		this.userNickname = userNickname;
 		this.isLiked = isLiked;
 
 	}
@@ -33,7 +33,7 @@ public class Like {
 	}
 	
 	public String getUserName() {
-		return userName;
+		return userNickname;
 	}
 	
 

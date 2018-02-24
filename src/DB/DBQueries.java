@@ -194,7 +194,7 @@ public class DBQueries {
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.BOOK_ID.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DESCRIPTION.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_IS_APPROVED.getName() + "," +
-				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_NAME.getName() + "," +
+				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_NIECKNAME.getName() + "," +
 				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_IMAGE.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DATE.getName() + " " +
 				" FROM " + SqlTables.REVIEWS.getName()  +
@@ -253,7 +253,7 @@ public class DBQueries {
 		public static final String SELECT_LIKES_OF_BOOK_ID =
 				"SELECT " + SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.EMAIL.getName() + ", " +
 							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.BOOK_ID.getName() + ", " +
-							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + " " +
+							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NIECKNAME.getName() + " " +
 				" FROM " + SqlTables.USER_PURCHASES.getName() + 
 				" INNER JOIN " +SqlTables.USERS_DETAILS.getName() +
 				" ON " + SqlTables.USER_PURCHASES.getName() + "." +SqlColumns.EMAIL.getName() + " = " 

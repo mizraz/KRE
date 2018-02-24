@@ -26,7 +26,7 @@ var reviewList;
 					console.log("@@@" + $scope.result.data[i].bookId);
 
 					var profilePicSrc = $scope.result.data[i].userImageUrl;
-					var name = $scope.result.data[i].userName;
+					var name = $scope.result.data[i].userNickname;
 					var email = $scope.result.data[i].email;
 					var msgText = $scope.result.data[i].description;
 					var date = '';
