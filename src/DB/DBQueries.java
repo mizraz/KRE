@@ -13,54 +13,54 @@ public class DBQueries {
 				DBConsts.SqlColumns.LIKED.getName() + " varchar(1), "+	
 				DBConsts.SqlColumns.PRICE.getName() + " double, "+
 				DBConsts.SqlColumns.PURCHASE_TIME.getName() + " timestamp, "+	
-				DBConsts.SqlColumns.SCROLL.getName() + " int "+	", " +
-				"PRIMARY KEY ("  + SqlColumns.BOOK_ID.getName() + "," + SqlColumns.EMAIL.getName() + ") " + ", " +
-				"FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") ON DELETE CASCADE , " + 
-				"FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ") ON DELETE CASCADE" +
-				//"DROP FOREGIN KEY" + //"DROP CONSTRAINT "+ SqlColumns.EMAIL.getName() +", "+ SqlColumns.BOOK_ID.getName() +")";
+				DBConsts.SqlColumns.SCROLL.getName() + " int "+	//", " +
+//				" PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + "," + SqlColumns.EMAIL.getName() + ") " + ", " +
+//				" FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") , " + 
+//				" FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ") " +
 				")";
+		
 		public static final String CREATE_ALL_REVIEWS_TABLE =
 				"CREATE TABLE " + DBConsts.SqlTables.REVIEWS.getName() + "(" +
 				DBConsts.SqlColumns.EMAIL.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.REVIEW_DESCRIPTION.getName() + " varchar(5000), "+
 				DBConsts.SqlColumns.REVIEW_IS_APPROVED.getName() + " varchar(1), "+
-				DBConsts.SqlColumns.REVIEW_DATE.getName() + " timestamp " + " , " +	
-				"PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + "," + SqlColumns.EMAIL.getName() + ") " + ", " +
-				"FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") ON DELETE CASCADE , " + 
-				"FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ") ON DELETE CASCADE " +
+				DBConsts.SqlColumns.REVIEW_DATE.getName() + " timestamp " + //" , " +	
+//				" PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + "," + SqlColumns.EMAIL.getName() + ") " + ", " +
+//				" FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") , " + 
+//				" FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ")  " +
 				")";
 
 		
-		//public static final String DROP_EBOOKS_TABLE_CONSTRAINT_PK = 
-			//	"ALTER TABLE " + SqlTables.EBOOKS.getName() + " " + 
-				//" DROP CONSTRAINT " + SqlTables.EBOOKS.getName() + "_PK";
+		public static final String DROP_EBOOKS_TABLE_CONSTRAINT_PK = 
+				"ALTER TABLE " + SqlTables.EBOOKS.getName() + " " + 
+				" DROP CONSTRAINT " + SqlTables.EBOOKS.getName() + "_PK";
 		
 		
-		//public static final String DROP_REVIEWS_TABLE_CONSTRAINT_PK = 
-				//"ALTER TABLE " + SqlTables.REVIEWS.getName() + " " + 
-				//" DROP CONSTRAINT " + SqlTables.REVIEWS.getName() + "_PK";
+		public static final String DROP_REVIEWS_TABLE_CONSTRAINT_PK = 
+				"ALTER TABLE " + SqlTables.REVIEWS.getName() + " " + 
+				" DROP CONSTRAINT " + SqlTables.REVIEWS.getName() + "_PK";
 		
-		//public static final String DROP_PURCHASES_TABLE_CONSTRAINT_PK = 
-				//"ALTER TABLE " + SqlTables.USER_PURCHASES.getName() + " " + 
-				//" DROP CONSTRAINT " + SqlTables.USER_PURCHASES.getName() + "_PK";
-		
-		
-		
-		//public static final String DROP_REVIEWS_TABLE_CONSTRAINT_EMAIL = 
-			//	"ALTER TABLE " + SqlTables.REVIEWS.getName() + " " + 
-				//" DROP CONSTRAINT " + SqlColumns.BOOK_ID.getName() ;
-		//public static final String DROP_EBOOKS_TABLE_CONSTRAINT_EBOOK_ID = 
-				//"ALTER TABLE " + SqlTables.REVIEWS.getName() + " " + 
-				//" DROP CONSTRAINT " + SqlColumns.EMAIL.getName() ;
+		public static final String DROP_PURCHASES_TABLE_CONSTRAINT_PK = 
+				"ALTER TABLE " + SqlTables.USER_PURCHASES.getName() + " " + 
+				" DROP CONSTRAINT " + SqlTables.USER_PURCHASES.getName() + "_PK";
 		
 		
-		//public static final String DROP_PURCHASES_TABLE_CONSTRAINT_EMAIL = 
-			//	"ALTER TABLE " + SqlTables.USER_PURCHASES.getName() + " " + 
-			//	" DROP CONSTRAINT " + SqlColumns.BOOK_ID.getName() ;
-		//public static final String DROP_PURCHASES_TABLE_CONSTRAINT_EBOOK_ID = 
-			//	"ALTER TABLE " + SqlTables.USER_PURCHASES.getName() + " " + 
-			//	" DROP CONSTRAINT " + SqlColumns.EMAIL.getName() ;
+		
+		public static final String DROP_REVIEWS_TABLE_CONSTRAINT_EMAIL = 
+				"ALTER TABLE " + SqlTables.REVIEWS.getName() + " " + 
+				" DROP CONSTRAINT " + SqlColumns.BOOK_ID.getName() ;
+		public static final String DROP_EBOOKS_TABLE_CONSTRAINT_EBOOK_ID = 
+				"ALTER TABLE " + SqlTables.REVIEWS.getName() + " " + 
+				" DROP CONSTRAINT " + SqlColumns.EMAIL.getName() ;
+		
+		
+		public static final String DROP_PURCHASES_TABLE_CONSTRAINT_EMAIL = 
+				"ALTER TABLE " + SqlTables.USER_PURCHASES.getName() + " " + 
+				" DROP CONSTRAINT " + SqlColumns.BOOK_ID.getName() ;
+		public static final String DROP_PURCHASES_TABLE_CONSTRAINT_EBOOK_ID = 
+				"ALTER TABLE " + SqlTables.USER_PURCHASES.getName() + " " + 
+				" DROP CONSTRAINT " + SqlColumns.EMAIL.getName() ;
 		
 		
 		
@@ -76,19 +76,19 @@ public class DBQueries {
 				DBConsts.SqlColumns.USER_PWD.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.USER_NIECKNAME.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " varchar(5000), "+
-				DBConsts.SqlColumns.USER_IMAGE.getName() + " varchar(1000) "+ ", " +
-				"PRIMARY KEY (" + SqlColumns.EMAIL.getName() + ") " +
+				DBConsts.SqlColumns.USER_IMAGE.getName() + " varchar(1000) "+ //", " +
+//				"PRIMARY KEY (" + SqlColumns.EMAIL.getName() + ") " +
 				")";
 		
 		public static final String CREATE_EBOOKS_TABLE =
 				"CREATE TABLE " + DBConsts.SqlTables.EBOOKS.getName() + "(" +
-				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+ 
+				DBConsts.SqlColumns.BOOK_ID.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.TITLE.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.AUTHOR.getName() + " varchar(100), "+
 				DBConsts.SqlColumns.PRICE.getName() + " double, "+
 				DBConsts.SqlColumns.BOOK_IMAGE_URL.getName() + " varchar(100), "+
-				DBConsts.SqlColumns.BOOK_DESCRIPTION.getName() + " varchar(1000) "+ ", " +
-				"PRIMARY KEY ( " + SqlColumns.BOOK_ID.getName() + ") " +
+				DBConsts.SqlColumns.BOOK_DESCRIPTION.getName() + " varchar(1000) "+ //", " +
+//				"PRIMARY KEY (" + SqlColumns.BOOK_ID.getName() + ") " +
 				")";
 
 		
@@ -116,17 +116,6 @@ public class DBQueries {
 				DBConsts.SqlColumns.USER_IMAGE.getName() + "  "+
 				")" +
 				" VALUES(?,?,?,?,?,?,?,?)";
-		public static final String UPDATE_USER_DETAILS =
-				"UPDATE "+  DBConsts.SqlTables.USERS_DETAILS.getName() +
-				" SET " +DBConsts.SqlColumns.EMAIL.getName() + " = ? " + " , " +
-				  DBConsts.SqlColumns.USER_NAME.getName() + " = ? " +" , " +
-				  DBConsts.SqlColumns.USER_ADDRESS.getName() + " = ?" + " , "+
-				  DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " = ?" + " , " +
-				  DBConsts.SqlColumns.USER_PWD.getName() + " = ?" + " , " +
-				  DBConsts.SqlColumns.USER_NIECKNAME.getName() + " =?"+ " , " +
-				  DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " = ?" + ", "+
-				  DBConsts.SqlColumns.USER_IMAGE.getName() + " = ?  "+
-				" WHERE " + DBConsts.SqlColumns.EMAIL.getName() + " = ? ";
 		
 		//TODO: delete this
 //		public final String CREATE_BOOK_READ_TABLE =
@@ -137,18 +126,20 @@ public class DBQueries {
 //				")";
 		
 		public static final String DROP_ALL_REVIEWS_TABLE = 
-				"DROP TABLE " + DBConsts.SqlTables.REVIEWS.getName();  
-			     
+				"DROP TABLE  " + DBConsts.SqlTables.REVIEWS.getName() ;//+ 
+//				"  cascade constraints; ";
 
 		public static final String DROP_USERS_TABLE = 
-				"DROP TABLE  " + DBConsts.SqlTables.USERS_DETAILS.getName();
-				
+				"DROP TABLE  " + DBConsts.SqlTables.USERS_DETAILS.getName();// + 
+//				"  cascade constraints; ";
 		
 		public static final String DROP_USER_PURCHASES_TABLE = 
-				"DROP TABLE  " + DBConsts.SqlTables.USER_PURCHASES.getName();
+				"DROP TABLE  " + DBConsts.SqlTables.USER_PURCHASES.getName(); //+ 
+//				"  cascade constraints;";
 		
 		public static final String DROP_EBOOKS_TABLE = 
-				"DROP TABLE  " + DBConsts.SqlTables.EBOOKS.getName();	
+				"DROP TABLE  " + DBConsts.SqlTables.EBOOKS.getName() ;//+
+//				" cascade constraints; ";		
 		
 
 		
@@ -192,7 +183,7 @@ public class DBQueries {
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.BOOK_ID.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DESCRIPTION.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_IS_APPROVED.getName() + "," +
-				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_NIECKNAME.getName() + "," +
+				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_NAME.getName() + "," +
 				SqlTables.USERS_DETAILS.getName() +"." + SqlColumns.USER_IMAGE.getName() + "," +
 				SqlTables.REVIEWS.getName() +"." + SqlColumns.REVIEW_DATE.getName() + " " +
 				" FROM " + SqlTables.REVIEWS.getName()  +
@@ -251,7 +242,7 @@ public class DBQueries {
 		public static final String SELECT_LIKES_OF_BOOK_ID =
 				"SELECT " + SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.EMAIL.getName() + ", " +
 							SqlTables.USER_PURCHASES.getName() + "." + SqlColumns.BOOK_ID.getName() + ", " +
-							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NIECKNAME.getName() + " " +
+							SqlTables.USERS_DETAILS.getName() + "." + SqlColumns.USER_NAME.getName() + " " +
 				" FROM " + SqlTables.USER_PURCHASES.getName() + 
 				" INNER JOIN " +SqlTables.USERS_DETAILS.getName() +
 				" ON " + SqlTables.USER_PURCHASES.getName() + "." +SqlColumns.EMAIL.getName() + " = " 
