@@ -75,22 +75,12 @@ public class ManagePurchasesDBFromJsonFile implements ServletContextListener {
 
 //    			Statement stmt4 = conn.createStatement();
 //    			stmt4.executeUpdate(DBQueries.DROP_PURCHASES_TABLE_CONSTRAINT_EMAIL);
-    			//Statement stmt5 = conn.createStatement();
-    			//stmt5.executeUpdate(DBQueries.DROP_PURCHASES_TABLE_CONSTRAINT_EBOOK_ID);
+//    			Statement stmt5 = conn.createStatement();
+//    			stmt5.executeUpdate(DBQueries.DROP_PURCHASES_TABLE_CONSTRAINT_EBOOK_ID);
 				
-			//try {	
-				//Statement stmt3 = conn.createStatement();
-				//stmt3.executeUpdate(DBQueries.DROP_USER_PURCHASES_TABLE);//}
-			//catch (SQLException e){
-				//check if exception thrown since table was already created (so we created the database already 
-				//in the past
-				//created = tableAlreadyExists(e);
-				//System.out.print("created in ebooks:" + created);
-				//if (created){
-					//throw e;//re-throw the exception so it will be caught in the
-					//external try..catch and recorded as error in the log
-				//}
-			//}
+				
+				Statement stmt3 = conn.createStatement();
+				stmt3.executeUpdate(DBQueries.DROP_USER_PURCHASES_TABLE);
 
 
 				//create Customers table

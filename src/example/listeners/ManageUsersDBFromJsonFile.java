@@ -7,9 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
@@ -73,26 +71,9 @@ public class ManageUsersDBFromJsonFile implements ServletContextListener {
     		
     		boolean created = false;
     		try{
-    			DatabaseMetaData meta = conn.getMetaData();
-				ResultSet result = meta.getTables(null, null, "ALL_VIEWS", null);
-				DatabaseMetaData metaP = conn.getMetaData();
-				ResultSet resultP = metaP.getTables(null, null, "USER_PURCHASES", null);
-				DatabaseMetaData metaU = conn.getMetaData();
-				ResultSet resultU = metaU.getTables(null, null, "USER_DETAILS", null);
-    			
-    		if(result.next())	{
-    			Statement stmt1 = conn.createStatement();
-    			stmt1.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
-    		}
-    		if(resultP.next()) {
-    			Statement stmt2 = conn.createStatement();
-				stmt2.executeUpdate(DBQueries.DROP_USER_PURCHASES_TABLE);
-    		}	
-    		if(resultU.next()) {	
-       			Statement stmt3 = conn.createStatement();
-    			stmt3.executeUpdate(DBQueries.DROP_USERS_TABLE);
-    		}
-
+//    			
+//    			Statement stmt3 = conn.createStatement();
+//    			stmt3.executeUpdate(DBQueries.DROP_USERS_TABLE);
     			
     			//create Customers table
     			Statement stmt = conn.createStatement();

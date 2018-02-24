@@ -7,9 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
@@ -71,36 +69,12 @@ public class ManageEbooksDBFromJsonFile implements ServletContextListener {
 			try{
 
 				
-    			//Statement stmt4 = conn.createStatement();
-    			//stmt4.executeUpdate(DBQueries.DROP_EBOOKS_TABLE_CONSTRAINT_PK );
-			// try {
-				DatabaseMetaData meta = conn.getMetaData();
-				ResultSet result = meta.getTables(null, null, "ALL_VIEWS", null);
-				DatabaseMetaData metaP = conn.getMetaData();
-				ResultSet resultP = metaP.getTables(null, null, "USER_PURCHASES", null);
-				DatabaseMetaData metaB = conn.getMetaData();
-				ResultSet resultB = metaB.getTables(null, null, "EBOOKS", null);
-				 if(result.next()) {
-				    Statement stmt1 = conn.createStatement();
-	    			stmt1.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
-				 }
-				 if(resultP.next()) {
-	    			Statement stmt2 = conn.createStatement();
-					stmt2.executeUpdate(DBQueries.DROP_USER_PURCHASES_TABLE);
-				 }
-			 if(resultB.next()) {
+//    			Statement stmt4 = conn.createStatement();
+//    			stmt4.executeUpdate(DBQueries.DROP_EBOOKS_TABLE_CONSTRAINT_PK );
+//				
 				Statement stmt3 = conn.createStatement();
-				stmt3.executeUpdate(DBQueries.DROP_EBOOKS_TABLE);}
-			// catch (SQLException e){
-					//check if exception thrown since table was already created (so we created the database already 
-					//in the past
-			//		created = tableAlreadyExists(e);
-			//		System.out.print("created in ebooks:" + created);
-			//		if (created){
-						//throw e;//re-throw the exception so it will be caught in the
-						//external try..catch and recorded as error in the log
-				//	}
-				
+				stmt3.executeUpdate(DBQueries.DROP_EBOOKS_TABLE);
+
 
 				//create Customers table
 				Statement stmt = conn.createStatement();
@@ -112,7 +86,6 @@ public class ManageEbooksDBFromJsonFile implements ServletContextListener {
 				//check if exception thrown since table was already created (so we created the database already 
 				//in the past
 				created = tableAlreadyExists(e);
-				System.out.print("created in ebooks:" + created);
 				if (!created){
 					throw e;//re-throw the exception so it will be caught in the
 					//external try..catch and recorded as error in the log
