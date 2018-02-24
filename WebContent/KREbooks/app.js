@@ -62,6 +62,20 @@
 		$rootScope.curPage = 'catalog/catalog.html';
 		
 		
+		
+		
+		$rootScope.userLogedIn = {
+				email: '',
+				userNickname: '',
+				userName: '',
+				userImageUrl: '',
+				phoneNumber: '',
+				description: '',
+				address: ''
+		};
+		
+		
+		
 		$rootScope.modalCurPath = 'login.html';
 		$rootScope.curBookContent = 'gutenberg/contents/blab.html';
 		$rootScope.nnn = '123';
@@ -170,75 +184,7 @@
 
 			
 			
-			$http.get("http://localhost:8080/ExampleServletv3/ebooks")
-			.then(function(response) {
-				$rootScope.records = response;
-				$rootScope.result = $rootScope.records;//this variable will hold the search results
 
-//				console.log("1234343$$$$$  "  + $rootScope.result.data);
-//				ctrl.ebook1["bookId"] = $rootScope.result.data[0].bookId;
-//				console.log($rootScope.result);
-//				console.log("1235545344" + $rootScope.result.data[1].bookId);
-//				console.log("ebook1 bookId: " + ctrl.ebook1.bookId);
-
-				var i = 0;
-
-				for (var ebook in $rootScope.result.data) {
-					$rootScope.result.data[i]["isPurchased"] = 0; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
-					$rootScope.result.data[i]["isLiked"] = 0; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
-					$rootScope.result.data[i]["currentScroll"] = 0;
-					$rootScope.listtt.push($rootScope.result.data[i]);
-					$rootScope.ebooksDict["ebook" + $rootScope.result.data[i].bookId] = $rootScope.result.data[i];
-					i++;
-				}
-
-
-				$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.email) ///name/Alfreds Futterkiste
-				.then(function(response) {
-					$rootScope.records = response;
-					$rootScope.resultPur = $rootScope.records;//this variable will hold the search results
-
-					console.log($rootScope.resultPur);
-					console.log($rootScope.email);
-					console.log('arr length ' + $rootScope.resultPur.data.length);
-					for (i = 0; i < $rootScope.resultPur.data.length; ++i) {
-						var ebookIdDict = "ebook" + $rootScope.resultPur.data[i].bookId;
-						console.log(ebookIdDict);
-						var curEbook = $rootScope.ebooksDict[ebookIdDict];
-						$rootScope.userPurchases.push(curEbook);
-						$rootScope.purchasesDict["ebook"+ $rootScope.records.data[i].bookId] = $rootScope.records.data[i]; 
-
-						console.log('curEbook: ' + curEbook);
-
-						console.log("$rootScope.resultPur.data[i].bookId: " + $rootScope.resultPur.data[i].bookId);
-
-					}
-
-					i = 0;
-					console.log("$rootScope.resultPur.data: " + $rootScope.resultPur.data[0].bookId);
-					for (var pur in $rootScope.resultPur.data) {
-						console.log("pur.bookId: "+ $rootScope.resultPur.data[pur].bookId);
-						$rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isPurchased = 1 ; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
-						$rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isliked = $rootScope.resultPur.data[pur].isLiked; //TODO: this line is example how to add properties to ebook. need to do this for like etc with real data from ajax.
-						$rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].currentScroll = $rootScope.resultPur.data[pur].currentScroll;
-						
-						console.log("1: " + $rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isPurchased);
-						console.log("2: " + $rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].isliked);
-						console.log("3: " + $rootScope.ebooksDict["ebook" + $rootScope.resultPur.data[pur].bookId].currentScroll);
-
-
-
-//						$rootScope.listtt.push($rootScope.result.data[1]);
-						i++;
-					}
-
-
-
-
-				});
-
-
-			});
 		}
 		init();
 

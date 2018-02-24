@@ -55,6 +55,25 @@
     		}
 	    	if(checkAll==1)
 	    	{
+	    		
+	    		
+	    		
+	    		//TODO: send ajax post request with bookId, payment info, user email etc
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
 	    		//if ($scope.photo.length==0)
 	    			//$scope.photo="https://vignette.wikia.nocookie.net/simpsons/images/1/11/Homersimpson.jpg/revision/latest?cb=20121229201104";
 	    		//var data =

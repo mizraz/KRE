@@ -27,7 +27,7 @@ angular.module('myApp').controller("ebookPageController",
 						console.log("ebookPage.oninit  " );
 						var email = $scope.result.data[i].email;
 
-						if(email == $rootScope.email) {
+						if(email == $rootScope.userLogedIn.email) {
 							$rootScope.ebooksDict["ebook" + ctrl.ebookId].isReviewd = 1;
 							$rootScope.isCurEbookReviewed = 1;
 						} 

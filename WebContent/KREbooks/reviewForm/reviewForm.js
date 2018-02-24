@@ -38,7 +38,7 @@
 
 			var review =
 			{
-					email: $rootScope.email,
+					email: $rootScope.userLogedIn.email,
 					bookId: ctrl.ebookId,
 					description: $scope.reviewDescription,
 					isApproved: "0",
@@ -58,9 +58,9 @@
 			console.log(ctrl.userr);
 			var like =
 			{
-					email: $rootScope.email,
+					email: $rootScope.userLogedIn.email,
 					bookId: ctrl.ebookId,
-					userName: $rootScope.userName,
+					userName: $rootScope.userLogedIn.userName,
 			};
 
 			//$http is AngularJS way to do ajax-like communications

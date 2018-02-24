@@ -15,10 +15,16 @@ var myModalReadBody;
 			$rootScope.curEbookIdd = '123';
 
 			ctrl.curEbook = ctrl.ebook;
-			ctrl.userEmail = $rootScope.email;
+			ctrl.userEmail = $rootScope.userLogedIn.email;
 			ctrl.userPurchases = [];
-			console.log("ctrl.ebook: " + ctrl.ebook.bookId);
-			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId] "+ $rootScope.purchasesDict["ebook"+ ctrl.ebook.bookId]);
+			
+			
+			
+//			console.log("ctrl.ebook: " + ctrl.ebook.bookId);
+//			console.log("ctrl.ebook.isLiked: " + ctrl.ebook.isLiked);
+//			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId] "+ $rootScope.purchasesDict["ebook"+ ctrl.ebook.bookId]);
+//			console.log("$rootScope.purchasesDict[ebook+ ctrl.curEbook.bookId].isLiked "+ $rootScope.purchasesDict["ebook"+ ctrl.ebook.bookId].isLiked);
+
 			if ($rootScope.purchasesDict["ebook"+ ctrl.curEbook.bookId] == undefined) {
 				ctrl.usrBoughtCurBook = false;
 				ctrl.isLiked = false;
@@ -67,7 +73,7 @@ var myModalReadBody;
 			console.log("ctrl.ebook.bookId " + ctrl.ebook.bookId);
 			console.log("window.curBookIdToSendScroll " + window.curBookIdToSendScroll);
 
-			window.curEmailToSendScroll = $rootScope.email;
+			window.curEmailToSendScroll = $rootScope.userLogedIn.email;
 			
 			
 			$("#myModalScroll").modal();
@@ -161,9 +167,9 @@ var myModalReadBody;
 
 			var like =
 			{
-					email: $rootScope.email,
+					email: $rootScope.userLogedIn.email,
 					bookId: ctrl.ebook.bookId,
-					userName: $rootScope.userName,
+					userName: $rootScope.userLogedIn.userName,
 					isLiked: ctrl.ebook.isLiked
 			};
 			console.log(like.isLiked);
