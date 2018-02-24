@@ -18,7 +18,7 @@
 
 //					console.log("@@@ bookId like" + $scope.result.data[i].bookId);
 //					console.log("@@@ name like" + $scope.result.data[i].userName);
-					var name = $scope.result.data[i].userName;
+					var name = $scope.result.data[i].userNickname;
 
 					ctrl.userNamesList.push(name);
 //					console.log("userNamesList[0] " + ctrl.userNamesList[0]);
@@ -64,9 +64,10 @@
 					for (var i = 0; i < $scope.result.data.length; ++i) {
 
 
-						var name = $scope.result.data[i].userName;
+						var name = $scope.result.data[i].userNickname;
 
 						ctrl.userNamesList.push(name);
+						console.log("in likesList, userNickname: " + name);
 //						console.log("userNamesList[0] " + ctrl.userNamesList[0]);
 						ctrl.usersListHtml = ctrl.usersListHtml.concat('\\n', name);
 

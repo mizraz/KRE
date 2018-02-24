@@ -155,10 +155,16 @@ var myModalReadBody;
 		ctrl.submitLike = function() {
 			console.log("clicked like;");
 
+			
+			
 			if(ctrl.ebook.isLiked == 1) {
 				ctrl.ebook.isLiked = 0;
+				ctrl.isLiked = false;
+
 			} else {
 				ctrl.ebook.isLiked = 1;
+				ctrl.isLiked = true;
+
 			}
 
 
@@ -169,7 +175,7 @@ var myModalReadBody;
 			{
 					email: $rootScope.userLogedIn.email,
 					bookId: ctrl.ebook.bookId,
-					userName: $rootScope.userLogedIn.userName,
+					userNickname: $rootScope.userLogedIn.userNickname,
 					isLiked: ctrl.ebook.isLiked
 			};
 			console.log(like.isLiked);

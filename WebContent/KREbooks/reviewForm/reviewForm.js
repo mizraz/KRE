@@ -5,7 +5,7 @@
 		var ctrl = this;
 		ctrl.editMode = false;
 
-		ctrl.userName = $rootScope.userName;
+		ctrl.userNickname = $rootScope.userNickname;
 		
 		
 		this.$onInit = function() {
@@ -34,7 +34,7 @@
 		ctrl.submitReview = function() {
 			console.log("clicked;");
 			console.log(ctrl.userr);
-			console.log("$rootScope.userName: " + $rootScope.userName);
+			console.log("$rootScope.userNickname: " + $rootScope.userNickname);
 
 			var review =
 			{
@@ -42,7 +42,7 @@
 					bookId: ctrl.ebookId,
 					description: $scope.reviewDescription,
 					isApproved: "0",
-					userName: $rootScope.userName,
+					userNickname: $rootScope.userNickname,
 					userImageUrl: $rootScope.userImageUrl
 
 			};
@@ -60,7 +60,7 @@
 			{
 					email: $rootScope.userLogedIn.email,
 					bookId: ctrl.ebookId,
-					userName: $rootScope.userLogedIn.userName,
+					userNickname: $rootScope.userLogedIn.userNickname,
 			};
 
 			//$http is AngularJS way to do ajax-like communications

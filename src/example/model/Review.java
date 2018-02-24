@@ -8,7 +8,7 @@ public class Review {
 	private String bookId;
 	private String description;
 	private String isApproved;
-	private String userName;
+	private String userNickname;
 	private String userImageUrl;
 	private String dateReview;
 	
@@ -16,12 +16,12 @@ public class Review {
 		
 	}
 	
-	public Review (String email, String bookId, String description, String isApproved, String userName, String userImageUrl, String dateReview) {
+	public Review (String email, String bookId, String description, String isApproved, String userNickname, String userImageUrl, String dateReview) {
 		this.email = email;
 		this.bookId = bookId;
 		this.description = description;
 		this.isApproved = isApproved;
-		this.userName = userName;
+		this.userNickname = userNickname;
 		this.userImageUrl = userImageUrl;
 		this.dateReview = dateReview;
 	}
@@ -42,8 +42,8 @@ public class Review {
 		return description;
 	}
 	
-	public String getUserName() {
-		return userName;
+	public String getUserNickname() {
+		return userNickname;
 	}
 	
 	public String getUserImageUrl() {
