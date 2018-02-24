@@ -73,7 +73,7 @@ function focusPassword()
 				theOutput.innerHTML = "Please use letters";
 				theOutput.style.color="red";
 			}
-		    if((street.length<3))
+		    if((street.length<2))
 			{
 				theInput.style.borderColor="red";
 				theOutput.innerHTML = "You have to use at least 3 letters";
