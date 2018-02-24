@@ -84,9 +84,19 @@ public class ManageReviewsDBFromJsonFile implements ServletContextListener {
 //    			stmt5.executeUpdate(DBQueries.DROP_EBOOKS_TABLE_CONSTRAINT_EBOOK_ID);
     			
     			
-    			
-//    			Statement stmt3 = conn.createStatement();
-//    			stmt3.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);
+    		//try {	
+    			//Statement stmt1 = conn.createStatement();
+    			//stmt1.executeUpdate(DBQueries.DROP_ALL_REVIEWS_TABLE);//}
+    	//	catch (SQLException e){
+				//check if exception thrown since table was already created (so we created the database already 
+				//in the past
+				//created = tableAlreadyExists(e);
+				//System.out.print("created in ebooks:" + created);
+				//if (created){
+					//throw e;//re-throw the exception so it will be caught in the
+					//external try..catch and recorded as error in the log
+				//}
+			//}
     			
     			//create Customers table
     			Statement stmt = conn.createStatement();

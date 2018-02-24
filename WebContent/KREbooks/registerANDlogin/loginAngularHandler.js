@@ -1,7 +1,9 @@
 angular.module('myApp').controller("Ctrlogin", 
 			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {	
 			
-				
+				var chars1=/[A-Z]/;
+				var chars2=/[a-z]/;
+				var chars3=/[0-9]/;		
 		var ctrl = this;
 		$scope.error="Error ";		
 		
