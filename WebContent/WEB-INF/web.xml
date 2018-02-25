@@ -110,6 +110,7 @@
 	<servlet-mapping>
 		<servlet-name>example.servlets.ScrollServlet</servlet-name>
 		<url-pattern>/scroll</url-pattern>
+		<url-pattern>/scroll/email/*</url-pattern>
 		<url-pattern>/scroll/bookId/*</url-pattern>
 	</servlet-mapping>
 	<servlet>

@@ -1,9 +1,15 @@
 package example.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,7 +22,9 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import com.google.gson.Gson;
 import DB.DBQueries;
 import example.AppConstants;
+import example.URIConsts;
 import example.Utils;
+import example.model.Purchase;
 import example.model.ScrollObj;
 
 /**
@@ -26,7 +34,8 @@ import example.model.ScrollObj;
 		description = "Servlet to SCroll", 
 		urlPatterns = { 
 				"/scroll",
-				"/scroll/bookId/*"
+				"/scroll/email/*",
+
 		})
 public class ScrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,8 +52,86 @@ public class ScrollServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+	
+	
+	
+		try {
+			//obtain CustomerDB data source from Tomcat's context
+			Context context = new InitialContext();
+			BasicDataSource ds = (BasicDataSource)context.lookup(
+					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
+			Connection conn = ds.getConnection();
+
+			Collection<ScrollObj> scrollPositionResult = new ArrayList<ScrollObj>(); 
+			String uri = request.getRequestURI();
+			String email = "";
+			String bookId = "";
+			
+			PreparedStatement stmt;
+			try {
+//	    		if (uri.indexOf(URIConsts.BOOK_ID) != -1){
+	    			email = uri.substring(uri.indexOf(URIConsts.EMAIL) + URIConsts.EMAIL.length() + 1 , 
+							(uri.indexOf("/" + URIConsts.BOOK_ID)));
+	    			bookId = uri.substring(uri.indexOf(URIConsts.BOOK_ID) + URIConsts.BOOK_ID.length() + 1);
+					stmt = conn.prepareStatement(DBQueries.SELECT_SCROLL_BY_BOOK_ID_AND_EMAIL);
+					stmt.setString(1, bookId);
+					stmt.setString(2, email);
+//	    		} else {
+//	    			email = uri.substring(uri.indexOf(URIConsts.EMAIL) + URIConsts.EMAIL.length() + 1 );
+//					stmt = conn.prepareStatement(DBQueries.SELECT_PURCHASES_BY_EMAIL);
+//					stmt.setString(1, email);
+//	    		}
+	    		
+
+				ResultSet rs = stmt.executeQuery();
+				
+				while (rs.next()){
+					scrollPositionResult.add(new ScrollObj(email, bookId , rs.getString(1)));
+					System.out.println("get  scroll: " +  rs.getString(1));
+				}
+				rs.close();
+				stmt.close();
+			} catch (SQLException e) {
+				getServletContext().log("Error while querying for scroll", e);
+				response.sendError(500);//internal server error
+			}
+
+
+			conn.close();
+
+			Gson gson = new Gson();
+			//convert from customers collection to json
+			String scrollPositionJsonResult = gson.toJson(scrollPositionResult, AppConstants.SCROLL_COLLECTION);
+			response.addHeader("Content-Type", "application/json");
+			PrintWriter writer = response.getWriter();
+			writer.println(scrollPositionJsonResult);
+			writer.close();
+		} catch (SQLException | NamingException e) {
+			getServletContext().log("Error while closing connection", e);
+			response.sendError(500);//internal server error
+		}
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 
 	/**

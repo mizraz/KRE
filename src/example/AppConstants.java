@@ -10,6 +10,7 @@ import example.model.Ebook;
 import example.model.Like;
 import example.model.Purchase;
 import example.model.Review;
+import example.model.ScrollObj;
 import example.model.Transaction;
 import example.model.User;
 
@@ -37,6 +38,7 @@ public interface AppConstants {
 	public final Type USER_COLLECTION = new TypeToken<Collection<User>>() {}.getType();
 	public final Type TRANSACTION_COLLECTION = new TypeToken<Collection<Transaction>>() {}.getType();
 	public final Type PURCHASE_COLLECTION = new TypeToken<Collection<Purchase>>() {}.getType();
+	public final Type SCROLL_COLLECTION = new TypeToken<Collection<ScrollObj>>() {}.getType();
 	public final Type EBOOKS_COLLECTION = new TypeToken<Collection<Ebook>>() {}.getType();
 	public final Type PURCHASES_COLLECTION = new TypeToken<Collection<Purchase>>() {}.getType();
 	public final Type LIKE_COLLECTION = new TypeToken<Collection<Like>>() {}.getType();

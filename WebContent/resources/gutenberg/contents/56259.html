@@ -4,11 +4,52 @@
     
     <title>In the Line, by Albertus T. Dudley</title>
 
+
+<script>
+
+$.fn.scrollEnd = function(callback, timeout) {          
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
+
+// how to call it (with a 1000ms timeout):
+$(window).scrollEnd(function(){
+	
+	
+		var bookContent = document.getElementById('bookContent');	
+	console.log(bookContent);
+	if(bookContent != undefined) {
+	console.log("window.curBookIdToSendScroll: " + window.curBookIdToSendScroll);
+		var scrolJSON = {
+				currentScroll: body.scrollTop,
+				bookId: window.curBookIdToSendScroll,
+				email: window.curEmailToSendScroll
+		}	
+		var xmlhttpDelClient = new XMLHttpRequest();
+		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
+		xmlhttpDelClient.onreadystatechange = function () {
+			/* NOTHING DONE IN HERE*/
+		};
+		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
+	}
+	
+	
+}, 1000);
+
+</script>
+
+
+
   </head>
   <body><div class="HTT HTTtooltip" style="visibility: hidden; left: 0px; top: 0px; width: 0px; height: 0px;"></div>
 
 
-<pre>
+<pre id="bookContent">
 The Project Gutenberg EBook of In the Line, by Albertus T. Dudley
 
 This eBook is for the use of anyone anywhere at no cost and with
