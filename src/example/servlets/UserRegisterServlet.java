@@ -68,6 +68,7 @@ public class UserRegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("HELLO");
 		StringBuffer jb = new StringBuffer();
 		String line = null;
 		try

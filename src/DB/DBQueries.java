@@ -30,7 +30,17 @@ public class DBQueries {
 //				" FOREIGN KEY (" + SqlColumns.BOOK_ID.getName() + ") REFERENCES " + SqlTables.EBOOKS.getName() + "(" + SqlColumns.BOOK_ID.getName() + ") , " + 
 //				" FOREIGN KEY (" + SqlColumns.EMAIL.getName() + ") REFERENCES " + SqlTables.USERS_DETAILS.getName() + "(" + SqlColumns.EMAIL.getName() + ")  " +
 				")";
-
+		public static final String UPDATE_USER_DETAILS =
+				"UPDATE "+  DBConsts.SqlTables.USERS_DETAILS.getName() +
+				" SET " +DBConsts.SqlColumns.EMAIL.getName() + " = ? " + " , " +
+				  DBConsts.SqlColumns.USER_NAME.getName() + " = ? " +" , " +
+				  DBConsts.SqlColumns.USER_ADDRESS.getName() + " = ?" + " , "+
+				  DBConsts.SqlColumns.USER_PHONE_NUM.getName() + " = ?" + " , " +
+				  DBConsts.SqlColumns.USER_PWD.getName() + " = ?" + " , " +
+				  DBConsts.SqlColumns.USER_NIECKNAME.getName() + " =?"+ " , " +
+				  DBConsts.SqlColumns.USER_DESCRIPTION.getName() + " = ?" + ", "+
+				  DBConsts.SqlColumns.USER_IMAGE.getName() + " = ?  "+
+				" WHERE " + DBConsts.SqlColumns.EMAIL.getName() + " = ? ";
 		
 		public static final String DROP_EBOOKS_TABLE_CONSTRAINT_PK = 
 				"ALTER TABLE " + SqlTables.EBOOKS.getName() + " " + 

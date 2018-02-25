@@ -64,6 +64,11 @@ public class returnUserDetails extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("HELLO");
+		System.out.println(request.getRequestURI());
+		String uri1;  
+		uri1 = new String (request.getRequestURI());
+		System.out.println("HELLO1");
+		System.out.println("this is uri1:" + uri1.split("/")[4]);
 		
         try {
         	
@@ -95,8 +100,17 @@ public class returnUserDetails extends HttpServlet {
     		PreparedStatement stmt;
     		Cookie[] sessionCookie = null;
     		sessionCookie = request.getCookies();
+    		String searchBy = "";
+    		if(uri1.split("/")[4]!=null)
+    		{
+    			searchBy=uri1.split("/")[4];
+    		}
+    		else
+    		{
+    			searchBy=sessionCookie[0].getValue();
+    		}
     		System.out.println(sessionCookie[0].getValue());
-    			stmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE  email= '"+sessionCookie[0].getValue()+"'");
+    			stmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE  email= '"+searchBy+"'");
     	 	
 			try {		
 				ResultSet rs = stmt.executeQuery();

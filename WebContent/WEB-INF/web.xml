@@ -41,7 +41,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>example.servlets.UserRegisterServlet</servlet-name>
-		<url-pattern>/register</url-pattern>
+		<url-pattern>/UserRegisterServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>EbookServlet</servlet-name>
