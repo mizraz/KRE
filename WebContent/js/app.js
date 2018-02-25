@@ -1,190 +1,86 @@
-//window.onload = function() {
-//console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
-
-//$http.get("http://localhost:8080/ExampleServletv3/ebooks")
-//.then(function(response) {
-//$rootScope.records = response;
-//$rootScope.result = $rootScope.records;//this variable will hold the search results
-////ebook1["bookId"] = $rootScope.result[0].bookId;
-//console.log($rootScope.result);
-//console.log("123554!!!!!!!4" + $rootScope.result.data[1].bookId);
-
-//});	
-
-//};
-
-//window.onbeforeunload = function () {
-//	var bookContent = document.getElementById('bookContent');	
-//	console.log(bookContent);
-//	if(bookContent != undefined) {
-//		var scrolJSON = {
-//				scroll: body.scrollTop,
-//				bookId: window.curBookIdToSendScroll,
-//				email: window.curEmailToSendScroll
-//		}	
-//		var xmlhttpDelClient = new XMLHttpRequest();
-//		xmlhttpDelClient.open('POST', 'http://localhost:8080/ExampleServletv3/scroll', false);
-//		xmlhttpDelClient.onreadystatechange = function () {
-//			/* NOTHING DONE IN HERE*/
-//		};
-//		xmlhttpDelClient.send(JSON.stringify(scrolJSON));			
-//	}
-//};
-
-
 (function(angular) {
 	'use strict';  
 	var app = angular.module('myApp', [/*'ngRoute'*/]);  
 	app.run(function($rootScope, $http) {
 		$rootScope.color = 'blue';
-
-//		$http.get("http://localhost:8080/ExampleServletv3/ebooks")
-//		.then(function(response) {
-//		$rootScope.records = response;
-//		$rootScope.result = $rootScope.records;//this variable will hold the search results
-////		ebook1["bookId"] = $rootScope.result[0].bookId;
-//		console.log($rootScope.result);
-//		console.log("1235545344" + $rootScope.result.data[1].bookId);
-
-//		});
-
-
-
 	});
 
 
 	app.controller( 'MainCtrl', function MainCtrl($scope, $rootScope, $http) {
-
-
-		var ctrl = this;
-
+		this.$onInit = function () {		
+			var ctrl = this;			
 		
-//		 this.$onInit = function () {
-
-				this.userKind = 'admin';
-				this.userPrivel = 1;
-				this.userId = 1;
-				this.userName = "raz"; //TODO: delete if didnt break anything
-				$rootScope.curPage = 'html/catalog.html';
-			 
-			 
-			 $rootScope.listtt = [];
-				$rootScope.ebooksDict = {};
-				$("#myModalRegisterLogin").modal();
-				
-				$rootScope.userLogedIn = {
-						email: '',
-						userNickname: '',
-						userName: '',
-						userImageUrl: '',
-						phoneNumber: '',
-						description: '',
-						address: ''
-				};
-				
-				
-				
-				$rootScope.modalCurPath = 'login.html';
-				$rootScope.curEbook = '1';
-				$rootScope.usrBoughtCurBook = true;
-				
-				$rootScope.purchasesList = [];
-				$rootScope.purchasesDict = {};
-				$rootScope.userPurchases = [];				
-
-//			}
-		
+		// $rootScope.pagesPaths - consts, for routing between pages.
+		$rootScope.pagesPaths = {
+				ebookPage: 'html/ebookPage.html',
+				catalog: 'html/catalog.html',
+				contactUs: 'html/contactUs.html',
+				lastTransactions: 'html/lastTransactions.html',
+				payPage: 'html/payPage.html',
+				profile: 'html/profile.html',
+				register: 'html/reg.html',
+				reviewsListAll: 'html/reviewsListAll.html',
+				topDeals: 'html/topDeals.html',
+				userDetails: 'html/userDetails.html',
+				userPurchases: 'html/userPurchases.html',
+				usersList: 'html/usersList.html',
+				login: 'login.html',
+				ebookContents: 'resources/gutenberg/contents/' //needs to concat a suffix with the ebookId
+					
+		}
 		
 		
 
-		this.isShowEbook = false;
-		this.isShowCatalog = true;
-//		this.curPage = 'catalog/catalog.html';
 
-//		TODO: update all books objects with properties: isPurcased, lastScrool, isLiked etc.  'ebook1' is an example (contains all propeties - still need to update values according to: user, bookId)
-//		TODO: check if everything still works without the 'setTimeout'
+		
+		// $rootScope.ebooksDict - object as a dictionary holds all ebooks the store offers.
+		$rootScope.ebooksDict = {};
+		// $rootScope.ebooksList - a list holds all the books can offer.
+		$rootScope.ebooksList = [];
+		// $rootScope.curPage - holds the current page user in. starts in main page: the catalog.
+		$rootScope.curPage = $rootScope.pagesPaths.catalog;
+		console.log("$rootScope.pagesPaths.catalog: " + $rootScope.pagesPaths.catalog);
+		console.log("$rootScope.curPage: " + $rootScope.curPage);
+		 
 
-
-
-//		setTimeout(function(){ 
-
-//		$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.email) ///name/Alfreds Futterkiste
-//		.then(function(response) {
-//		$scope.records = response;
-//		$scope.result = $scope.records;//this variable will hold the search results
-//		$rootScope.purchasesList = $scope.result;
-//		for (var i = 0; i < $scope.records.data.length; i++) {
-//		$rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId] = $scope.records.data[i]; 
-//		console.log("ebook+ $scope.records.data[i].bookId: " + "ebook"+ $scope.records.data[i].bookId);
-//		console.log("val " + $rootScope.purchasesDict["ebook"+ $scope.records.data[i].bookId].bookId);
-//		}
-//		}, 3000)});
-
-		this.fun = function() {
-			console.log($rootScope.color);
-			$rootScope.color = 'red';
-			console.log($rootScope.color);
+		//$rootScope.userLogedIn -  details of user logged in
+		$rootScope.userLogedIn = {
+				email: '',
+				userNickname: '',
+				userName: '',
+				userImageUrl: '',
+				phoneNumber: '',
+				description: '',
+				address: ''
 		};
 
-		this.openEbookPage = function (ebook) {
-			this.isShowCatalog = false;
+		$("#myModalRegisterLogin").modal();
 
-			this.isShowEbook = true;
-
-			console.log("hii");
-			console.log(ebook.bookId);
-			console.log("ebook" + $scope.isShowEbook);
-			console.log("cat" + $scope.isShowCatalog);
-		}
-
-		this.closeEbookPage = function () {
-			console.log("hii");
+		this.userKind = 'admin'; 
+		this.userPrivel = 1;
+		this.userId = 1; //TODO: delete if didnt break anything
+		this.userName = "raz"; //TODO: delete if didnt break anything
+		$rootScope.curEbook = '1'; // to delete
+		$rootScope.usrBoughtCurBook = true; // to delete
+		//$rootScope.purchasesList = []; to delete
 
 
-			this.isShowCatalog = true;
-
-			this.isShowEbook = false;
-			console.log(" this.isShowEbook " + $scope.isShowEbook);
+		// $rootScope.modalCurPath - holds the curren modal user in. uses just for the login / register modal.
+		$rootScope.modalCurPath = $rootScope.pagesPaths.login;
+		// $rootScope.purchasesDict - a dictionary holds user purchases
+		$rootScope.purchasesDict = {};
+		// $rootScope.userPurchases - a list holds user purchases
+		$rootScope.userPurchases = [];				
 
 		}
 
 
-		/*ebook details: ***********************************************************************************************************/
-
-		this.ebook = {
-				bookId: "1",
-				title: 'Spawnkl;kjkfldafklajd;dj',
-				image: '123',
-				price: 5,
-				description: " \
-					bla bla description bla bla description bla " + " \
-					bla description bla bla description bla bla descriptionbla bla descriptionbla bla descriptionbla bla descriptionbla bla descriptionbla bla \
-					descriptionbla bla descriptionbla bla descriptionbla bla descriptionbla bla description \
-					bla description bla bla description bla bla descriptionbla bla descriptionbla bla descriptionbla bla descriptionbla bla descriptionbla bla \
-					descriptionbla bla descriptionbla bla descriptionbla bla descriptionbla bla description "
-
-		};
+		this.isShowEbook = false; //TODO: need this?
+		this.isShowCatalog = true; //TODO: need this?
 
 
-		console.log("eeeeee");
-//		this.ebook1 = {
-//		bookId: 56254,
-//		title: 'The flowers and gardens of Japan',
-//		author: 'Cane, Florence Du',
-//		category: 'text',
-//		imageUrl: 'resources/gutenberg/56254.jpg',        
-//		datePublished: new Date(2017, 12,26),
-//		price: 1,  description: "bla bla",
-//		isPurchased: 1,
-//		isLiked: 0
-//		};
-//		this.ebook1["bookId"] = $rootScope.result.data[1].bookId;
 
 
-		
-		
-		
-		
 
 	});
 })(window.angular);

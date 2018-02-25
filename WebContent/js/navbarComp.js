@@ -5,17 +5,10 @@
 function navbarController($scope, $element, $attrs, $rootScope) {
 var ctrl = this;
 
-ctrl.funn = function(par){
-  console.log($rootScope.color);
-  $rootScope.color = 'pink';
-  console.log($rootScope.curPage);
+ctrl.routeToPage = function(pageToRouteTo){
   $scope.curPage = 'topDeals/topDeals.html';
-  $rootScope.curPage = par;
-  console.log($rootScope.color);
-  console.log('!!!' + $scope.curPage);
-  ctrl.curPage = par;
-  
-  
+  $rootScope.curPage = pageToRouteTo;
+  ctrl.curPage = pageToRouteTo;
   
 };
 
@@ -35,18 +28,7 @@ angular.module('myApp').component('navbarComp', {
     isShowEbook: '=',
     curPage: '='
 
-  }//,
-  // closeEbookPage: function () {
-  //   console.log("hii");
-    
-  
-  //   ctrl.isShowCatalog = true;
-    
-  //   ctrl.isShowEbook = false;
-  //   console.log(" this.isShowEbook " + $scope.isShowEbook);
-  
-  // }
-
+  }
 
 
 });

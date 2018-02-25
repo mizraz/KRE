@@ -7,30 +7,32 @@ angular.module('myApp').controller("reviewsListAllController",
 			var ctrl = this;
 
 			ctrl.reviewsPendingList = {}; // a list of all pending approval reviews
-			console.log($rootScope.nnn);
-			// var urlParams = new URLSearchParams(location.search);   
-			// console.log("as" + urlParams); // "?post=1234&action=edit"
 
-			reviewList = document.getElementById('chati');
+			// the area where the reviews appear.
+			reviewList = document.getElementById('chati'); // TODO: update 'chati' to reviewsList something....
 
-			$http.get("http://localhost:8080/ExampleServletv3/allReviewsNotApproved") ///name/Alfreds Futterkiste
+			// get all all reviews not approved yet.
+			$http.get("http://localhost:8080/ExampleServletv3/allReviewsNotApproved") 
 			.then(function(response) {
 				$scope.records = response;
 				$scope.result = $scope.records;//this variable will hold the search results
+
 				console.log($scope.result);
+
+
+
 				console.log('arr length ' + $scope.result.data.length);
-				for (i = 0; i < $scope.result.data.length; ++i) {
+				for (var review in $scope.result.data) {
 
-					console.log("@@@" + $scope.result.data[i].bookId);
+					console.log("$scope.result.data[review].bookId: " + $scope.result.data[review].bookId);
 
-					var profilePicSrc = $scope.result.data[i].userImageUrl;
-					var nickname = $scope.result.data[i].userNickname;
-					var email = $scope.result.data[i].email;
-					var msgText = $scope.result.data[i].description;
+					var profilePicSrc = $scope.result.data[review].userImageUrl;
+					var nickname = $scope.result.data[review].userNickname;
+					var email = $scope.result.data[review].email;
+					var msgText = $scope.result.data[review].description;
 					var date = '';
 					var msgIdNumberDel = '';
-					var bookId = $scope.result.data[i].bookId;
-					console.log("543454" + bookId);
+					var bookId = $scope.result.data[review].bookId;
 					var dateTime = '';
 					var newMessage = '';
 					drawReview(email, nickname, profilePicSrc, msgText, msgIdNumberDel, bookId, dateTime, newMessage, date);
@@ -38,10 +40,9 @@ angular.module('myApp').controller("reviewsListAllController",
 
 			});
 
-//			ctrl.approveReview = function() {
-//				console.log("review approved!");
-//			}
 
+
+			// drawReview() - create and draws the review.
 			drawReview = function(email, nickname, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date) {
 				newMessage = document.createElement('li');
 				newMessage.classList.add('message');
@@ -80,6 +81,8 @@ angular.module('myApp').controller("reviewsListAllController",
 //				console.log(newMessage);
 				reviewList.appendChild(newMessage);
 
+
+				// this function is used to give scope to id. needed in order to make eventListener on button.
 				(function () {
 					var localMsgId = email;
 					var localBookId = msgId;
