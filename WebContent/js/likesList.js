@@ -35,9 +35,13 @@
 		};
 
 
-		ctrl.clickedAName = function (user){
-			console.log("$ctrl.clickedAName($user): " + user);
-			$rootScope.curPage = 'catalog/catalog.html';
+		ctrl.clickedAName = function (userSelectedByAdmin){
+
+			console.log("in: ctrl.goToUserDetailsPage, user: " + userSelectedByAdmin.userName);
+			$rootScope.curUserAdminSelected = userSelectedByAdmin;
+			$rootScope.curPage = $rootScope.pagesPaths.userDetailsPageForAdmin;
+			
+			
 		}
 
 		ctrl.likeListClickedOnce = false;
