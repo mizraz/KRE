@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	
+	<meta charset="UTF-8">
+	<title>User Details</title>	
+</head>
+<body id="registration">
+	<div class="container ng-scope"  ng-controller="CtrlDetailsForAdmin">
+      <form class="form-inline" method="post">
+        <h3 class="form-heading">User Details</h3>
+        <div class="form-group">
+        	<label for="name">Name: </label>
+        	<input type="text" class="form-control" placeholder="Name" id="name" maxlength="10" required ng-model="name">
+        </div><br>
+        <div class="form-group">
+        	<label for="nick">Nickname: </label>
+        	<input type="text" class="form-control" placeholder="Nickname" id="nick" maxlength="20" required ng-model="nick">
+        </div><br>
+        <br>
+        <div class="form-group">
+        	<label for="desc">Description: </label>
+        	<textarea maxlength="300" rows="4" cols="50" class="form-control" id="desc" ng-model="desc"></textarea>
+        </div><br>
+		<div class="form-group">
+        	<label for="email">Email: </label>
+        	<input type="email" class="form-control" placeholder="Email" id="email" ng-model="email" >
+        </div><br>
+		<div class="form-group">
+        	<label for="email">Phone Number: </label>
+        	<input type="text" name="phone"  class="form-control" id="phone" ng-model="phoneNumber" >
+        </div><br>
+			
+		<div class="form-group">
+			<label for="cntry">Country: </label>
+        	<input type="text" name="country"  class="form-control" id="cntr"  ng-model="country" >
+			</div>
+			<div class="form-group" id="outc"></div><br>
+		<div class="form-group">	
+			<label for="city">City: </label>
+        	<input type="text" name="city" class="form-control" id="city" ng-model="city" >
+			</div>
+			<div class="form-group" id="outci"></div><br>
+		<div class="form-group">	
+			<label for="city">Street: </label>
+        	<input type="text" name="street" class="form-control" id="street" ng-model="street" >
+			</div>
+			
+		<div class="form-group">
+		    <label for="hnum">Number: </label>
+        	<input type="text" name="hnumb"  class="form-control" id="hnumb" ng-model="hnumb" >
+			</div>
+			
+		<div class="form-group">	
+			<label for="zc">Zip Code: </label>
+        	<input type="text" name="zip" class="form-control" id="zip" ng-model="zip" >
+        </div>
+	
+        <div class="form-group">
+        	<label for="photo">Photo: </label>
+        	<input type="text" class="form-control" id="photo" placeholder="Photo URL" ng-model="photo">
+        </div><br><br>
+       
+      </form>
+    </div>
+</body>
+</html>
