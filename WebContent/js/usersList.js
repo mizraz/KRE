@@ -21,6 +21,14 @@ angular.module('myApp').controller("usersListController",
 				}
 
 			});
+			
+			ctrl.goToUserDetailsPage = function(userSelectedByAdmin) {
+				console.log("in: ctrl.goToUserDetailsPage, user: " + userSelectedByAdmin.userName);
+				$rootScope.curUserAdminSelected = userSelectedByAdmin;
+				$rootScope.curPage = $rootScope.pagesPaths.userDetailsPageForAdmin;
+				
+			}
+			
 
 
 		}]);

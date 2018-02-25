@@ -1,7 +1,11 @@
-
 	angular.module('myApp').controller("CtrlDetailsForAdmin", 
 			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {
 
+				
+				
+				$rootScope.curUserAdminSelected;
+				console.log("on CtrlDetailsForAdmin controller, $rootScope.curUserAdminSelected: "+ $rootScope.curUserAdminSelected);
+				
 	    		var data =
 	    		{
 	    			//TODO : Pass email  of the user from users list you want to see
