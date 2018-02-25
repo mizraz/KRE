@@ -13,7 +13,7 @@ angular.module('myApp').controller("Ctrlogin",
 
 			$scope.clickedRegister = function()
 			{
-				$rootScope.modalCurPath = 'registerANDlogin/reg.html';
+				$rootScope.modalCurPath = $rootScope.pagesPaths.register;
 				console.log("clickedRegister");
 			}
 

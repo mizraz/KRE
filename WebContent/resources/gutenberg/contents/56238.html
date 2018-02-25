@@ -27,7 +27,7 @@ $(window).scrollEnd(function(){
 	if(bookContent != undefined) {
 	console.log("window.curBookIdToSendScroll: " + window.curBookIdToSendScroll);
 		var scrolJSON = {
-				scroll: body.scrollTop,
+				currentScroll: body.scrollTop,
 				bookId: window.curBookIdToSendScroll,
 				email: window.curEmailToSendScroll
 		}	

@@ -68,17 +68,48 @@ var myModalReadBody;
 			$rootScope.curEbookIdd = ctrl.ebook.bookId;
 
 
-			console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
+			//TODO: send ajax to update current scroll!!!!!!!!!!!!!!!!!!!!!!!
+			
+//			send ajax to get current scroll position.
+			$http.get("http://localhost:8080/ExampleServletv3/scroll/email/"+$rootScope.userLogedIn.email+"/bookId/"+ctrl.ebook.bookId)
+			.then(function(response) {
+				$scope.records = response;
+				$scope.result = $scope.records;//this variable will hold the search results
+
+				console.log($scope.result);
+				console.log('scroll arr size: ' + $scope.result.data.length);
+
+				// update currentScroll - update the position the user stopped reading
+				$rootScope.ebooksDict["ebook" +ctrl.ebook.bookId].currentScroll = $scope.result.data[0].currentScroll;
+				
+				
+				console.log("current scroll of bookId: " +ctrl.ebook.bookId + " is: " + $rootScope.ebooksDict["ebook" +ctrl.ebook.bookId].currentScroll);
 
 
-			window.curBookIdToSendScroll = $rootScope.curEbookIdd;
-			console.log("ctrl.ebook.bookId " + ctrl.ebook.bookId);
-			console.log("window.curBookIdToSendScroll " + window.curBookIdToSendScroll);
+				console.log("$rootScope.curEbookIdd " + $rootScope.curEbookIdd);
 
-			window.curEmailToSendScroll = $rootScope.userLogedIn.email;
+				var ebookIdDict = "ebook" + $rootScope.curEbookIdd;
+
+				window.curBookIdToSendScroll = $rootScope.curEbookIdd;
+				window.curEmailToSendScroll = $rootScope.userLogedIn.email;
+				// this conditions mean: user never read this book / is on top of it.
+				if (ctrl.curReadEbookScroll = $rootScope.ebooksDict[ebookIdDict].currentScroll == 0) {
+					$rootScope.curPage = $rootScope.pagesPaths.ebookContents + $rootScope.curEbookIdd + '.html';
+				}
+				else { //open modal to ask user if to go to last scroll.
+					window.curBookIdToSendScroll = $rootScope.curEbookIdd;
+					console.log("ctrl.ebook.bookId " + ctrl.ebook.bookId);
+					console.log("window.curBookIdToSendScroll " + window.curBookIdToSendScroll);
+
+					window.curEmailToSendScroll = $rootScope.userLogedIn.email;
 
 
-			$("#myModalScroll").modal();
+					$("#myModalScroll").modal();				
+				}
+				
+				
+			}); 
+			
 		};	
 
 

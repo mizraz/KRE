@@ -313,6 +313,12 @@ public class DBQueries {
 					SqlColumns.BOOK_ID.getName() + " = ? ";
 		
 		
+		public static final String SELECT_SCROLL_BY_BOOK_ID_AND_EMAIL = 
+				" SELECT " + SqlColumns.SCROLL.getName() + " " +
+				" FROM " + SqlTables.USER_PURCHASES.getName() + " " +
+				" WHERE " + SqlColumns.BOOK_ID.getName() + " = ? " +
+					" and " + SqlColumns.EMAIL.getName() + " = ? " ;
+		
 
 		public static final String SELECT_LIKES_OF_BOOK_ID_JUST_THE_EMAIL_AND_BOOK_ID =
 				"SELECT " +SqlColumns.EMAIL.getName() + ", " +
