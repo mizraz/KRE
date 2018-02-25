@@ -7,29 +7,36 @@
 		var ctrl = this;
 		console.log("ebookDetailsController");
 		this.$onInit = function() {
+			
+			
+			
 			console.log("ebookDetailsController onINIT");
 
+			
+			
 			ctrl.isCatalogPage = false;
 
-			if($rootScope.curPage == "html/catalog.html" || $rootScope.curPage == "html/topDeals.html") {
+			if($rootScope.curPage == $rootScope.pagesPaths.catalog || $rootScope.curPage == $rootScope.pagesPaths.topDeals) {
 				ctrl.isCatalogPage = true;
 			}
 
 			ctrl.goToEbookPage = function(){
-				console.log("in gotoEbookPage()");
-				console.log("$rootScope.color" + $rootScope.color);
-				$rootScope.color = 'pink';
+				
 				$rootScope.curEbook = ctrl.ebook;
 				$rootScope.isLikeddd = true;
-
+				
+				
+				console.log("in gotoEbookPage()");
 				console.log("ctrl.ebook.bookId: " + ctrl.ebook.bookId);
 
-				if($rootScope.curPage != "html/userPurchases.html") {
+				if($rootScope.curPage != $rootScope.pagesPaths.userPurchases) {
 
 					console.log("ctrl.curPage " + ctrl.curPage);
-					ctrl.curPage = 'html/ebookPage.html';
+					ctrl.curPage = $rootScope.pagesPaths.ebookPage; // TODO: delete and check if still works
+					
 					console.log("ctrl.curPage " + ctrl.curPage);
-					$rootScope.curPage = 'html/ebookPage.html';
+					
+					$rootScope.curPage = $rootScope.pagesPaths.ebookPage;
 				}
 
 			};    	

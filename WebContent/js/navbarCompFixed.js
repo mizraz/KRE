@@ -5,19 +5,12 @@
 function navbarFixedController($scope, $element, $attrs, $rootScope) {
 var ctrl = this;
 
-ctrl.funn = function(par){
-  console.log($rootScope.color);
-  $rootScope.color = 'pink';
-  console.log($rootScope.curPage);
-  $scope.curPage = 'topDeals/topDeals.html';
-  $rootScope.curPage = par;
-  console.log($rootScope.color);
-  console.log('!!!' + $scope.curPage);
-  ctrl.curPage = par;
-  
-  
-  
-};
+ctrl.routeToPage = function(pageToRouteTo){
+	  $scope.curPage = 'topDeals/topDeals.html';
+	  $rootScope.curPage = pageToRouteTo;
+	  ctrl.curPage = pageToRouteTo;
+	  
+	};
 
 
 

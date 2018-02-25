@@ -1,47 +1,125 @@
-<?xml version="1.0" encoding="UTF-8"?> 
- <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
- id="WebApp_ID" version="2.5">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
 
-<!-- <web-app xmlns="http://java.sun.com/xml/ns/javaee" -->
-<!-- 	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
-<!-- 	      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee -->
-<!-- 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" -->
-<!-- 	      version="3.0"> -->
+	<!-- <web-app xmlns="http://java.sun.com/xml/ns/javaee" -->
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+	<!-- xsi:schemaLocation="http://java.sun.com/xml/ns/javaee -->
+	<!-- http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" -->
+	<!-- version="3.0"> -->
 
-
-
-  <display-name>BBB</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-  <context-param>
-    <param-name>DB_DATASOURCE</param-name>
-    <param-value>java:comp/env/jdbc/ExampleDatasource</param-value>
-  </context-param>
-  <context-param>
-    <param-name>DB_NAME</param-name>
-    <param-value>ExampleDB</param-value>
-  </context-param>
-  <resource-ref>
-    <description>Example Database Open</description>
-    <res-ref-name>jdbc/ExampleDatasourceOpen</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
-  <resource-ref>
-    <description>Example Database Shutdown</description>
-    <res-ref-name>jdbc/ExampleDatasourceShutdown</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
-  <servlet>
-    <description></description>
-    <servlet-name>UserRegisterServlet</servlet-name>
-    <servlet-class>example.servlets.UserRegisterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserRegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
-  </servlet-mapping>
+	<display-name>BBB</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>DB_DATASOURCE</param-name>
+		<param-value>java:comp/env/jdbc/ExampleDatasource</param-value>
+	</context-param>
+	<context-param>
+		<param-name>DB_NAME</param-name>
+		<param-value>ExampleDB</param-value>
+	</context-param>
+	<resource-ref>
+		<description>Example Database Open</description>
+		<res-ref-name>jdbc/ExampleDatasourceOpen</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<resource-ref>
+		<description>Example Database Shutdown</description>
+		<res-ref-name>jdbc/ExampleDatasourceShutdown</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<servlet>
+		<description></description>
+		<servlet-name>UserRegisterServlet</servlet-name>
+		<servlet-class>example.servlets.UserRegisterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.UserRegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EbookServlet</servlet-name>
+		<servlet-class>example.servlets.EbookServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.EbookServlet</servlet-name>
+		<url-pattern>/ebooks</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>LikeHandler</servlet-name>
+		<servlet-class>example.servlets.LikeHandler</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.LikeHandler</servlet-name>
+		<url-pattern>/newLike</url-pattern>
+		<url-pattern>/likes/bookId/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>example.servlets.loginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.loginServlet</servlet-name>
+		<url-pattern>/loginServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>PurchasesServlet</servlet-name>
+		<servlet-class>example.servlets.PurchasesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.PurchasesServlet</servlet-name>
+		<url-pattern>/purchases/email/*</url-pattern>
+		<url-pattern>/purchase/email/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>returnUserDetails</servlet-name>
+		<servlet-class>example.servlets.returnUserDetails</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.returnUserDetails</servlet-name>
+		<url-pattern>/returnUserDetails</url-pattern>
+		<url-pattern>/returnUserDetails/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>ReviewHandler</servlet-name>
+		<servlet-class>example.servlets.ReviewHandler</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.ReviewHandler</servlet-name>
+		<url-pattern>/newReview</url-pattern>
+		<url-pattern>/allReviewsNotApproved</url-pattern>
+		<url-pattern>/reviewApprove</url-pattern>
+		<url-pattern>/reviews/bookId/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>ScrollHandler</servlet-name>
+		<servlet-class>example.servlets.ScrollServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.ScrollServlet</servlet-name>
+		<url-pattern>/scroll</url-pattern>
+		<url-pattern>/scroll/bookId/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<servlet-name>TransactionsServlet</servlet-name>
+		<servlet-class>example.servlets.TransactionsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>example.servlets.TransactionsServlet</servlet-name>
+		<url-pattern>/transactions</url-pattern>
+		<url-pattern>/transactions/</url-pattern>
+	</servlet-mapping>
 </web-app>
