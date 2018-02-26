@@ -41,7 +41,7 @@
 							email: window.curUserToDelete.email
 					};
 
-					$http.post("http://localhost:8080/ExampleServletv3/deleteUser", JSON.stringify(userToDelete)) 
+					$http.post("http://localhost:8080/BooksForAll/deleteUser", JSON.stringify(userToDelete)) 
 					.then(function(response) {
 
 						console.log("delete request sent!");

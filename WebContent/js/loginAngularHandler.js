@@ -29,7 +29,7 @@ angular.module('myApp').controller("Ctrlogin",
 
 					};
 
-					$http.post('http://localhost:8080/ExampleServletv3/loginServlet', JSON.stringify(data))
+					$http.post('http://localhost:8080/BooksForAll/loginServlet', JSON.stringify(data))
 					.then(function(response) {
 
 						//TODO: $rootScope.eamil = email_of_user_just_loged_in_from_the_response; 
@@ -94,7 +94,7 @@ angular.module('myApp').controller("Ctrlogin",
 //							localStorage.setItem('userImageUrl', response.data[0].userImageUrl);
 //							console.log($rootScope.nick);
 							// $Ctrlogin.curPage='index.html';
-//							window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
+//							window.location = 'http://localhost:8080/BooksForAll/KREbooks/index.html';
 
 
 
@@ -120,7 +120,7 @@ angular.module('myApp').controller("Ctrlogin",
 				console.log("ctrl.getEbooksAndPurchases");
 
 				// get all the ebooks the store offers
-				$http.get("http://localhost:8080/ExampleServletv3/ebooks")
+				$http.get("http://localhost:8080/BooksForAll/ebooks")
 				.then(function(response) {
 					$rootScope.records = response;
 					$rootScope.result = $rootScope.records;
@@ -137,7 +137,7 @@ angular.module('myApp').controller("Ctrlogin",
 					}
 
 					// 	get all purchases of the user logged in, by user's email.
-					$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+$rootScope.userLogedIn.email) 
+					$http.get("http://localhost:8080/BooksForAll/purchases/email/"+$rootScope.userLogedIn.email) 
 					.then(function(response) {
 						$rootScope.records = response;
 						// $rootScope.resultPurchasesTmp - a temp list holding the purchases of user.

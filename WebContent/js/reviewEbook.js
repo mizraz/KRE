@@ -15,7 +15,7 @@ var reviewList;
 			$rootScope.ebooksDict["ebook" + ctrl.ebookId].isReviewd = 0;
 			$rootScope.isCurEbookReviewed = 0;
 			ctrl.clickedOnce = true;
-			$http.get("http://localhost:8080/ExampleServletv3/reviews/bookId/"+ctrl.ebookId) ///name/Alfreds Futterkiste
+			$http.get("http://localhost:8080/BooksForAll/reviews/bookId/"+ctrl.ebookId) ///name/Alfreds Futterkiste
 			.then(function(response) {
 				$scope.records = response;
 				$scope.result = $scope.records;//this variable will hold the search results

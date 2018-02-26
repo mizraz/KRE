@@ -58,14 +58,14 @@
 
 
 .btn-likes-list:hover > *{
-	background: green;
+	background: white;
     visibility: visible;
 	color: black;
 	display: block;
 	
 }
 .btn-likes-list:hover > * {
-	background: green;
+	background: white;
     visibility: visible;
 	color: black;
 	display: block;
