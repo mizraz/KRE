@@ -13,7 +13,7 @@
 	    		}
 	    		
 				
-	    		$http.get("http://localhost:8080/ExampleServletv3/returnUserDetails")
+	    		$http.get("http://localhost:8080/BooksForAll/returnUserDetails")
 				.then(function(response) {
 					$scope.records = response;
 				

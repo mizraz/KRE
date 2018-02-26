@@ -39,8 +39,8 @@
 
 	    		}
 	    		
-				//$http({url:"http://localhost:8080/ExampleServletv3/returnUserDetails",method:"GET", params:{email: 'goofy@disney.com'}}) //
-	    		$http.get("http://localhost:8080/ExampleServletv3/returnUserDetails")
+				//$http({url:"http://localhost:8080/BooksForAll/returnUserDetails",method:"GET", params:{email: 'goofy@disney.com'}}) //
+	    		$http.get("http://localhost:8080/BooksForAll/returnUserDetails")
 				.then(function(response) {
 					$scope.records = response;
 					console.log(response);
@@ -105,10 +105,10 @@
 			    			description: $scope.desc,
 			    			userImageUrl: $scope.photo	
 			    		}
-			    		request = $.post("http://localhost:8080/ExampleServletv3/updateUserDetails",JSON.stringify(data));
+			    		request = $.post("http://localhost:8080/BooksForAll/updateUserDetails",JSON.stringify(data));
 			    		request.done(function (response, textStatus, jqXHR)
 			    		{
-			    	        	window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
+			    	        	window.location = 'http://localhost:8080/BooksForAll/KREbooks/index.html';
 			    	    });
 			    		request.fail(function() {
 			    			$scope.error="Error ";

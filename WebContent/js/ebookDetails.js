@@ -29,7 +29,7 @@
 				console.log("in gotoEbookPage()");
 				console.log("ctrl.ebook.bookId: " + ctrl.ebook.bookId);
 
-				if($rootScope.curPage != $rootScope.pagesPaths.userPurchases) {
+//				if($rootScope.curPage != $rootScope.pagesPaths.userPurchases) {
 
 					console.log("ctrl.curPage " + ctrl.curPage);
 					ctrl.curPage = $rootScope.pagesPaths.ebookPage; // TODO: delete and check if still works
@@ -37,7 +37,7 @@
 					console.log("ctrl.curPage " + ctrl.curPage);
 					
 					$rootScope.curPage = $rootScope.pagesPaths.ebookPage;
-				}
+//				}
 
 			};    	
 
