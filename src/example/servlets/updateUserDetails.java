@@ -87,7 +87,7 @@ public class updateUserDetails extends HttpServlet {
 		Cookie[] sessionCookie = null;
 		sessionCookie = request.getCookies();
 		
-		if( (UsernameExist(user.getUserNickname(),response)) && (user.getEmail() != sessionCookie[0].getValue()))
+		if (UsernameExist(user.getUserNickname(),response,sessionCookie[0].getValue())) //&& (user.getEmail() != sessionCookie[0].getValue()))
 		{
 			 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			//PrintWriter writer = response.getWriter();
@@ -167,7 +167,7 @@ public class updateUserDetails extends HttpServlet {
 	return;
     }
 	
-	protected Boolean UsernameExist(String username, HttpServletResponse response) throws ServletException, IOException
+	protected Boolean UsernameExist(String username, HttpServletResponse response,String cookEmail) throws ServletException, IOException
 	{
 		int check = 0;
 		try
@@ -176,7 +176,7 @@ public class updateUserDetails extends HttpServlet {
 			BasicDataSource ds = (BasicDataSource)context.lookup(
 					getServletContext().getInitParameter(AppConstants.DB_DATASOURCE) + AppConstants.OPEN);
 			Connection conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE user_nickname ='"+username.toString()+"'");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM USER_DETAILS WHERE user_nickname ='"+username.toString()+"' AND email !='"+cookEmail+"'" );
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next())
 			{

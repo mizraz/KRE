@@ -12,54 +12,59 @@
         <h3 class="form-heading">User Details</h3>
         <div class="form-group">
         	<label for="name">Name: </label>
-        	<input type="text" class="form-control" placeholder="Name" id="name" maxlength="10" required ng-model="name">
-        </div><br>
-        <div class="form-group">
-        	<label for="nick">Nickname: </label>
-        	<input type="text" class="form-control" placeholder="Nickname" id="nick" maxlength="20" required ng-model="nick">
-        </div><br>
+        	<ng-model="name"><strong>{{name}}</strong></ng-model>       	
+        </div>
         <br>
         <div class="form-group">
-        	<label for="desc">Description: </label>
-        	<textarea maxlength="300" rows="4" cols="50" class="form-control" id="desc" ng-model="desc"></textarea>
+        	<label for="nick">Nickname: </label>
+        	<ng-model="nick"><strong>{{nick}}</strong></ng-model>
         </div><br>
+        
+        <div class="form-group">
+        	<label for="desc">Description: </label>
+        	
+        	<ng-model="desc"><strong><textarea style="overflow-y: scroll" rows='5' cols="50" maxlength="600">{{desc}}</textarea></strong></ng-model>
+        	
+        </div><br>
+        <br>
 		<div class="form-group">
         	<label for="email">Email: </label>
-        	<input type="email" class="form-control" placeholder="Email" id="email" ng-model="email" >
+        	<ng-model="email"><strong>{{email}}</strong></ng-model>
         </div><br>
 		<div class="form-group">
-        	<label for="email">Phone Number: </label>
-        	<input type="text" name="phone"  class="form-control" id="phone" ng-model="phoneNumber" >
+        	<label for="phoneNumber">Phone Number: </label>
+        	<ng-model="phoneNumber"><strong>{{phoneNumber}}</strong></ng-model>
         </div><br>
 			
 		<div class="form-group">
-			<label for="cntry">Country: </label>
-        	<input type="text" name="country"  class="form-control" id="cntr"  ng-model="country" >
+			<label for="country">Country: </label>
+			<ng-model="country"><strong>{{country}}</strong></ng-model>
 			</div>
-			<div class="form-group" id="outc"></div><br>
+			<br>
 		<div class="form-group">	
 			<label for="city">City: </label>
-        	<input type="text" name="city" class="form-control" id="city" ng-model="city" >
+        	<ng-model="city"><strong>{{city}}</strong></ng-model>
 			</div>
-			<div class="form-group" id="outci"></div><br>
+			<br>
 		<div class="form-group">	
-			<label for="city">Street: </label>
-        	<input type="text" name="street" class="form-control" id="street" ng-model="street" >
+			<label for="street">Street: </label>
+        	<ng-model="street"><strong>{{street}}</strong></ng-model>
 			</div>
-			
+			<br>
 		<div class="form-group">
-		    <label for="hnum">Number: </label>
-        	<input type="text" name="hnumb"  class="form-control" id="hnumb" ng-model="hnumb" >
+		    <label for="hnumb">Number: </label>
+        	<ng-model="hnumb"><strong>{{hnumb}}</strong></ng-model>
 			</div>
-			
+			<br>
 		<div class="form-group">	
-			<label for="zc">Zip Code: </label>
-        	<input type="text" name="zip" class="form-control" id="zip" ng-model="zip" >
+			<label for="zip">Zip Code: </label>
+        	<ng-model="zip"><strong>{{zip}}</strong></ng-model>
         </div>
-	
+	   <br>
         <div class="form-group">
         	<label for="photo">Photo: </label>
-        	<input type="text" class="form-control" id="photo" placeholder="Photo URL" ng-model="photo">
+        	<ng-model="photo"><strong>{{photo}}</strong></ng-model>
+        
         </div><br><br>
        
       </form>

@@ -23,9 +23,9 @@ function focusPassword()
 				}
 				else
 				{
-					theInput.style.borderColor="yellow";
-					theOutput.innerHTML = "Moderate Password";
-					theOutput.style.color="yellow";
+					theInput.style.borderColor="blue";
+					theOutput.innerHTML = "Password steel not strong, but not weak eather,try to use numbers and latters to make your password stronger";
+					theOutput.style.color="blue";
 				}
 			}
 		}
@@ -107,7 +107,7 @@ function focusPassword()
 				theOutput.innerHTML = "Please enter your block number";
 				theOutput.style.color="red";
 			}
-			if(hnumb.match(chars3)||hnumb.match(chars2)&& (hnumb.length>=1))
+			if(hnumb.match(chars3)||hnumb.match(chars2)&& (hnumb.length==1))
 			{
 				theInput.style.borderColor="blue";
 				theOutput.innerHTML = "Ok";

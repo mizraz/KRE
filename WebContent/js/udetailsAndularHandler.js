@@ -1,138 +1,155 @@
 
 	angular.module('myApp').controller("CtrlDetail", 
 			['$scope','$rootScope','$http', function($scope, $rootScope, $http) {
-		$scope.error="Error ";
-		$scope.desc="";
-		$scope.photo="";
-		$scope.errormsgg="Nickname already exists, enter a new one and try again";
+	
+		//remain on hide when the page is loaded
+		$scope.errormsg1="";
+		$scope.errormsg2="";
+		$scope.errormsg3="";
+		$scope.errormsg4="";
+		$scope.errormsg5="";
+		$scope.errormsg6="";
+		$scope.errormsg7="";
+		$scope.errormsg8="";
+		$scope.errormsg9="";
+		$scope.errormsg10="";
+		$scope.errormsg12="Nickname already exists";
 		$('#alert1').hide();
 		$('#alert2').hide();
 		$('#alert3').hide();
-	  //  $scope.Update = function()
-	  //  {
-	    	//var checkAll=1;
-	    	//$('#alert1').hide();
-	    	//$('#alert2').hide();
-	    	//$('#alert3').hide();
-	    	//if($scope.pwd.length<3)
-	    //	{
-	    	//	checkAll=0;
-	    	//	$scope.error="Error ";
-	    	//	$scope.errormsg3="Your passwords to short (min chars 3)";
-	    	//	$('#alert3').show();
-	    	//}
-	    	//console.log($scope.name);
-	    	//if(checkAll==1)
-	    	//{
-	    		if ($scope.photo.length==0)
-	    			$scope.photo="https://vignette.wikia.nocookie.net/simpsons/images/1/11/Homersimpson.jpg/revision/latest?cb=20121229201104";
-	    		//$scope.email_enter = $rootScope.email;
-	    		//console.log($scope.email_enter);
-	    		// $rootScope.test = 'abc';
-    			 console.log($rootScope.test);
-    			 console.log($rootScope);
-	    		var data =
-	    		{
-	    			
-	    			email : $rootScope.userLogedIn.email,
-	    			userNickname :"goofy"
+		$('#alert4').hide();
+		$('#alert5').hide();
+		$('#alert6').hide();
+		$('#alert7').hide();
+		$('#alert8').hide();
+		$('#alert9').hide();
+		$('#alert10').hide();
+		$('#alert12').hide();							
+	    $scope.Update = function()
+	    {
+			 var CheckFlag=1;//checks if all parameters were entered correct way
+			 var letters = /^[A-Z a-z]+$/;//for parameters that have to match only letters
+			 var numbers = /[0-9]/;//for parameters that have to match only numbers
+			 var homePhone1 = /^04([0-9]{7})?$/;//pattern to phone number which starts with 04
+			 var homePhone2 = /^02([0-9]{7})?$/;//pattern to phone number which starts with 02
+			 var homePhone3 = /^03([0-9]{7})?$/;//pattern to phone number which starts with 03
+			 var homePhone4 = /^09([0-9]{7})?$/;//pattern to phone number which starts with 09
+			 var cellPhone = /^05([0-9]{8})?$/;//pattern to phone number which starts with 05
+			 var validEmail =  
+			    		/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//pattern to email
+			 $('#alert1').hide();
+			 $('#alert2').hide();
+			 $('#alert3').hide();
+			 $('#alert4').hide();
+			 $('#alert5').hide();
+			 $('#alert6').hide();
+			 $('#alert7').hide();
+			 $('#alert8').hide();
+			 $('#alert9').hide();
+			 $('#alert10').hide();
+			 $('#alert12').hide();
+		    if(!($scope.userLogedIn.userName.match(letters)))//checks validity of name
+			 {
+		    	    CheckFlag=0;
+				    $scope.errormsg1="Use letters only";
+					$('#alert1').show();
+			 }
 
-	    		}
-	    		
-				//$http({url:"http://localhost:8080/BooksForAll/returnUserDetails",method:"GET", params:{email: 'goofy@disney.com'}}) //
-	    		$http.get("http://localhost:8080/BooksForAll/returnUserDetails")
-				.then(function(response) {
-					$scope.records = response;
-					console.log(response);
-					$scope.result = $scope.records;//this variable will hold the search results
-					console.log($scope.result);
-					console.log('arr length ' + $scope.result.data.length);
-					//for (var i = 0; i < $scope.result.data.length; ++i) {
-                        
-						//console.log(response.data[0].userName);
-						$scope.name = response.data[0].userName;
-						$scope.email = response.data[0].email;
-						$scope.nick = response.data[0].userNickname;
-						$scope.desc = response.data[0].description;
-						$scope.pwd = response.data[0].pwd;
-						$scope.phone = response.data[0].phoneNumber;
-						$scope.photo = response.data[0].userImageUrl;
-						console.log(response.data[0].address.split(",")[0]);
-						console.log(response.data[0].address.split(",")[1]);
-						if(response.data[0].address.split(",")[0] != null)
-						$scope.country = response.data[0].address.split(",")[0];
-						if(response.data[0].address.split(",")[1] != null)
-							$scope.city = response.data[0].address.split(",")[1];
-						if(response.data[0].address.split(",")[2] != null)
-							$scope.street = response.data[0].address.split(",")[2];
-						if(response.data[0].address.split(",")[3] != null)
-							$scope.hnumb = response.data[0].address.split(",")[3];
-						if(response.data[0].address.split(",")[4] != null)
-							$scope.zip = response.data[0].address.split(",")[4];
-						
+			 if((!($scope.userLogedIn.userNickname.match(letters)))&&(!($scope.userLogedIn.userNickname.match(numbers))))//checks validity of userName
+			 {
+				    CheckFlag=0;
+				    $scope.errormsg2="Use letters only";
+					$('#alert2').show();
+			 }
+			 if($scope.userLogedIn.pwd.length==0)//check that password is not empty
+			 {
+			    CheckFlag=0;
+			    $scope.errormsg3="OOPS! You forgot your password";
+				$('#alert3').show();
+			 }
+		     if($scope.userLogedIn.pwd.length<3)//checks that password is not too short
+		     {
+		        CheckFlag=0;
+			    $scope.errormsg3="Your Password is too short";
+				$('#alert3').show();
+		     }
+		     if(!($scope.userLogedIn.email.match(validEmail)))//checks email validity
+		     {
+		         CheckFlag=0;
+		         $scope.errormsg5="Your email invalid";
+		         $('#alert5').show()
+		     }
+		     //validates phone number
+			 if(!(($scope.userLogedIn.phoneNumber.match(homePhone1))||($scope.userLogedIn.phoneNumber.match(homePhone2))||($scope.userLogedIn.phoneNumber.match(homePhone3))||($scope.userLogedIn.phoneNumber.match(homePhone4))|| ($scope.userLogedIn.phoneNumber.match(cellPhone))))
+			  {
+			      CheckFlag=0;
+				  $scope.errormsg4="Your phone number is invalid";
+				  $('#alert4').show();
+			  }
+			 //country validation
+			  if(($scope.userLogedIn.country.length < 3) || (!($scope.userLogedIn.country.match(letters))))
+			  {
+			      CheckFlag=0;
+			      $scope.errormsg6="Your country must be letters long at least";
+				  $('#alert6').show();
+			  }
+			  if(($scope.userLogedIn.city.length < 3) || (!($scope.userLogedIn.city.match(letters))))
+			  {
+			      CheckFlag=0;
+			      $scope.errormsg7="Your city must be letters long at least";
+				  $('#alert7').show();
+			  }
+			  if(($scope.userLogedIn.street.length < 3) || (!($scope.userLogedIn.street.match(letters))))
+			  {
+			      CheckFlag=0;
+			      $scope.errormsg8="Your street must be letters long at least";
+				  $('#alert8').show();
+			  }
+			  if(($scope.userLogedIn.hnumb.length == 0) || (!($scope.userLogedIn.hnumb.match(numbers))))
+			  {
+			      CheckFlag=0;
+			      $scope.errormsg9="Please enter your block number";
+				  $('#alert9').show();
+			  }
+			  if($scope.userLogedIn.zip.length != 7)
+			  {
+			      CheckFlag=0;
+			      $scope.errormsg10="All zipcodes must have 7 digits";
+				  $('#alert10').show();
+			  }
+			    	if(CheckFlag==1)
 
-
-						//drawReview(email, name, profilePicSrc, msgText, msgIdNumberDel, msgId, dateTime, newMessage, date);
-//						console.log(newMessage);
-					//}
-						
-				$scope.Update = function()
-			    {
-			    	var checkAll=1;
-			    	$('#alert1').hide();
-			    	$('#alert2').hide();
-			    	$('#alert3').hide();
-			    	if($scope.pwd.length<3)
 			    	{
-			    		checkAll=0;
-			    		$scope.error="Error ";
-			    		$scope.errormsg3="Your passwords to short (min chars 3)";
-			    		$('#alert3').show();
-			    	}
-			    	console.log($scope.name);
-			    	if(checkAll==1)
-			    	{
-			    		if ($scope.photo.length==0)
-			    			$scope.photo="https://vignette.wikia.nocookie.net/simpsons/images/1/11/Homersimpson.jpg/revision/latest?cb=20121229201104";
+			    		if ($scope.userLogedIn.userImageUrl == 0)
+			    			$scope.userLogedIn.userImageUrl="https://vignette.wikia.nocookie.net/simpsons/images/1/11/Homersimpson.jpg/revision/latest?cb=20121229201104";
+			    		//making data to send to the server via JSON
 			    		var data =
 			    		{
-			    			userName: $scope.name,
-			    			email: $scope.email,
-			    			userNickname : $scope.nick,
-			    			pwd: $scope.pwd,
-			    			address:$scope.country +"," + $scope.city +","+ $scope.street + ","+ $scope.hnumb +","+ $scope.zip,
-			    			phoneNumber: $scope.phone,
-			    			description: $scope.desc,
-			    			userImageUrl: $scope.photo	
-			    		}
-			    		request = $.post("http://localhost:8080/BooksForAll/updateUserDetails",JSON.stringify(data));
+			    			userName: $scope.userLogedIn.userName,
+			    			email: $scope.userLogedIn.email,
+			    			userNickname : $scope.userLogedIn.userNickname,
+			    			pwd: $scope.userLogedIn.pwd,
+			    			address:$scope.userLogedIn.country +"," + $scope.userLogedIn.city +","+ $scope.userLogedIn.street + ","+ $scope.userLogedIn.hnumb +","+ $scope.userLogedIn.zip,
+			    			phoneNumber: $scope.userLogedIn.phoneNumber,
+			    			description: $scope.userLogedIn.description,
+			    			userImageUrl: $scope.userLogedIn.userImageUrl,
+			    			
+			    		}//data
+			    		request = $.post("http://localhost:8080/BooksForAll/updateUserDetails",JSON.stringify(data));//sends request to the server to update users details
 			    		request.done(function (response, textStatus, jqXHR)
 			    		{
-			    	        	window.location = 'http://localhost:8080/BooksForAll/KREbooks/index.html';
-			    	    });
+			    			    window.alert("Your Information has been updated");
+			    	        	
+			    	    });//then
+
+			
 			    		request.fail(function() {
-			    			$scope.error="Error ";
-							$scope.errormsgg="Nickname "+$scope.nick+" already exists, enter a new one and try again";
-							$('#alert2').show();
-			    		});
+			    			
+							$scope.errormsg12="Nickname "+$scope.nick+" already exists, enter a new one and try again";
+							$('#alert12').show();
+			    		});//fail
 			    		
-			    	}
-			    };
-						 	
-
-				});
-	    		
-	    		
-	    		
-	    		
-	    		
-	    		
-	    		
-	    		
-	    		
-
-	    		
-	   // 	}
-	 //   };
-	}]);
+			    	}//if
+			    };//update
+	}]);//myAPP
 	
