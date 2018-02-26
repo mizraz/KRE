@@ -118,6 +118,7 @@
 				  $('#alert10').show();
 			  }
 			    	if(CheckFlag==1)
+
 			    	{
 			    		if ($scope.userLogedIn.userImageUrl == 0)
 			    			$scope.userLogedIn.userImageUrl="https://vignette.wikia.nocookie.net/simpsons/images/1/11/Homersimpson.jpg/revision/latest?cb=20121229201104";
@@ -134,12 +135,14 @@
 			    			userImageUrl: $scope.userLogedIn.userImageUrl,
 			    			
 			    		}//data
-			    		request = $.post("http://localhost:8080/ExampleServletv3/updateUserDetails",JSON.stringify(data));//sends request to the server to update users details
+			    		request = $.post("http://localhost:8080/BooksForAll/updateUserDetails",JSON.stringify(data));//sends request to the server to update users details
 			    		request.done(function (response, textStatus, jqXHR)
 			    		{
 			    			    window.alert("Your Information has been updated");
 			    	        	
 			    	    });//then
+
+			
 			    		request.fail(function() {
 			    			
 							$scope.errormsg12="Nickname "+$scope.nick+" already exists, enter a new one and try again";

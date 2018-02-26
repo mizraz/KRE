@@ -12,7 +12,7 @@ angular.module('myApp').controller("reviewsListAllController",
 			reviewList = document.getElementById('chati'); // TODO: update 'chati' to reviewsList something....
 
 			// get all all reviews not approved yet.
-			$http.get("http://localhost:8080/ExampleServletv3/allReviewsNotApproved") 
+			$http.get("http://localhost:8080/BooksForAll/allReviewsNotApproved") 
 			.then(function(response) {
 				$scope.records = response;
 				$scope.result = $scope.records;//this variable will hold the search results
@@ -104,7 +104,7 @@ angular.module('myApp').controller("reviewsListAllController",
 							};
 
 							//$http is AngularJS way to do ajax-like communications
-							$http.post("http://localhost:8080/ExampleServletv3/reviewApprove", JSON.stringify(reviewApproval)) 
+							$http.post("http://localhost:8080/BooksForAll/reviewApprove", JSON.stringify(reviewApproval)) 
 							.then(function(response) {
 								$scope.records = response;
 								$scope.result = $scope.records;//this variable will hold the search results

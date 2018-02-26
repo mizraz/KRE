@@ -8,9 +8,10 @@
 
 
 		this.$onInit = function () {
+			ctrl.userPrivel = $rootScope.userPrivel;
 			console.log("likes list this.$oninit ");
 //			send ajax to get all likes to ctrl.ebookId
-			$http.get("http://localhost:8080/ExampleServletv3/likes/bookId/"+ctrl.ebookId)
+			$http.get("http://localhost:8080/BooksForAll/likes/bookId/"+ctrl.ebookId)
 			.then(function(response) {
 				$scope.records = response;
 				$scope.result = $scope.records;//this variable will hold the search results
@@ -63,7 +64,7 @@
 //			if (!ctrl.likeListClickedOnce) {
 //			ctrl.likeListClickedOnce = true;
 ////			TODO: fix ajax for getting all likes of this book
-//			$http.get("http://localhost:8080/ExampleServletv3/likes/bookId/"+ctrl.ebookId)
+//			$http.get("http://localhost:8080/BooksForAll/likes/bookId/"+ctrl.ebookId)
 //			.then(function(response) {
 //			$scope.records = response;
 //			$scope.result = $scope.records;//this variable will hold the search results

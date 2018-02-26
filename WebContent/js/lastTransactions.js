@@ -19,7 +19,7 @@ angular.module('myApp').controller("lastTransactionsController",
 //				if (!ctrl.clickedOnce) {
 				ctrl.clickedOnceTran = true;
 				// get all transactions since 1.1.1970 until now.
-				$http.get("http://localhost:8080/ExampleServletv3/transactions")
+				$http.get("http://localhost:8080/BooksForAll/transactions")
 				.then(function(response) {
 					$scope.records = response;
 					$scope.result = $scope.records;//this variable will hold the search results
@@ -76,7 +76,7 @@ angular.module('myApp').controller("lastTransactionsController",
 //				if (!ctrl.clickedOnce) {
 				ctrl.clickedOnceTran = true;
 				// get all transactions between firstDate and secondDate
-				$http.get("http://localhost:8080/ExampleServletv3/transactions/firstDate/"+$scope.dates.first.getTime()+'/secondDate/'+$scope.dates.second.getTime())
+				$http.get("http://localhost:8080/BooksForAll/transactions/firstDate/"+$scope.dates.first.getTime()+'/secondDate/'+$scope.dates.second.getTime())
 				.then(function(response) {
 					$scope.records = response;
 					$scope.result = $scope.records;//this variable will hold the search results

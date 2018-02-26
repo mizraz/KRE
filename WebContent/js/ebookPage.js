@@ -8,7 +8,7 @@ angular.module('myApp').controller("ebookPageController",
 				$rootScope.isCurEbookReviewed = 0;
 
 				// get reviews of ebookId
-				$http.get("http://localhost:8080/ExampleServletv3/reviews/bookId/"+ctrl.ebookId)
+				$http.get("http://localhost:8080/BooksForAll/reviews/bookId/"+ctrl.ebookId)
 				.then(function(response) {
 					
 					

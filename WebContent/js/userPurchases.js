@@ -10,7 +10,7 @@ angular.module('myApp').controller("userPurchasesController",
 
 
 //		    var init = function () {
-//				$http.get("http://localhost:8080/ExampleServletv3/purchases/email/"+ctrl.email) ///name/Alfreds Futterkiste
+//				$http.get("http://localhost:8080/BooksForAll/purchases/email/"+ctrl.email) ///name/Alfreds Futterkiste
 //				.then(function(response) {
 //					$scope.records = response;
 //					$scope.result = $scope.records;//this variable will hold the search results

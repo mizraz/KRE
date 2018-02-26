@@ -5,7 +5,7 @@ angular.module('myApp').controller("usersListController",
 
 			
 			// get all users registered store.
-			$http.get("http://localhost:8080/ExampleServletv3/usersList") ///name/Alfreds Futterkiste
+			$http.get("http://localhost:8080/BooksForAll/usersList") ///name/Alfreds Futterkiste
 			.then(function(response) {
 				$scope.records = response;
 				$scope.usersRegisteredList = $scope.records;//this variable will hold the search usersRegisteredLists

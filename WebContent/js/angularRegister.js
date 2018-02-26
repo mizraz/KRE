@@ -134,7 +134,7 @@ angular.module('myApp').controller("Ctrl",
 	    			description: $scope.desc,
 	    			userImageUrl: $scope.userImageUrl	
 	    		}
-	    		request = $.post("http://localhost:8080/ExampleServletv3/UserRegisterServlet",JSON.stringify(data));
+	    		request = $.post("http://localhost:8080/BooksForAll/UserRegisterServlet",JSON.stringify(data));
 	    		console.log(request);
 	    		request.then(function (response, textStatus, jqXHR)
 	    		{      console.log("HELLO");
@@ -145,6 +145,7 @@ angular.module('myApp').controller("Ctrl",
 	    			$('#alert12').show();
 					//window.location = 'http://localhost:8080/ExampleServletv3/KREbooks/index.html';
 	    		});
+
 
 	    		
 	    	}

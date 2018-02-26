@@ -14,7 +14,8 @@
 	    		}
 	    		
 				
-	    		$http.get("http://localhost:8080/ExampleServletv3/returnUserDetails/user/"+$rootScope.curUserAdminSelected.email )
+	    		$http.get("http://localhost:8080/BooksForAll/returnUserDetails/user/"+$rootScope.curUserAdminSelected.email )
+
 				.then(function(response) {
 					$scope.records = response;
 				        console.log(response);

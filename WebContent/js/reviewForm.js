@@ -49,7 +49,7 @@
 			};
 
 			// send ajax post request with the new review.
-			$http.post("http://localhost:8080/ExampleServletv3/newReview", JSON.stringify(review)) 
+			$http.post("http://localhost:8080/BooksForAll/newReview", JSON.stringify(review)) 
 			.then(function(response) {
 //				TODO: message to inform user message submited and will be approved soon
 
